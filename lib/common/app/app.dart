@@ -1,10 +1,7 @@
 import 'package:eco_hero_mobile/common/router/go_router.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
-import '../injection/dependency_injection.dart';
 
 class EcoHero extends StatelessWidget {
   const EcoHero({super.key});
@@ -16,15 +13,15 @@ class EcoHero extends StatelessWidget {
         return MaterialApp.router(
           routerConfig: router,
           debugShowCheckedModeBanner: false,
-          title: 'GameOn',
+          title: 'EcoHero',
           theme: ThemeData(
             colorScheme: ColorScheme.light(
-              primary: accent,
+              primary: primary,
               secondary: secondary,
               surface: background,
               onSurface: text,
             ),
-            fontFamily: 'Lexend', //fixme impl
+            fontFamily: 'Raleway',
             appBarTheme: AppBarTheme(
               backgroundColor: background,
             ),

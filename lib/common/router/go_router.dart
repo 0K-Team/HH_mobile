@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:eco_hero_mobile/features/main/presentation/pages/home_page.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
@@ -7,8 +7,7 @@ final router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      //fixme impl
-      builder: (context, state) => Container(),
+      builder: (context, state) => HomePage(),
     ),
 
   ],
