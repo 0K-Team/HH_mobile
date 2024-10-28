@@ -9,6 +9,5 @@ final router = GoRouter(
       path: '/',
       builder: (context, state) => HomePage(),
     ),
-
   ],
 );

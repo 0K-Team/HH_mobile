@@ -9,3 +9,5 @@ Color get primary => const Color(0x4090B1F0);
 Color get secondary => const Color(0xff83FF40);
 
 Color get shadow => const Color(0xff8D8D8D);
+
+Color get element => const Color(0xff303030);
