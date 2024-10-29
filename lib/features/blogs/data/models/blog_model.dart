@@ -9,6 +9,7 @@ class BlogModel with _$BlogModel {
     required String image,
     required String title,
     required String author,
+    required String content,
   }) = _BlogModel;
 
   factory BlogModel.fromJson(Map<String, dynamic> json) =>

@@ -11,6 +11,7 @@ _$BlogModelImpl _$$BlogModelImplFromJson(Map<String, dynamic> json) =>
       image: json['image'] as String,
       title: json['title'] as String,
       author: json['author'] as String,
+      content: json['content'] as String,
     );
 
 Map<String, dynamic> _$$BlogModelImplToJson(_$BlogModelImpl instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$BlogModelImplToJson(_$BlogModelImpl instance) =>
       'image': instance.image,
       'title': instance.title,
       'author': instance.author,
+      'content': instance.content,
     };

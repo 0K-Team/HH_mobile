@@ -26,6 +26,8 @@ mixin _$BlogModel {
   set title(String value) => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
   set author(String value) => throw _privateConstructorUsedError;
+  String get content => throw _privateConstructorUsedError;
+  set content(String value) => throw _privateConstructorUsedError;
 
   /// Serializes this BlogModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,7 +44,7 @@ abstract class $BlogModelCopyWith<$Res> {
   factory $BlogModelCopyWith(BlogModel value, $Res Function(BlogModel) then) =
       _$BlogModelCopyWithImpl<$Res, BlogModel>;
   @useResult
-  $Res call({String image, String title, String author});
+  $Res call({String image, String title, String author, String content});
 }
 
 /// @nodoc
@@ -63,6 +65,7 @@ class _$BlogModelCopyWithImpl<$Res, $Val extends BlogModel>
     Object? image = null,
     Object? title = null,
     Object? author = null,
+    Object? content = null,
   }) {
     return _then(_value.copyWith(
       image: null == image
@@ -77,6 +80,10 @@ class _$BlogModelCopyWithImpl<$Res, $Val extends BlogModel>
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
               as String,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -89,7 +96,7 @@ abstract class _$$BlogModelImplCopyWith<$Res>
       __$$BlogModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String image, String title, String author});
+  $Res call({String image, String title, String author, String content});
 }
 
 /// @nodoc
@@ -108,6 +115,7 @@ class __$$BlogModelImplCopyWithImpl<$Res>
     Object? image = null,
     Object? title = null,
     Object? author = null,
+    Object? content = null,
   }) {
     return _then(_$BlogModelImpl(
       image: null == image
@@ -122,6 +130,10 @@ class __$$BlogModelImplCopyWithImpl<$Res>
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
               as String,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -130,7 +142,10 @@ class __$$BlogModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BlogModelImpl implements _BlogModel {
   _$BlogModelImpl(
-      {required this.image, required this.title, required this.author});
+      {required this.image,
+      required this.title,
+      required this.author,
+      required this.content});
 
   factory _$BlogModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$BlogModelImplFromJson(json);
@@ -141,10 +156,12 @@ class _$BlogModelImpl implements _BlogModel {
   String title;
   @override
   String author;
+  @override
+  String content;
 
   @override
   String toString() {
-    return 'BlogModel(image: $image, title: $title, author: $author)';
+    return 'BlogModel(image: $image, title: $title, author: $author, content: $content)';
   }
 
   /// Create a copy of BlogModel
@@ -167,7 +184,8 @@ abstract class _BlogModel implements BlogModel {
   factory _BlogModel(
       {required String image,
       required String title,
-      required String author}) = _$BlogModelImpl;
+      required String author,
+      required String content}) = _$BlogModelImpl;
 
   factory _BlogModel.fromJson(Map<String, dynamic> json) =
       _$BlogModelImpl.fromJson;
@@ -181,6 +199,9 @@ abstract class _BlogModel implements BlogModel {
   @override
   String get author;
   set author(String value);
+  @override
+  String get content;
+  set content(String value);
 
   /// Create a copy of BlogModel
   /// with the given fields replaced by the non-null parameter values.

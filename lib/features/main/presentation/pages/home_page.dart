@@ -4,6 +4,7 @@ import 'package:eco_hero_mobile/features/main/presentation/widgets/button_widget
 import 'package:eco_hero_mobile/features/main/presentation/widgets/element_widget.dart';
 import 'package:eco_hero_mobile/features/main/presentation/widgets/navigation_bar_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomePage extends StatelessWidget {
@@ -17,18 +18,21 @@ class HomePage extends StatelessWidget {
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREFfl0s0KCGxfX3stJbCBco51DqIDLFhkCrw&s',
         title: 'Czy można używać mniej wody podczas gotowania?',
         author: 'Karol > Oskar',
+        content: '# lol co tam\n <br> br br',
       ),
       BlogModel(
         image:
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-VBvRNOKXb2tw-VeA5sN5hJ83EDgsx-MVdw&s',
         title: 'ąęąś∂ńŌ∑d',
         author: 'lol',
+        content: '',
       ),
       BlogModel(
         image:
             'https://thumbor.forbes.com/thumbor/fit-in/x/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/featured-image-kitchen-layouts.jpg',
         title: 'Coś innego',
         author: 'siajds',
+        content: '',
       ),
     ];
 
@@ -132,57 +136,62 @@ class HomePage extends StatelessWidget {
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     BlogModel blog = blogs[index];
-                    return Container(
-                      margin: EdgeInsets.only(right: 4.w),
-                      child: Stack(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.network(
-                              blog.image,
-                              width: 60.w,
-                              height: 12.h,
-                              fit: BoxFit.cover,
+                    return GestureDetector(
+                      onTap: () {
+                        context.push('/blog/page', extra: blog);
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(right: 4.w),
+                        child: Stack(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.network(
+                                blog.image,
+                                width: 60.w,
+                                height: 12.h,
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                          ),
-                          Positioned.fill(
-                            child: Container(
-                              decoration: ShapeDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment(1, 1),
-                                  end: Alignment(-1, -1),
-                                  colors: [
-                                    Color(0x00D9D9D9),
-                                    Color(0xFF2F2F2F),
-                                  ],
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
+                            Positioned.fill(
+                              child: Container(
+                                decoration: ShapeDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment(1, 1),
+                                    end: Alignment(-1, -1),
+                                    colors: [
+                                      Color(0x00D9D9D9),
+                                      Color(0xFF2F2F2F),
+                                    ],
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(10.sp),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: 45.w,
-                                  child: Text(
-                                    blog.title,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 16.sp,
-                                      height: 1,
+                            Padding(
+                              padding: EdgeInsets.all(10.sp),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: 45.w,
+                                    child: Text(
+                                      blog.title,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16.sp,
+                                        height: 1,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Text(blog.author),
-                              ],
+                                  Text(blog.author),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     );
                   },
