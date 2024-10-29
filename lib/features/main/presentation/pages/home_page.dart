@@ -1,11 +1,9 @@
 import 'package:eco_hero_mobile/common/util/color_util.dart';
-import 'package:eco_hero_mobile/features/blogs/data/models/blog_model.dart';
 import 'package:eco_hero_mobile/features/blogs/presentation/widgets/blogs_carousel_widget.dart';
 import 'package:eco_hero_mobile/features/main/presentation/widgets/button_widget.dart';
 import 'package:eco_hero_mobile/features/main/presentation/widgets/element_widget.dart';
 import 'package:eco_hero_mobile/features/main/presentation/widgets/navigation_bar_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomePage extends StatelessWidget {
