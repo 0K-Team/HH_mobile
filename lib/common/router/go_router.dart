@@ -8,6 +8,7 @@ import 'package:eco_hero_mobile/features/main/presentation/pages/notifications_p
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/presentation/pages/user_configuration_page.dart';
 import 'package:eco_hero_mobile/features/user/presentation/pages/user_page.dart';
+import 'package:eco_hero_mobile/features/virtual_garden/data/models/virtual_garden_model.dart';
 import 'package:eco_hero_mobile/features/virtual_garden/presentation/pages/virtual_garden_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -52,21 +53,18 @@ final router = GoRouter(
         // Virtual garden
         GoRoute(
           path: 'virtual_garden/page',
-          builder: (context, state) => VirtualGardenPage(),
+          builder: (context, state) {
+            assert(state.extra != null && state.extra is VirtualGardenModel);
+            return VirtualGardenPage(virtualGarden: state.extra as VirtualGardenModel);
+          },
         ),
         // Blogs
         GoRoute(
-          path: 'blog',
-          builder: (_, __) => HomePage(),
-          routes: [
-            GoRoute(
-              path: '/page',
-              builder: (_, state) {
-                assert(state.extra != null && state.extra is BlogModel);
-                return BlogPage(blog: state.extra as BlogModel);
-              },
-            ),
-          ],
+          path: 'blog/page',
+          builder: (_, state) {
+            assert(state.extra != null && state.extra is BlogModel);
+            return BlogPage(blog: state.extra as BlogModel);
+          },
         ),
         // Daily challenges
         GoRoute(

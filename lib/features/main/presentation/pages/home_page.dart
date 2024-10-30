@@ -7,6 +7,8 @@ import 'package:eco_hero_mobile/features/main/presentation/widgets/element_widge
 import 'package:eco_hero_mobile/features/main/presentation/widgets/navigation_bar_widget.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user_bloc.dart';
+import 'package:eco_hero_mobile/features/virtual_garden/data/repositories/virtual_garden_repository_impl.dart';
+import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -75,7 +77,14 @@ class HomePage extends StatelessWidget {
                     }),
                 SizedBox(height: 1.5.h),
                 ElementWidget(
-                  onTap: () => context.push('/virtual_garden/page'),
+                  onTap: () {
+                    get<VirtualGardenRepositoryImpl>()
+                        .fetchVirtualGarden(user.email)
+                        .fold((virtualGarden) {
+                      context.push('/virtual_garden/page',
+                          extra: virtualGarden);
+                    }, (exception) {});
+                  },
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 4.w),
                     child: Row(
@@ -206,7 +215,7 @@ class HomePage extends StatelessWidget {
                                   fontWeight: FontWeight.w700,
                                   fontSize: 17.sp,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                           Text(

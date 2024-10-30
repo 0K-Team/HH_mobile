@@ -1,7 +1,11 @@
+import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/util/back_with_text.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
+import 'package:eco_hero_mobile/features/virtual_garden/data/repositories/virtual_garden_repository_impl.dart';
+import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class UserPage extends StatelessWidget {
@@ -18,7 +22,60 @@ class UserPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            BackWithText(title: 'Profil ${user.fullName}'),
+            BackWithText(
+              title: 'Profil ${user.fullName}',
+              ending: GestureDetector(
+                onTapDown: (details) {
+                  final offset = details.globalPosition;
+                  showMenu(
+                    context: context,
+                    position: RelativeRect.fromLTRB(
+                      offset.dx,
+                      offset.dy,
+                      MediaQuery.of(context).size.width - offset.dx,
+                      MediaQuery.of(context).size.height - offset.dy,
+                    ),
+                    color: element,
+                    items: [
+                      PopupMenuItem(
+                        child: Text(
+                          'Dodaj do znajomych',
+                          style: TextStyle(
+                            fontSize: 18.sp,
+                          ),
+                        ),
+                        onTap: () {
+                          //todo impl
+                        },
+                      ),
+                      PopupMenuItem(
+                        child: Text(
+                          'Wyświetl wirtualny ogródek',
+                          style: TextStyle(
+                            fontSize: 18.sp,
+                          ),
+                        ),
+                        onTap: () async {
+                          get<VirtualGardenRepositoryImpl>()
+                              .fetchVirtualGarden('')
+                              .fold((virtualGarden) {
+                            context.push('/virtual_garden/page',
+                                extra: virtualGarden);
+                          }, (exception) {});
+                        },
+                      ),
+                    ],
+                  );
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(right: 4.w),
+                  child: Icon(
+                    Icons.menu,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
             SizedBox(height: 0.5.h),
             CircleAvatar(
               radius: 40.sp,
@@ -46,29 +103,36 @@ class UserPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
-              child: Text(
-                user.bio,
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 17.sp,
-                ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Image.asset(
+                        'assets/location.png',
+                        fit: BoxFit.cover,
+                        height: 22.sp,
+                        width: 22.sp,
+                      ),
+                      Text(
+                        user.location,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 17.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    user.bio,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 17.sp,
+                    ),
+                  ),
+                ],
               ),
             ),
             SizedBox(height: 1.5.h),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: EdgeInsets.only(left: 4.w),
-                child: Text(
-                  'Moja lokalizacja',
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 0.5.h),
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
