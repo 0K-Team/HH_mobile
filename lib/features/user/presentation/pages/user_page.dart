@@ -57,7 +57,7 @@ class UserPage extends StatelessWidget {
                         ),
                         onTap: () async {
                           get<VirtualGardenRepositoryImpl>()
-                              .fetchVirtualGarden('')
+                              .fetchVirtualGarden(user.email)
                               .fold((virtualGarden) {
                             context.push('/virtual_garden/page',
                                 extra: virtualGarden);
