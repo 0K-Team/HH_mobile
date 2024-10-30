@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 
 class UserDataSource {
+  // ignore: unused_field fixme
   final Dio _dio;
 
   UserDataSource(this._dio);
@@ -14,11 +15,16 @@ class UserDataSource {
         email: 'opkarol11@wp.pl',
         firstName: 'Karol',
         secondName: 'Gajda',
-        notifications: [],
+        notifications: [
+          UserModelNotifications(
+            title: '',
+            date: 'date',
+          ),
+        ],
         points: 999,
         friends: [],
         avatar: '',
-        bio: 'Super ekolog ze nie jest',
+        bio: 'Super ekolog ze mnie jest',
         achievements: [],
         skills: [],
         badges: [],

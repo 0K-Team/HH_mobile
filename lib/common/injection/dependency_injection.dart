@@ -24,5 +24,5 @@ void setupDependencyInjection() {
   // User
   get.registerLazySingleton(() => UserDataSource(get()));
   get.registerLazySingleton(() => UserRepositoryImpl(get()));
-  get.registerLazySingleton(() => CurrentUserBloc());
+  get.registerLazySingleton(() => CurrentUserBloc(get()));
 }

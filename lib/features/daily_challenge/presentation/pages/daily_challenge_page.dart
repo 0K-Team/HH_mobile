@@ -1,3 +1,4 @@
+import 'package:eco_hero_mobile/common/util/button.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/data/models/user_daily_challenge_model.dart';
 import 'package:flutter/material.dart';
@@ -69,25 +70,7 @@ class DailyChallengePage extends StatelessWidget {
                 ),
               ],
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: secondary,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              width: 85.w,
-              padding: EdgeInsets.symmetric(vertical: 1.h),
-              margin: EdgeInsets.symmetric(vertical: 2.h),
-              child: Center(
-                child: Text(
-                  'Segreguj dalej',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.sp,
-                    color: element,
-                  ),
-                ),
-              ),
-            ),
+            PrimaryButtonWidget(title: 'Segreguj dalej'),
           ],
         ),
       ),
