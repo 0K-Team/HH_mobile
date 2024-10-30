@@ -1,3 +1,4 @@
+import 'package:eco_hero_mobile/common/util/back_with_text.dart';
 import 'package:eco_hero_mobile/common/util/button.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/data/models/user_daily_challenge_model.dart';
@@ -19,18 +20,7 @@ class DailyChallengePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                BackButton(),
-                Text(
-                  dailyChallenge.title,
-                  style: TextStyle(
-                    fontSize: 19.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
+            BackWithText(title: dailyChallenge.title),
             Column(
               children: [
                 Text(

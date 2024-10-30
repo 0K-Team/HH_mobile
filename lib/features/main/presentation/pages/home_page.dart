@@ -75,6 +75,7 @@ class HomePage extends StatelessWidget {
                     }),
                 SizedBox(height: 1.5.h),
                 ElementWidget(
+                  onTap: () => context.push('/virtual_garden/page'),
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 4.w),
                     child: Row(

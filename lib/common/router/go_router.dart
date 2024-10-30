@@ -4,6 +4,8 @@ import 'package:eco_hero_mobile/features/blogs/presentation/pages/blog_page.dart
 import 'package:eco_hero_mobile/features/daily_challenge/data/models/user_daily_challenge_model.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/presentation/pages/daily_challenge_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/home_page.dart';
+import 'package:eco_hero_mobile/features/main/presentation/pages/notifications_page.dart';
+import 'package:eco_hero_mobile/features/virtual_garden/presentation/pages/virtual_garden_page.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
@@ -14,10 +16,20 @@ final router = GoRouter(
       path: '/',
       builder: (context, state) => HomePage(),
       routes: [
+        // Notifications
+        GoRoute(
+          path: 'notifications/page',
+          builder: (context, state) => NotificationsPage(),
+        ),
         // Auth
         GoRoute(
           path: 'auth/page',
           builder: (context, state) => AuthPage(),
+        ),
+        // Virtual garden
+        GoRoute(
+          path: 'virtual_garden/page',
+          builder: (context, state) => VirtualGardenPage(),
         ),
         // Blogs
         GoRoute(
