@@ -17,7 +17,6 @@ class BlogPage extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: SizedBox(
-            height: 100.h,
             width: 100.w,
             child: Column(
               children: [

@@ -141,9 +141,11 @@ class HomePage extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 4.w),
                   child: SizedBox(
-                    width: 96.w,
                     height: 12.h,
-                    child: BlogsCarouselWidget(),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: BlogsCarouselWidget(),
+                    ),
                   ),
                 ),
                 SizedBox(height: 2.5.h),

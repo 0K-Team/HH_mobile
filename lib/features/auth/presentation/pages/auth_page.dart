@@ -81,7 +81,7 @@ class AuthPage extends StatelessWidget {
               ),
               SizedBox(height: 4.h),
               SizedBox(
-                width: 90.w,
+                width: 92.w,
                 child: Text(
                   'Rejestrując się, zgadzasz się na zasady przetwarzania danych osobowych.',
                   style: TextStyle(
