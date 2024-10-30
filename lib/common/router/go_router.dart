@@ -5,6 +5,7 @@ import 'package:eco_hero_mobile/features/daily_challenge/data/models/user_daily_
 import 'package:eco_hero_mobile/features/daily_challenge/presentation/pages/daily_challenge_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/home_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/notifications_page.dart';
+import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/virtual_garden/presentation/pages/virtual_garden_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -19,7 +20,10 @@ final router = GoRouter(
         // Notifications
         GoRoute(
           path: 'notifications/page',
-          builder: (context, state) => NotificationsPage(),
+          builder: (context, state) {
+            assert(state.extra != null && state.extra is UserModel);
+            return NotificationsPage(user: state.extra as UserModel);
+          },
         ),
         // Auth
         GoRoute(

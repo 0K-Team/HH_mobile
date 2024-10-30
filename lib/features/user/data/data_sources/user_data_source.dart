@@ -17,7 +17,7 @@ class UserDataSource {
         secondName: 'Gajda',
         notifications: [
           UserModelNotifications(
-            title: '',
+            title: 'powiadomienie',
             date: 'date',
           ),
         ],

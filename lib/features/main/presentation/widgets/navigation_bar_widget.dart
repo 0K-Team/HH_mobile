@@ -14,44 +14,44 @@ class NavigationBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => context.push('/notifications/page'),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 4.w),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                CircleAvatar(
-                  child: Image.asset(
-                    'assets/avatar.png',
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 4.w),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              CircleAvatar(
+                child: Image.asset(
+                  'assets/avatar.png',
+                ),
+              ),
+              SizedBox(width: 2.w),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '${user.firstName} ${user.secondName}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 17.sp,
+                      height: 1.1,
+                    ),
                   ),
-                ),
-                SizedBox(width: 2.w),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '${user.firstName} ${user.secondName}',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 17.sp,
-                        height: 1.1,
-                      ),
+                  Text(
+                    user.idTitle,
+                    style: TextStyle(
+                      height: 1,
                     ),
-                    Text(
-                      user.idTitle,
-                      style: TextStyle(
-                        height: 1,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Stack(
+                  ),
+                ],
+              ),
+            ],
+          ),
+          GestureDetector(
+            onTap: () => context.push('/notifications/page', extra: user),
+            child: Stack(
               children: [
                 SvgPicture.asset('assets/notification.svg'),
                 if (user.notifications.isNotEmpty)
@@ -74,8 +74,8 @@ class NavigationBarWidget extends StatelessWidget {
                   ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
