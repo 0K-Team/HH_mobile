@@ -137,6 +137,93 @@ class HomePage extends StatelessWidget {
                     child: BlogsCarouselWidget(),
                   ),
                 ),
+                SizedBox(height: 2.5.h),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 4.w),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Pyły w Twojej lokalizacji',
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10.sp, horizontal: 12.sp),
+                            decoration: BoxDecoration(
+                              color: element,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 4.sp,
+                              ),
+                            ),
+                            child: Text('PM1'),
+                          ),
+                          SizedBox(width: 2.w),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10.sp, horizontal: 12.sp),
+                            decoration: BoxDecoration(
+                              color: element,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 4.sp,
+                              ),
+                            ),
+                            child: Text('PM2.5'),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 4.w),
+                  padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+                  decoration: BoxDecoration(
+                    color: element,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Image.asset('assets/location.png'),
+                              Text(
+                                'Kraków, Wieliczka',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 17.sp,
+                                ),
+                              )
+                            ],
+                          ),
+                          Text(
+                            '12:55',
+                            style: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 0.5.h),
+                      Text(
+                          'PM1 to zanieczyszczenia powietrza o średnicy 1 mikrometr (jedna tysięczna milimetra) lub mniej.'),
+                    ],
+                  ),
+                ),
               ],
             );
           }

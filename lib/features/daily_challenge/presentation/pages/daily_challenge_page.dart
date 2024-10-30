@@ -60,7 +60,10 @@ class DailyChallengePage extends StatelessWidget {
                 ),
               ],
             ),
-            PrimaryButtonWidget(title: 'Segreguj dalej'),
+            Padding(
+              padding: EdgeInsets.only(bottom: 2.h),
+              child: PrimaryButtonWidget(title: 'Segreguj dalej'),
+            ),
           ],
         ),
       ),

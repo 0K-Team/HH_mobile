@@ -6,6 +6,8 @@ import 'package:eco_hero_mobile/features/daily_challenge/presentation/pages/dail
 import 'package:eco_hero_mobile/features/main/presentation/pages/home_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/notifications_page.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
+import 'package:eco_hero_mobile/features/user/presentation/pages/user_configuration_page.dart';
+import 'package:eco_hero_mobile/features/user/presentation/pages/user_page.dart';
 import 'package:eco_hero_mobile/features/virtual_garden/presentation/pages/virtual_garden_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,6 +19,23 @@ final router = GoRouter(
       path: '/',
       builder: (context, state) => HomePage(),
       routes: [
+        // Users
+        GoRoute(
+          path: 'user/page',
+          builder: (context, state) {
+            assert(state.extra != null && state.extra is UserModel);
+            return UserPage(user: state.extra as UserModel);
+          },
+          routes: [
+            GoRoute(
+              path: '/configuration',
+              builder: (context, state) {
+                assert(state.extra != null && state.extra is UserModel);
+                return UserConfigurationPage(user: state.extra as UserModel);
+              },
+            ),
+          ],
+        ),
         // Notifications
         GoRoute(
           path: 'notifications/page',

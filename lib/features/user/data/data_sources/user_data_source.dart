@@ -23,13 +23,13 @@ class UserDataSource {
         ],
         points: 999,
         friends: [],
-        avatar: '',
-        bio: 'Super ekolog ze mnie jest',
+        avatar: 'https://bycmezczyzna.pl/images/2023/Sigma-man-min.jpg',
+        bio: 'Jestem bardzo fajnym ekologiem, który sprząta po swoim psie 🔥',
         achievements: [],
         skills: [],
         badges: [],
         location: 'Kraków, Poland',
-        preferredTopics: [],
+        preferredTopics: ['Zero waste', 'Ekologia w mieście', 'Energia odnawialna'],
       ),
     );
   }

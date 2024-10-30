@@ -8,10 +8,10 @@ part of 'user_model.dart';
 
 _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
     _$UserModelImpl(
-      idTitle: json['id_title'] as String,
+      idTitle: json['idTitle'] as String,
       email: json['email'] as String,
-      firstName: json['first_name'] as String,
-      secondName: json['second_name'] as String,
+      firstName: json['firstName'] as String,
+      secondName: json['secondName'] as String,
       notifications: (json['notifications'] as List<dynamic>)
           .map(
               (e) => UserModelNotifications.fromJson(e as Map<String, dynamic>))
@@ -30,17 +30,17 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
           .map((e) => UserModelBadges.fromJson(e as Map<String, dynamic>))
           .toList(),
       location: json['location'] as String,
-      preferredTopics: (json['preferred_topics'] as List<dynamic>)
+      preferredTopics: (json['preferredTopics'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
     <String, dynamic>{
-      'id_title': instance.idTitle,
+      'idTitle': instance.idTitle,
       'email': instance.email,
-      'first_name': instance.firstName,
-      'second_name': instance.secondName,
+      'firstName': instance.firstName,
+      'secondName': instance.secondName,
       'notifications': instance.notifications,
       'points': instance.points,
       'friends': instance.friends,
@@ -50,7 +50,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'skills': instance.skills,
       'badges': instance.badges,
       'location': instance.location,
-      'preferred_topics': instance.preferredTopics,
+      'preferredTopics': instance.preferredTopics,
     };
 
 _$UserModelNotificationsImpl _$$UserModelNotificationsImplFromJson(
@@ -71,20 +71,20 @@ _$UserModelAchievementsImpl _$$UserModelAchievementsImplFromJson(
         Map<String, dynamic> json) =>
     _$UserModelAchievementsImpl(
       name: json['name'] as String,
-      dateAwarded: json['date_awarded'] as String,
+      dateAwarded: json['dateAwarded'] as String,
     );
 
 Map<String, dynamic> _$$UserModelAchievementsImplToJson(
         _$UserModelAchievementsImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'date_awarded': instance.dateAwarded,
+      'dateAwarded': instance.dateAwarded,
     };
 
 _$UserModelBadgesImpl _$$UserModelBadgesImplFromJson(
         Map<String, dynamic> json) =>
     _$UserModelBadgesImpl(
-      badgeId: (json['badge_id'] as num).toInt(),
+      badgeId: (json['badgeId'] as num).toInt(),
       name: json['name'] as String,
       description: json['description'] as String,
     );
@@ -92,7 +92,7 @@ _$UserModelBadgesImpl _$$UserModelBadgesImplFromJson(
 Map<String, dynamic> _$$UserModelBadgesImplToJson(
         _$UserModelBadgesImpl instance) =>
     <String, dynamic>{
-      'badge_id': instance.badgeId,
+      'badgeId': instance.badgeId,
       'name': instance.name,
       'description': instance.description,
     };

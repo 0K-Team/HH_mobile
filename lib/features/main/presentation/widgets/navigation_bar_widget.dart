@@ -19,35 +19,36 @@ class NavigationBarWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              CircleAvatar(
-                child: Image.asset(
-                  'assets/avatar.png',
+          GestureDetector(
+            onTap: () => context.push('/user/page', extra: user),
+            child: Row(
+              children: [
+                CircleAvatar(
+                  backgroundImage: NetworkImage(user.avatar),
                 ),
-              ),
-              SizedBox(width: 2.w),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '${user.firstName} ${user.secondName}',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 17.sp,
-                      height: 1.1,
+                SizedBox(width: 2.w),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      user.fullName,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 17.sp,
+                        height: 1.1,
+                      ),
                     ),
-                  ),
-                  Text(
-                    user.idTitle,
-                    style: TextStyle(
-                      height: 1,
+                    Text(
+                      user.idTitle,
+                      style: TextStyle(
+                        height: 1,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
           GestureDetector(
             onTap: () => context.push('/notifications/page', extra: user),

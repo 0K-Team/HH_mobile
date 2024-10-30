@@ -5,6 +5,8 @@ part 'user_model.g.dart';
 
 @unfreezed
 class UserModel with _$UserModel {
+  UserModel._();
+
   factory UserModel({
     @JsonValue('id_title') required String idTitle,
     required String email,
@@ -24,6 +26,8 @@ class UserModel with _$UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
+
+  String get fullName => '$firstName $secondName';
 }
 
 @unfreezed

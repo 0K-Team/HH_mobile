@@ -20,19 +20,19 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
-  @JsonKey(name: 'id_title')
+  @JsonValue('id_title')
   String get idTitle => throw _privateConstructorUsedError;
-  @JsonKey(name: 'id_title')
+  @JsonValue('id_title')
   set idTitle(String value) => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   set email(String value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'first_name')
+  @JsonValue('first_name')
   String get firstName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'first_name')
+  @JsonValue('first_name')
   set firstName(String value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'second_name')
+  @JsonValue('second_name')
   String get secondName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'second_name')
+  @JsonValue('second_name')
   set secondName(String value) => throw _privateConstructorUsedError;
   List<UserModelNotifications> get notifications =>
       throw _privateConstructorUsedError;
@@ -56,9 +56,9 @@ mixin _$UserModel {
   set badges(List<UserModelBadges> value) => throw _privateConstructorUsedError;
   String get location => throw _privateConstructorUsedError;
   set location(String value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'preferred_topics')
+  @JsonValue('preferred_topics')
   List<String> get preferredTopics => throw _privateConstructorUsedError;
-  @JsonKey(name: 'preferred_topics')
+  @JsonValue('preferred_topics')
   set preferredTopics(List<String> value) => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
@@ -77,10 +77,10 @@ abstract class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id_title') String idTitle,
+      {@JsonValue('id_title') String idTitle,
       String email,
-      @JsonKey(name: 'first_name') String firstName,
-      @JsonKey(name: 'second_name') String secondName,
+      @JsonValue('first_name') String firstName,
+      @JsonValue('second_name') String secondName,
       List<UserModelNotifications> notifications,
       int points,
       List<String> friends,
@@ -90,7 +90,7 @@ abstract class $UserModelCopyWith<$Res> {
       List<String> skills,
       List<UserModelBadges> badges,
       String location,
-      @JsonKey(name: 'preferred_topics') List<String> preferredTopics});
+      @JsonValue('preferred_topics') List<String> preferredTopics});
 }
 
 /// @nodoc
@@ -193,10 +193,10 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id_title') String idTitle,
+      {@JsonValue('id_title') String idTitle,
       String email,
-      @JsonKey(name: 'first_name') String firstName,
-      @JsonKey(name: 'second_name') String secondName,
+      @JsonValue('first_name') String firstName,
+      @JsonValue('second_name') String secondName,
       List<UserModelNotifications> notifications,
       int points,
       List<String> friends,
@@ -206,7 +206,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       List<String> skills,
       List<UserModelBadges> badges,
       String location,
-      @JsonKey(name: 'preferred_topics') List<String> preferredTopics});
+      @JsonValue('preferred_topics') List<String> preferredTopics});
 }
 
 /// @nodoc
@@ -300,12 +300,12 @@ class __$$UserModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserModelImpl implements _UserModel {
+class _$UserModelImpl extends _UserModel {
   _$UserModelImpl(
-      {@JsonKey(name: 'id_title') required this.idTitle,
+      {@JsonValue('id_title') required this.idTitle,
       required this.email,
-      @JsonKey(name: 'first_name') required this.firstName,
-      @JsonKey(name: 'second_name') required this.secondName,
+      @JsonValue('first_name') required this.firstName,
+      @JsonValue('second_name') required this.secondName,
       required this.notifications,
       required this.points,
       required this.friends,
@@ -315,21 +315,22 @@ class _$UserModelImpl implements _UserModel {
       required this.skills,
       required this.badges,
       required this.location,
-      @JsonKey(name: 'preferred_topics') required this.preferredTopics});
+      @JsonValue('preferred_topics') required this.preferredTopics})
+      : super._();
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
 
   @override
-  @JsonKey(name: 'id_title')
+  @JsonValue('id_title')
   String idTitle;
   @override
   String email;
   @override
-  @JsonKey(name: 'first_name')
+  @JsonValue('first_name')
   String firstName;
   @override
-  @JsonKey(name: 'second_name')
+  @JsonValue('second_name')
   String secondName;
   @override
   List<UserModelNotifications> notifications;
@@ -350,7 +351,7 @@ class _$UserModelImpl implements _UserModel {
   @override
   String location;
   @override
-  @JsonKey(name: 'preferred_topics')
+  @JsonValue('preferred_topics')
   List<String> preferredTopics;
 
   @override
@@ -374,12 +375,12 @@ class _$UserModelImpl implements _UserModel {
   }
 }
 
-abstract class _UserModel implements UserModel {
+abstract class _UserModel extends UserModel {
   factory _UserModel(
-      {@JsonKey(name: 'id_title') required String idTitle,
+      {@JsonValue('id_title') required String idTitle,
       required String email,
-      @JsonKey(name: 'first_name') required String firstName,
-      @JsonKey(name: 'second_name') required String secondName,
+      @JsonValue('first_name') required String firstName,
+      @JsonValue('second_name') required String secondName,
       required List<UserModelNotifications> notifications,
       required int points,
       required List<String> friends,
@@ -389,29 +390,30 @@ abstract class _UserModel implements UserModel {
       required List<String> skills,
       required List<UserModelBadges> badges,
       required String location,
-      @JsonKey(name: 'preferred_topics')
+      @JsonValue('preferred_topics')
       required List<String> preferredTopics}) = _$UserModelImpl;
+  _UserModel._() : super._();
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
 
   @override
-  @JsonKey(name: 'id_title')
+  @JsonValue('id_title')
   String get idTitle;
-  @JsonKey(name: 'id_title')
+  @JsonValue('id_title')
   set idTitle(String value);
   @override
   String get email;
   set email(String value);
   @override
-  @JsonKey(name: 'first_name')
+  @JsonValue('first_name')
   String get firstName;
-  @JsonKey(name: 'first_name')
+  @JsonValue('first_name')
   set firstName(String value);
   @override
-  @JsonKey(name: 'second_name')
+  @JsonValue('second_name')
   String get secondName;
-  @JsonKey(name: 'second_name')
+  @JsonValue('second_name')
   set secondName(String value);
   @override
   List<UserModelNotifications> get notifications;
@@ -441,9 +443,9 @@ abstract class _UserModel implements UserModel {
   String get location;
   set location(String value);
   @override
-  @JsonKey(name: 'preferred_topics')
+  @JsonValue('preferred_topics')
   List<String> get preferredTopics;
-  @JsonKey(name: 'preferred_topics')
+  @JsonValue('preferred_topics')
   set preferredTopics(List<String> value);
 
   /// Create a copy of UserModel
@@ -627,9 +629,9 @@ UserModelAchievements _$UserModelAchievementsFromJson(
 mixin _$UserModelAchievements {
   String get name => throw _privateConstructorUsedError;
   set name(String value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'date_awarded')
+  @JsonValue('date_awarded')
   String get dateAwarded => throw _privateConstructorUsedError;
-  @JsonKey(name: 'date_awarded')
+  @JsonValue('date_awarded')
   set dateAwarded(String value) => throw _privateConstructorUsedError;
 
   /// Serializes this UserModelAchievements to a JSON map.
@@ -648,7 +650,7 @@ abstract class $UserModelAchievementsCopyWith<$Res> {
           $Res Function(UserModelAchievements) then) =
       _$UserModelAchievementsCopyWithImpl<$Res, UserModelAchievements>;
   @useResult
-  $Res call({String name, @JsonKey(name: 'date_awarded') String dateAwarded});
+  $Res call({String name, @JsonValue('date_awarded') String dateAwarded});
 }
 
 /// @nodoc
@@ -692,7 +694,7 @@ abstract class _$$UserModelAchievementsImplCopyWith<$Res>
       __$$UserModelAchievementsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, @JsonKey(name: 'date_awarded') String dateAwarded});
+  $Res call({String name, @JsonValue('date_awarded') String dateAwarded});
 }
 
 /// @nodoc
@@ -730,7 +732,7 @@ class __$$UserModelAchievementsImplCopyWithImpl<$Res>
 class _$UserModelAchievementsImpl implements _UserModelAchievements {
   _$UserModelAchievementsImpl(
       {required this.name,
-      @JsonKey(name: 'date_awarded') required this.dateAwarded});
+      @JsonValue('date_awarded') required this.dateAwarded});
 
   factory _$UserModelAchievementsImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelAchievementsImplFromJson(json);
@@ -738,7 +740,7 @@ class _$UserModelAchievementsImpl implements _UserModelAchievements {
   @override
   String name;
   @override
-  @JsonKey(name: 'date_awarded')
+  @JsonValue('date_awarded')
   String dateAwarded;
 
   @override
@@ -766,7 +768,7 @@ class _$UserModelAchievementsImpl implements _UserModelAchievements {
 abstract class _UserModelAchievements implements UserModelAchievements {
   factory _UserModelAchievements(
           {required String name,
-          @JsonKey(name: 'date_awarded') required String dateAwarded}) =
+          @JsonValue('date_awarded') required String dateAwarded}) =
       _$UserModelAchievementsImpl;
 
   factory _UserModelAchievements.fromJson(Map<String, dynamic> json) =
@@ -776,9 +778,9 @@ abstract class _UserModelAchievements implements UserModelAchievements {
   String get name;
   set name(String value);
   @override
-  @JsonKey(name: 'date_awarded')
+  @JsonValue('date_awarded')
   String get dateAwarded;
-  @JsonKey(name: 'date_awarded')
+  @JsonValue('date_awarded')
   set dateAwarded(String value);
 
   /// Create a copy of UserModelAchievements
@@ -795,9 +797,9 @@ UserModelBadges _$UserModelBadgesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModelBadges {
-  @JsonKey(name: 'badge_id')
+  @JsonValue('badge_id')
   int get badgeId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'badge_id')
+  @JsonValue('badge_id')
   set badgeId(int value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   set name(String value) => throw _privateConstructorUsedError;
@@ -821,9 +823,7 @@ abstract class $UserModelBadgesCopyWith<$Res> {
       _$UserModelBadgesCopyWithImpl<$Res, UserModelBadges>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'badge_id') int badgeId,
-      String name,
-      String description});
+      {@JsonValue('badge_id') int badgeId, String name, String description});
 }
 
 /// @nodoc
@@ -871,9 +871,7 @@ abstract class _$$UserModelBadgesImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'badge_id') int badgeId,
-      String name,
-      String description});
+      {@JsonValue('badge_id') int badgeId, String name, String description});
 }
 
 /// @nodoc
@@ -914,7 +912,7 @@ class __$$UserModelBadgesImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserModelBadgesImpl implements _UserModelBadges {
   _$UserModelBadgesImpl(
-      {@JsonKey(name: 'badge_id') required this.badgeId,
+      {@JsonValue('badge_id') required this.badgeId,
       required this.name,
       required this.description});
 
@@ -922,7 +920,7 @@ class _$UserModelBadgesImpl implements _UserModelBadges {
       _$$UserModelBadgesImplFromJson(json);
 
   @override
-  @JsonKey(name: 'badge_id')
+  @JsonValue('badge_id')
   int badgeId;
   @override
   String name;
@@ -953,7 +951,7 @@ class _$UserModelBadgesImpl implements _UserModelBadges {
 
 abstract class _UserModelBadges implements UserModelBadges {
   factory _UserModelBadges(
-      {@JsonKey(name: 'badge_id') required int badgeId,
+      {@JsonValue('badge_id') required int badgeId,
       required String name,
       required String description}) = _$UserModelBadgesImpl;
 
@@ -961,9 +959,9 @@ abstract class _UserModelBadges implements UserModelBadges {
       _$UserModelBadgesImpl.fromJson;
 
   @override
-  @JsonKey(name: 'badge_id')
+  @JsonValue('badge_id')
   int get badgeId;
-  @JsonKey(name: 'badge_id')
+  @JsonValue('badge_id')
   set badgeId(int value);
   @override
   String get name;
