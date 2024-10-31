@@ -132,6 +132,7 @@ class AuthPage extends StatelessWidget {
       String? accessToken = auth.accessToken;
 
       log(auth.accessToken ?? '');
+      log(auth.idToken ?? '');
 
       Response response = await get<Dio>().get(
         'https://ecohero.q1000q.me/api/v1/user/auth/google/callback',

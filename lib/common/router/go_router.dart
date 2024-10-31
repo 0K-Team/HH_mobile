@@ -10,11 +10,12 @@ import 'package:eco_hero_mobile/features/user/presentation/pages/user_configurat
 import 'package:eco_hero_mobile/features/user/presentation/pages/user_page.dart';
 import 'package:eco_hero_mobile/features/virtual_garden/data/models/virtual_garden_model.dart';
 import 'package:eco_hero_mobile/features/virtual_garden/presentation/pages/virtual_garden_page.dart';
+import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
   initialLocation: '/auth/page',
-  debugLogDiagnostics: true,
+  debugLogDiagnostics: kDebugMode,
   routes: [
     GoRoute(
       path: '/',
