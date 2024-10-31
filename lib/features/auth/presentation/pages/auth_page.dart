@@ -8,6 +8,7 @@ import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/common/util/extensions/bloc_extension.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user_bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -127,7 +128,9 @@ class AuthPage extends StatelessWidget {
   Future<void> loginWithGoogle(GoogleSignIn googleSignIn) async {
     GoogleSignInAccount? account = await googleSignIn.signIn();
     if (account != null) {
-      print('Account: ${account.toString()}');
+      if (kDebugMode) {
+        print('Account: ${account.toString()}');
+      }
 
       GoogleSignInAuthentication auth = await account.authentication;
       String? idToken = auth.idToken;
@@ -160,7 +163,9 @@ class AuthPage extends StatelessWidget {
       log(jsonEncode(user.data));
       log(userModel.toString());
     } else {
-      print('Google Sign-In failed');
+      if (kDebugMode) {
+        print('Google Sign-In failed');
+      }
     }
   }
 }
