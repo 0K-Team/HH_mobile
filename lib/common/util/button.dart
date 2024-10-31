@@ -24,7 +24,7 @@ class PrimaryButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         width: 85.w,
-        padding: EdgeInsets.symmetric(vertical: 1.h),
+        padding: EdgeInsets.symmetric(vertical: 1.25.h),
         child: Center(
           child: content ??
               (title != null
@@ -65,7 +65,7 @@ class SecondaryButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         width: 85.w,
-        padding: EdgeInsets.symmetric(vertical: 1.h),
+        padding: EdgeInsets.symmetric(vertical: 1.25.h),
         child: Center(
           child: content ??
               (title != null

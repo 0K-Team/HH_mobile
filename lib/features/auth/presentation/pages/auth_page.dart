@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
@@ -5,6 +6,7 @@ import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/util/button.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/common/util/extensions/bloc_extension.dart';
+import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -129,41 +131,34 @@ class AuthPage extends StatelessWidget {
 
       GoogleSignInAuthentication auth = await account.authentication;
       String? idToken = auth.idToken;
-      String? accessToken = auth.accessToken;
+
+      googleSignIn.signOut();
 
       log(auth.accessToken ?? '');
       log(auth.idToken ?? '');
 
       Response response = await get<Dio>().get(
-        'https://ecohero.q1000q.me/api/v1/user/auth/google/callback',
+        'https://ecohero.q1000q.me/api/v1/user/auth/googleToken',
         data: {
           'idToken': idToken,
-          'accessToken': accessToken,
         },
+      );
+
+      String jwt = response.data;
+
+      Response user = await get<Dio>().get(
+        'https://ecohero.q1000q.me/api/v1/user/me',
         options: Options(
           headers: {
-            'Content-Type': 'application/json',
-          },
-          followRedirects: true,
-          validateStatus: (status) {
-            return status! <= 500;
+            'Authorization': 'Bearer $jwt',
           },
         ),
       );
 
-      print('Response Headers: ${response.headers}');
+      UserModel userModel = UserModel.fromJson(user.data);
 
-      if (response.statusCode == 200) {
-        print('Response: ${response.data}');
-        // String jwtToken = response.data['token'];
-        // print('JWT Token: $jwtToken');
-
-      } else {
-        print('Error: ${response.data}');
-      }
-
-      log(response.data);
-      googleSignIn.signOut();
+      log(jsonEncode(user.data));
+      log(userModel.toString());
     } else {
       print('Google Sign-In failed');
     }
