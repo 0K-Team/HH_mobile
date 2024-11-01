@@ -11,11 +11,15 @@ final class CurrentUserInitial extends CurrentUserState {}
 
 final class CurrentUserLoadSuccess extends CurrentUserState {
   final UserModel user;
+  final String jwt;
 
-  const CurrentUserLoadSuccess(this.user);
+  const CurrentUserLoadSuccess(this.user, this.jwt);
 
   @override
-  List<Object> get props => [user];
+  List<Object> get props => [
+        user,
+        jwt,
+      ];
 }
 
 final class CurrentUserLoadError extends CurrentUserState {

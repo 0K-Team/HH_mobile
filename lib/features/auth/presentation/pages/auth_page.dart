@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/util/button.dart';
@@ -43,9 +40,7 @@ class AuthPage extends StatelessWidget {
               ),
               SizedBox(height: 4.h),
               PrimaryButtonWidget(
-                onTap: () async {
-                  await loginWithGoogle(googleSignIn);
-                },
+                onTap: () async => await loginWithGoogle(context, googleSignIn),
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -119,28 +114,53 @@ class AuthPage extends StatelessWidget {
   }
 
   Future<void> loginWithMockData(BuildContext context) async {
-    await get<CurrentUserBloc>()
-        .addAndWait(CurrentUserLoaded('opkarol11@wp.pl'));
+    await get<CurrentUserBloc>().addAndWait(CurrentUserLoaded(
+        UserModel(
+          email: 'opkarol11@wp.pl',
+          notifications: [
+            UserModelNotification(
+              title: 'powiadomienie',
+              date: 'date',
+            ),
+          ],
+          points: 999,
+          friends: [],
+          avatarHash: '1',
+          bio: 'Jestem bardzo fajnym ekologiem, który sprząta po swoim psie 🔥',
+          achievements: [],
+          skills: [],
+          badges: [],
+          location: 'Kraków, Poland',
+          preferredTopics: [
+            'Zero waste',
+            'Ekologia w mieście',
+            'Energia odnawialna'
+          ],
+          id: '',
+          username: '',
+          fullName: UserModelFullName(
+            givenName: 'Karol',
+            familyName: 'Gajda',
+          ),
+          provider: '',
+          googleID: '',
+          facebookID: '',
+          title: '',
+        ),
+        'n/a'));
     if (context.mounted) {
       get<NavigationPageCubit>().changePage(1);
       context.push('/');
     }
   }
 
-  Future<void> loginWithGoogle(GoogleSignIn googleSignIn) async {
+  Future<void> loginWithGoogle(
+      BuildContext context, GoogleSignIn googleSignIn) async {
     GoogleSignInAccount? account = await googleSignIn.signIn();
     if (account != null) {
-      if (kDebugMode) {
-        print('Account: ${account.toString()}');
-      }
-
       GoogleSignInAuthentication auth = await account.authentication;
       String? idToken = auth.idToken;
-
       googleSignIn.signOut();
-
-      log(auth.accessToken ?? '');
-      log(auth.idToken ?? '');
 
       Response response = await get<Dio>().get(
         'https://ecohero.q1000q.me/api/v1/auth/googleToken',
@@ -150,7 +170,6 @@ class AuthPage extends StatelessWidget {
       );
 
       String jwt = response.data;
-
       Response user = await get<Dio>().get(
         'https://ecohero.q1000q.me/api/v1/user/me',
         options: Options(
@@ -161,9 +180,12 @@ class AuthPage extends StatelessWidget {
       );
 
       UserModel userModel = UserModel.fromJson(user.data);
-
-      log(jsonEncode(user.data));
-      log(userModel.toString());
+      await get<CurrentUserBloc>()
+          .addAndWait(CurrentUserLoaded(userModel, jwt));
+      get<NavigationPageCubit>().changePage(1);
+      if (context.mounted) {
+        context.push('/');
+      }
     } else {
       if (kDebugMode) {
         print('Google Sign-In failed');

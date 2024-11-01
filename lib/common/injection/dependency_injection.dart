@@ -30,7 +30,7 @@ void setupDependencyInjection() {
   // User
   get.registerLazySingleton(() => UserDataSource(get()));
   get.registerLazySingleton(() => UserRepositoryImpl(get()));
-  get.registerLazySingleton(() => CurrentUserBloc(get()));
+  get.registerLazySingleton(() => CurrentUserBloc());
 
   // Virtual garden
   get.registerLazySingleton(() => VirtualGardenDataSource(get()));

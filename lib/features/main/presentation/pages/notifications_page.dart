@@ -19,7 +19,7 @@ class NotificationsPage extends StatelessWidget {
             BackWithText(title: 'Powiadomienia'),
             ListView.builder(
               itemBuilder: (context, index) {
-                UserModelNotifications notification = user.notifications[index];
+                UserModelNotification notification = user.notifications[index];
                 return Text(
                   '${notification.title} ${notification.date}',
                   style: TextStyle(

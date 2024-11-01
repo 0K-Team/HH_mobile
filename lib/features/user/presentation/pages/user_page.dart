@@ -23,7 +23,7 @@ class UserPage extends StatelessWidget {
         child: Column(
           children: [
             BackWithText(
-              title: 'Profil ${user.fullName}',
+              title: 'Profil ${user.fullName.full}',
               ending: GestureDetector(
                 onTapDown: (details) {
                   final offset = details.globalPosition;
@@ -114,7 +114,7 @@ class UserPage extends StatelessWidget {
                         width: 22.sp,
                       ),
                       Text(
-                        user.location,
+                        user.location ?? '',
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 17.sp,
@@ -123,7 +123,7 @@ class UserPage extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    user.bio,
+                    user.bio ?? '',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 17.sp,

@@ -11,25 +11,33 @@ class UserDataSource {
     //fixme impl
     return Future.value(
       UserModel(
-        idTitle: 'Ekolog',
         email: 'opkarol11@wp.pl',
-        firstName: 'Karol',
-        secondName: 'Gajda',
         notifications: [
-          UserModelNotifications(
+          UserModelNotification(
             title: 'powiadomienie',
             date: 'date',
           ),
         ],
         points: 999,
         friends: [],
-        avatar: 'https://bycmezczyzna.pl/images/2023/Sigma-man-min.jpg',
+        avatarHash: '1',
         bio: 'Jestem bardzo fajnym ekologiem, który sprząta po swoim psie 🔥',
         achievements: [],
         skills: [],
         badges: [],
         location: 'Kraków, Poland',
-        preferredTopics: ['Zero waste', 'Ekologia w mieście', 'Energia odnawialna'],
+        preferredTopics: [
+          'Zero waste',
+          'Ekologia w mieście',
+          'Energia odnawialna'
+        ],
+        id: '',
+        username: '',
+        fullName: UserModelFullName(givenName: 'givenName', familyName: 'familyName'),
+        provider: '',
+        googleID: '',
+        facebookID: '',
+        title: '',
       ),
     );
   }

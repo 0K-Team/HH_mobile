@@ -8,12 +8,16 @@ sealed class CurrentUserEvent extends Equatable {
 }
 
 final class CurrentUserLoaded extends CurrentUserEvent {
-  final String email;
+  final UserModel user;
+  final String jwt;
 
-  const CurrentUserLoaded(this.email);
+  const CurrentUserLoaded(this.user, this.jwt);
 
   @override
-  List<Object?> get props => [email];
+  List<Object?> get props => [
+        user,
+        jwt,
+      ];
 }
 
 final class CurrentUserLoggedOut extends CurrentUserEvent {}

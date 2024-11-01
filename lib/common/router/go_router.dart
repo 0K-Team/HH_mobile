@@ -23,24 +23,34 @@ final router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => HomePage(),
+      pageBuilder: (context, state) => NoTransitionPage(
+        child: HomePage(),
+      ),
       routes: [
         // Main
         GoRoute(
           path: 'play/page',
-          builder: (context, state) => PlayPage(),
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: PlayPage(),
+          ),
         ),
         GoRoute(
           path: 'calculator/page',
-          builder: (context, state) => CalculatorPage(),
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: CalculatorPage(),
+          ),
         ),
         GoRoute(
           path: 'maps/page',
-          builder: (context, state) => MapsPage(),
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: MapsPage(),
+          ),
         ),
         GoRoute(
           path: 'socials/page',
-          builder: (context, state) => SocialsPage(),
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: SocialsPage(),
+          ),
         ),
         // Users
         GoRoute(

@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_model.freezed.dart';
+
 part 'user_model.g.dart';
 
 @unfreezed
@@ -8,58 +9,75 @@ class UserModel with _$UserModel {
   UserModel._();
 
   factory UserModel({
-    @JsonValue('id_title') required String idTitle,
+    required String id,
     required String email,
-    @JsonValue('first_name') required String firstName,
-    @JsonValue('second_name') required String secondName,
-    required List<UserModelNotifications> notifications,
-    required int points,
+    String? provider,
+    String? googleID,
+    String? facebookID,
+    String? title,
+    String? location,
+    String? bio,
+    String? username,
+    int? points,
+    required UserModelFullName fullName,
+    required String avatarHash,
+    required List<UserModelNotification> notifications,
     required List<String> friends,
-    required String avatar,
-    required String bio,
-    required List<UserModelAchievements> achievements,
+    required List<UserModelAchievement> achievements,
     required List<String> skills,
-    required List<UserModelBadges> badges,
-    required String location,
-    @JsonValue('preferred_topics') required List<String> preferredTopics,
+    required List<String> badges,
+    required List<String> preferredTopics,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
 
-  String get fullName => '$firstName $secondName';
+  String get avatar => 'https://ecohero.q1000q.me/api/v1/avatar/$avatarHash';
 }
 
 @unfreezed
-class UserModelNotifications with _$UserModelNotifications {
-  factory UserModelNotifications({
+class UserModelFullName with _$UserModelFullName {
+  UserModelFullName._();
+
+  factory UserModelFullName({
+    String? givenName,
+    String? familyName,
+  }) = _UserModelFullName;
+
+  factory UserModelFullName.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFullNameFromJson(json);
+
+ String get full {
+    if (givenName == null && familyName != null) {
+      return familyName!;
+    }
+
+    if (givenName != null && familyName == null) {
+      return givenName!;
+    }
+
+    return '$givenName $familyName';
+  }
+}
+
+@unfreezed
+class UserModelNotification with _$UserModelNotification {
+  factory UserModelNotification({
     required String title,
     required String date,
-  }) = _UserModelNotifications;
+  }) = _UserModelNotification;
 
-  factory UserModelNotifications.fromJson(Map<String, dynamic> json) =>
-      _$UserModelNotificationsFromJson(json);
+  factory UserModelNotification.fromJson(Map<String, dynamic> json) =>
+      _$UserModelNotificationFromJson(json);
 }
 
 @unfreezed
-class UserModelAchievements with _$UserModelAchievements {
-  factory UserModelAchievements({
+class UserModelAchievement with _$UserModelAchievement {
+  factory UserModelAchievement({
     required String name,
-    @JsonValue('date_awarded') required String dateAwarded,
-  }) = _UserModelAchievements;
+    @JsonValue('date_awarded') required DateTime dateAwarded,
+  }) = _UserModelAchievement;
 
-  factory UserModelAchievements.fromJson(Map<String, dynamic> json) =>
-      _$UserModelAchievementsFromJson(json);
-}
-
-@unfreezed
-class UserModelBadges with _$UserModelBadges {
-  factory UserModelBadges({
-    @JsonValue('badge_id') required int badgeId,
-    required String name,
-    required String description,
-  }) = _UserModelBadges;
-
-  factory UserModelBadges.fromJson(Map<String, dynamic> json) =>
-      _$UserModelBadgesFromJson(json);
+  factory UserModelAchievement.fromJson(Map<String, dynamic> json) =>
+      _$UserModelAchievementFromJson(json);
 }

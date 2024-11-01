@@ -32,7 +32,7 @@ class AppBarWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      user.fullName,
+                      user.fullName.full,
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 17.sp,
@@ -40,7 +40,7 @@ class AppBarWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      user.idTitle,
+                      user.title ?? '',
                       style: TextStyle(
                         height: 1,
                       ),
