@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class SocialsPage extends StatelessWidget {
-  const SocialsPage({super.key});
+class CommunityPage extends StatelessWidget {
+  const CommunityPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class SocialsPage extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.only(left: 4.w),
                           child: Text(
-                            'Socials',
+                            'Posty użytkowników',
                             style: TextStyle(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.w700,

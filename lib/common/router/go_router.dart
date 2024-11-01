@@ -8,7 +8,7 @@ import 'package:eco_hero_mobile/features/main/presentation/pages/home_page.dart'
 import 'package:eco_hero_mobile/features/main/presentation/pages/maps_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/notifications_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/play_page.dart';
-import 'package:eco_hero_mobile/features/main/presentation/pages/socials_page.dart';
+import 'package:eco_hero_mobile/features/main/presentation/pages/community_page.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/presentation/pages/user_configuration_page.dart';
 import 'package:eco_hero_mobile/features/user/presentation/pages/user_page.dart';
@@ -49,7 +49,7 @@ final router = GoRouter(
         GoRoute(
           path: 'socials/page',
           pageBuilder: (context, state) => NoTransitionPage(
-            child: SocialsPage(),
+            child: CommunityPage(),
           ),
         ),
         // Users
