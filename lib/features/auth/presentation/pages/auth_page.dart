@@ -20,7 +20,7 @@ class AuthPage extends StatelessWidget {
     const List<String> scopes = ['email', 'profile'];
 
     GoogleSignIn googleSignIn = GoogleSignIn(
-      clientId:
+      serverClientId:
           '1025551109866-tghkfutlmpjfvdhfio9hi88pnpgskqfr.apps.googleusercontent.com',
       scopes: scopes,
     );

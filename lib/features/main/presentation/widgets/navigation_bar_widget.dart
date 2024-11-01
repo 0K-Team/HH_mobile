@@ -24,11 +24,11 @@ class NavigationBarWidget extends StatelessWidget {
               createNavigationElement(
                   context, 'Home', 'assets/home.svg', 1, '/'),
               createNavigationElement(
-                  context, 'Education', 'assets/play.svg', 2, '/play/page'),
-              createNavigationElement(
-                  context, 'Socials', 'assets/socials.svg', 5, '/socials/page'),
+                  context, 'Community', 'assets/socials.svg', 5, '/socials/page'),
               createNavigationElement(
                   context, 'Maps', 'assets/maps.svg', 4, '/maps/page'),
+              createNavigationElement(
+                  context, 'Education', 'assets/play.svg', 2, '/play/page'),
               createNavigationElement(context, 'Calculator',
                   'assets/calculator.svg', 3, '/calculator/page'),
             ],

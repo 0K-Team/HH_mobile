@@ -39,12 +39,13 @@ class AppBarWidget extends StatelessWidget {
                         height: 1.1,
                       ),
                     ),
-                    Text(
-                      user.title ?? '',
-                      style: TextStyle(
-                        height: 1,
+                    if (user.title != null)
+                      Text(
+                        user.title!,
+                        style: TextStyle(
+                          height: 1,
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ],
