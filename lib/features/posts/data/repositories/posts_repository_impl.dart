@@ -4,6 +4,7 @@ import 'package:eco_hero_mobile/features/posts/domain/repositories/posts_reposit
 import 'package:either_dart/either.dart';
 
 class PostsRepositoryImpl extends PostsRepository {
+  // ignore: unused_field
   final PostsDataSource _source;
 
   PostsRepositoryImpl(this._source);
