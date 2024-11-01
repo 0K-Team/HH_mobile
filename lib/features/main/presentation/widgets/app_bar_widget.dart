@@ -62,14 +62,12 @@ class AppBarWidget extends StatelessWidget {
                       color: Colors.red,
                     ),
                     padding: EdgeInsets.all(8.sp),
-                    child: Center(
-                      child: Text(
-                        user.notifications.length.toString(),
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w700,
-                          height: 1,
-                        ),
+                    child: Text(
+                      user.notifications.length.toString(),
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w700,
+                        height: 0.7,
                       ),
                     ),
                   ),

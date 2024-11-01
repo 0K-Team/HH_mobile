@@ -24,13 +24,13 @@ class NavigationBarWidget extends StatelessWidget {
               createNavigationElement(
                   context, 'Home', 'assets/home.svg', 1, '/'),
               createNavigationElement(
-                  context, 'Play', 'assets/play.svg', 2, '/play/page'),
-              createNavigationElement(context, 'Calculator',
-                  'assets/calculator.svg', 3, '/calculator/page'),
-              createNavigationElement(
-                  context, 'Maps', 'assets/maps.svg', 4, '/maps/page'),
+                  context, 'Education', 'assets/play.svg', 2, '/play/page'),
               createNavigationElement(
                   context, 'Socials', 'assets/socials.svg', 5, '/socials/page'),
+              createNavigationElement(
+                  context, 'Maps', 'assets/maps.svg', 4, '/maps/page'),
+              createNavigationElement(context, 'Calculator',
+                  'assets/calculator.svg', 3, '/calculator/page'),
             ],
           ),
           // trick to make the spaces at the top and bottom of navigation bar the same height

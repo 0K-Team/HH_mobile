@@ -143,7 +143,7 @@ class AuthPage extends StatelessWidget {
       log(auth.idToken ?? '');
 
       Response response = await get<Dio>().get(
-        'https://ecohero.q1000q.me/api/v1/user/auth/googleToken',
+        'https://ecohero.q1000q.me/api/v1/auth/googleToken',
         data: {
           'idToken': idToken,
         },
