@@ -6,6 +6,7 @@ import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/util/button.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/common/util/extensions/bloc_extension.dart';
+import 'package:eco_hero_mobile/features/main/presentation/navigation_page_cubit.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user_bloc.dart';
 import 'package:flutter/foundation.dart';
@@ -121,6 +122,7 @@ class AuthPage extends StatelessWidget {
     await get<CurrentUserBloc>()
         .addAndWait(CurrentUserLoaded('opkarol11@wp.pl'));
     if (context.mounted) {
+      get<NavigationPageCubit>().changePage(1);
       context.push('/');
     }
   }

@@ -16,7 +16,7 @@ class BlogsCarouselWidget extends StatelessWidget {
     return FutureBuilder<Either<List<BlogModel>, Exception>>(
         future: get<BlogRepositoryImpl>().fetchBlogs(),
         builder: (context, snapshot) {
-          if (snapshot.data == null || snapshot.data!.isRight) {
+          if (snapshot.data == null) {
             return Container(
               width: 60.w,
               height: 12.h,
@@ -25,6 +25,10 @@ class BlogsCarouselWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
             );
+          }
+
+          if (snapshot.data!.isRight) {
+            return Text(snapshot.data!.right.toString());
           }
 
           List<BlogModel> blogs = snapshot.data!.left;

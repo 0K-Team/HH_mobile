@@ -28,7 +28,7 @@ class DailyChallengePage extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 22.sp,
                     fontWeight: FontWeight.w700,
-                    color: secondary,
+                    color: accent,
                   ),
                 ),
                 Stack(

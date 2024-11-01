@@ -20,7 +20,7 @@ class PrimaryButtonWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: secondary,
+          color: accent,
           borderRadius: BorderRadius.circular(8),
         ),
         width: 85.w,

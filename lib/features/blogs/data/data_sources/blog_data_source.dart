@@ -8,7 +8,7 @@ class BlogDataSource {
 
   Future<List<BlogModel>?> fetchBlogs() async {
     try {
-      final String url = 'https://ecoheroapi.q1000q.me/blog/all';
+      final String url = 'https://ecohero.q1000q.me/api/v1/blogs';
       final response = await _dio.get(url);
       if (response.statusCode == 200) {
         List<dynamic> json = response.data;

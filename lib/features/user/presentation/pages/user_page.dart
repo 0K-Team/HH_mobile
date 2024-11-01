@@ -161,7 +161,7 @@ class UserPage extends StatelessWidget {
                       (topic) => Container(
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: secondary,
+                            color: accent,
                             width: 4.sp,
                           ),
                           borderRadius: BorderRadius.circular(8),

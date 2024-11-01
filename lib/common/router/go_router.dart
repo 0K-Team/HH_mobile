@@ -3,8 +3,12 @@ import 'package:eco_hero_mobile/features/blogs/data/models/blog_model.dart';
 import 'package:eco_hero_mobile/features/blogs/presentation/pages/blog_page.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/data/models/user_daily_challenge_model.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/presentation/pages/daily_challenge_page.dart';
+import 'package:eco_hero_mobile/features/main/presentation/pages/calculator_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/home_page.dart';
+import 'package:eco_hero_mobile/features/main/presentation/pages/maps_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/notifications_page.dart';
+import 'package:eco_hero_mobile/features/main/presentation/pages/play_page.dart';
+import 'package:eco_hero_mobile/features/main/presentation/pages/socials_page.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/presentation/pages/user_configuration_page.dart';
 import 'package:eco_hero_mobile/features/user/presentation/pages/user_page.dart';
@@ -21,6 +25,23 @@ final router = GoRouter(
       path: '/',
       builder: (context, state) => HomePage(),
       routes: [
+        // Main
+        GoRoute(
+          path: 'play/page',
+          builder: (context, state) => PlayPage(),
+        ),
+        GoRoute(
+          path: 'calculator/page',
+          builder: (context, state) => CalculatorPage(),
+        ),
+        GoRoute(
+          path: 'maps/page',
+          builder: (context, state) => MapsPage(),
+        ),
+        GoRoute(
+          path: 'socials/page',
+          builder: (context, state) => SocialsPage(),
+        ),
         // Users
         GoRoute(
           path: 'user/page',
@@ -56,7 +77,8 @@ final router = GoRouter(
           path: 'virtual_garden/page',
           builder: (context, state) {
             assert(state.extra != null && state.extra is VirtualGardenModel);
-            return VirtualGardenPage(virtualGarden: state.extra as VirtualGardenModel);
+            return VirtualGardenPage(
+                virtualGarden: state.extra as VirtualGardenModel);
           },
         ),
         // Blogs

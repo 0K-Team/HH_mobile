@@ -23,8 +23,7 @@ class EcoHero extends StatelessWidget {
             title: 'EcoHero',
             theme: ThemeData(
               colorScheme: ColorScheme.light(
-                primary: primary,
-                secondary: secondary,
+                secondary: accent,
                 surface: background,
                 onSurface: text,
               ),

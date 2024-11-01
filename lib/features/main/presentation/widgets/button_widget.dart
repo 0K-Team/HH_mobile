@@ -14,7 +14,7 @@ class ButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: secondary,
+        color: accent,
         borderRadius: BorderRadius.circular(8),
       ),
       padding: EdgeInsets.symmetric(

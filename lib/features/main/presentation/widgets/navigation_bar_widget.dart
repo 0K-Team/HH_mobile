@@ -1,82 +1,87 @@
-import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
+import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
+import 'package:eco_hero_mobile/common/util/color_util.dart';
+import 'package:eco_hero_mobile/features/main/presentation/navigation_page_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class NavigationBarWidget extends StatelessWidget {
-  final UserModel user;
-
-  const NavigationBarWidget({
-    super.key,
-    required this.user,
-  });
+  const NavigationBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 4.w),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Container(
+      width: 100.w,
+      color: background,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          GestureDetector(
-            onTap: () => context.push('/user/page', extra: user),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(user.avatar),
-                ),
-                SizedBox(width: 2.w),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      user.fullName,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 17.sp,
-                        height: 1.1,
-                      ),
-                    ),
-                    Text(
-                      user.idTitle,
-                      style: TextStyle(
-                        height: 1,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          Divider(color: shadow),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              createNavigationElement(
+                  context, 'Home', 'assets/home.svg', 1, '/'),
+              createNavigationElement(
+                  context, 'Play', 'assets/play.svg', 2, '/play/page'),
+              createNavigationElement(context, 'Calculator',
+                  'assets/calculator.svg', 3, '/calculator/page'),
+              createNavigationElement(
+                  context, 'Maps', 'assets/maps.svg', 4, '/maps/page'),
+              createNavigationElement(
+                  context, 'Socials', 'assets/socials.svg', 5, '/socials/page'),
+            ],
           ),
-          GestureDetector(
-            onTap: () => context.push('/notifications/page', extra: user),
-            child: Stack(
-              children: [
-                SvgPicture.asset('assets/notification.svg'),
-                if (user.notifications.isNotEmpty)
-                  Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.red,
-                    ),
-                    padding: EdgeInsets.all(8.sp),
-                    child: Center(
-                      child: Text(
-                        user.notifications.length.toString(),
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w700,
-                          height: 1,
-                        ),
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          ),
+          // trick to make the spaces at the top and bottom of navigation bar the same height
+          Divider(color: background),
         ],
+      ),
+    );
+  }
+
+  createNavigationElement(BuildContext context, String title, String asset,
+      int index, String path) {
+    NavigationPageCubit navigationPage = get<NavigationPageCubit>();
+    if (navigationPage.state is! NavigationPageLoadSuccess) {
+      return Container();
+    }
+
+    NavigationPageLoadSuccess state =
+        navigationPage.state as NavigationPageLoadSuccess;
+    Color color = state.pageIndex == index ? accent : Colors.white;
+
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        get<NavigationPageCubit>().changePage(index);
+        context.go(path);
+      },
+      child: SizedBox(
+        width: 20.w,
+        child: Column(
+          children: [
+            SvgPicture.asset(
+              asset,
+              colorFilter: ColorFilter.mode(
+                color,
+                BlendMode.srcIn,
+              ),
+              width: 8.w,
+              height: 8.w,
+            ),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w500,
+                height: 0.5,
+                color: color,
+                letterSpacing: -0.4,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

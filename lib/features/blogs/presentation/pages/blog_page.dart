@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eco_hero_mobile/features/blogs/data/models/blog_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -50,8 +51,8 @@ class BlogPage extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8),
-                      child: Image.network(
-                        blog.image,
+                      child: CachedNetworkImage(
+                        imageUrl: blog.image,
                         width: 92.w,
                         height: 12.h,
                         fit: BoxFit.cover,
