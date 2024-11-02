@@ -3,7 +3,8 @@ import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/util/button.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/common/util/extensions/bloc_extension.dart';
-import 'package:eco_hero_mobile/features/main/presentation/navigation_page_cubit.dart';
+import 'package:eco_hero_mobile/features/main/navigation_page_cubit.dart';
+import 'package:eco_hero_mobile/features/posts/presentation/blocs/posts_bloc.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user_bloc.dart';
 import 'package:flutter/foundation.dart';
@@ -182,6 +183,8 @@ class AuthPage extends StatelessWidget {
       UserModel userModel = UserModel.fromJson(user.data);
       await get<CurrentUserBloc>()
           .addAndWait(CurrentUserLoaded(userModel, jwt));
+      await get<PostsBloc>()
+          .addAndWait(PostsFetched());
       get<NavigationPageCubit>().changePage(1);
       if (context.mounted) {
         context.push('/');

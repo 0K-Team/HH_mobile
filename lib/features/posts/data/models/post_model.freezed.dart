@@ -20,9 +20,9 @@ PostModel _$PostModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PostModel {
-  @JsonValue('_id')
+  @JsonKey(name: '_id')
   String get id => throw _privateConstructorUsedError;
-  @JsonValue('_id')
+  @JsonKey(name: '_id')
   set id(String value) => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
   set author(String value) => throw _privateConstructorUsedError;
@@ -34,8 +34,8 @@ mixin _$PostModel {
   set tags(List<String> value) => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
   set images(List<String> value) => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
-  set createdAt(String value) => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  set createdAt(DateTime? value) => throw _privateConstructorUsedError;
 
   /// Serializes this PostModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,13 +53,13 @@ abstract class $PostModelCopyWith<$Res> {
       _$PostModelCopyWithImpl<$Res, PostModel>;
   @useResult
   $Res call(
-      {@JsonValue('_id') String id,
+      {@JsonKey(name: '_id') String id,
       String author,
       String content,
       List<String> likes,
       List<String> tags,
       List<String> images,
-      String createdAt});
+      DateTime? createdAt});
 }
 
 /// @nodoc
@@ -83,7 +83,7 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
     Object? likes = null,
     Object? tags = null,
     Object? images = null,
-    Object? createdAt = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -110,10 +110,10 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -127,13 +127,13 @@ abstract class _$$PostModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonValue('_id') String id,
+      {@JsonKey(name: '_id') String id,
       String author,
       String content,
       List<String> likes,
       List<String> tags,
       List<String> images,
-      String createdAt});
+      DateTime? createdAt});
 }
 
 /// @nodoc
@@ -155,7 +155,7 @@ class __$$PostModelImplCopyWithImpl<$Res>
     Object? likes = null,
     Object? tags = null,
     Object? images = null,
-    Object? createdAt = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_$PostModelImpl(
       id: null == id
@@ -182,10 +182,10 @@ class __$$PostModelImplCopyWithImpl<$Res>
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime?,
     ));
   }
 }
@@ -194,19 +194,19 @@ class __$$PostModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PostModelImpl implements _PostModel {
   _$PostModelImpl(
-      {@JsonValue('_id') required this.id,
+      {@JsonKey(name: '_id') required this.id,
       required this.author,
       required this.content,
       required this.likes,
       required this.tags,
       required this.images,
-      required this.createdAt});
+      this.createdAt});
 
   factory _$PostModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostModelImplFromJson(json);
 
   @override
-  @JsonValue('_id')
+  @JsonKey(name: '_id')
   String id;
   @override
   String author;
@@ -219,7 +219,7 @@ class _$PostModelImpl implements _PostModel {
   @override
   List<String> images;
   @override
-  String createdAt;
+  DateTime? createdAt;
 
   @override
   String toString() {
@@ -244,21 +244,21 @@ class _$PostModelImpl implements _PostModel {
 
 abstract class _PostModel implements PostModel {
   factory _PostModel(
-      {@JsonValue('_id') required String id,
+      {@JsonKey(name: '_id') required String id,
       required String author,
       required String content,
       required List<String> likes,
       required List<String> tags,
       required List<String> images,
-      required String createdAt}) = _$PostModelImpl;
+      DateTime? createdAt}) = _$PostModelImpl;
 
   factory _PostModel.fromJson(Map<String, dynamic> json) =
       _$PostModelImpl.fromJson;
 
   @override
-  @JsonValue('_id')
+  @JsonKey(name: '_id')
   String get id;
-  @JsonValue('_id')
+  @JsonKey(name: '_id')
   set id(String value);
   @override
   String get author;
@@ -276,8 +276,8 @@ abstract class _PostModel implements PostModel {
   List<String> get images;
   set images(List<String> value);
   @override
-  String get createdAt;
-  set createdAt(String value);
+  DateTime? get createdAt;
+  set createdAt(DateTime? value);
 
   /// Create a copy of PostModel
   /// with the given fields replaced by the non-null parameter values.

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,7 +25,7 @@ class AppBarWidget extends StatelessWidget {
             child: Row(
               children: [
                 CircleAvatar(
-                  backgroundImage: NetworkImage(user.avatar),
+                  backgroundImage: CachedNetworkImageProvider(user.avatar),
                 ),
                 SizedBox(width: 2.w),
                 Column(

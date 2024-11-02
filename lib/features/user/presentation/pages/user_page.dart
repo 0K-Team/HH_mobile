@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/util/back_with_text.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
@@ -84,7 +85,7 @@ class UserPage extends StatelessWidget {
             SizedBox(height: 0.5.h),
             CircleAvatar(
               radius: 40.sp,
-              backgroundImage: NetworkImage(user.avatar),
+              backgroundImage: CachedNetworkImageProvider(user.avatar),
             ),
             SizedBox(height: 1.5.h),
             Align(

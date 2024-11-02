@@ -7,13 +7,14 @@ part 'post_model.g.dart';
 @unfreezed
 class PostModel with _$PostModel {
   factory PostModel({
-    @JsonValue('_id') required String id,
+    // ignore: invalid_annotation_target
+    @JsonKey(name: '_id') required String id,
     required String author,
     required String content,
     required List<String> likes,
     required List<String> tags,
     required List<String> images,
-    required String createdAt,
+    DateTime? createdAt,
   }) = _PostModel;
 
   factory PostModel.fromJson(Map<String, dynamic> json) =>

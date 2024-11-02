@@ -15,11 +15,15 @@ import 'package:eco_hero_mobile/features/user/presentation/pages/user_page.dart'
 import 'package:eco_hero_mobile/features/virtual_garden/data/models/virtual_garden_model.dart';
 import 'package:eco_hero_mobile/features/virtual_garden/presentation/pages/virtual_garden_page.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 final router = GoRouter(
   initialLocation: '/auth/page',
   debugLogDiagnostics: kDebugMode,
+  navigatorKey: navigatorKey,
   routes: [
     GoRoute(
       path: '/',

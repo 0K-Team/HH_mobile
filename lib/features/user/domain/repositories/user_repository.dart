@@ -3,7 +3,7 @@ import 'package:either_dart/either.dart';
 
 abstract class UserRepository {
 
-  Future<Either<UserModel, Exception>> fetchUser(String email);
+  Future<Either<UserModel, Exception>> fetchUser(String id);
 
 
 }
