@@ -146,7 +146,7 @@ class AuthPage extends StatelessWidget {
           provider: '',
           googleID: '',
           facebookID: '',
-          title: '',
+          title: 'Ekolog',
         ),
         'n/a'));
     if (context.mounted) {

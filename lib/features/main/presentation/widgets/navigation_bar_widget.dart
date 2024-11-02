@@ -17,14 +17,19 @@ class NavigationBarWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Divider(color: shadow),
+          Container(
+            width: 100.w,
+            height: 4.sp,
+            color: shadow,
+          ),
+          SizedBox(height: 0.5.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               createNavigationElement(
                   context, 'Home', 'assets/home.svg', 1, '/'),
-              createNavigationElement(
-                  context, 'Community', 'assets/socials.svg', 5, '/socials/page'),
+              createNavigationElement(context, 'Community',
+                  'assets/socials.svg', 5, '/socials/page'),
               createNavigationElement(
                   context, 'Maps', 'assets/maps.svg', 4, '/maps/page'),
               createNavigationElement(
@@ -34,7 +39,12 @@ class NavigationBarWidget extends StatelessWidget {
             ],
           ),
           // trick to make the spaces at the top and bottom of navigation bar the same height
-          Divider(color: background),
+          SizedBox(height: 1.5.h),
+          Container(
+            width: 100.w,
+            height: 4.sp,
+            color: background,
+          ),
         ],
       ),
     );

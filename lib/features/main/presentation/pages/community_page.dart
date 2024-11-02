@@ -44,7 +44,6 @@ class _CommunityPageState extends State<CommunityPage> {
                   SizedBox(height: 2.5.h),
                   Container(
                     decoration: BoxDecoration(
-                      color: element,
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
                         color: accent,
@@ -65,7 +64,7 @@ class _CommunityPageState extends State<CommunityPage> {
                                 hintText: 'Ekologia au! Napisz co sądzisz',
                                 hintStyle: TextStyle(
                                   color: shadow,
-                                )),
+                                ),),
                             onSubmitted: (_) => sendMessage(),
                             maxLines: 5,
                           ),

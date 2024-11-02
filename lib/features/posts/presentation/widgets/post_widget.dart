@@ -80,6 +80,22 @@ class PostWidget extends StatelessWidget {
                 );
               }),
           SizedBox(height: 0.75.h),
+          Wrap(
+            spacing: 10.sp,
+            runSpacing: 10.sp,
+            children: post.tags
+                .map(
+                  (tag) => Text(
+                    '#$tag',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      height: 1,
+                      color: accent,
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
           Text(
             post.content,
             style: TextStyle(
@@ -98,15 +114,6 @@ class PostWidget extends StatelessWidget {
                 )
                 .toList(),
           ),
-          Wrap(
-            spacing: 10.sp,
-            runSpacing: 10.sp,
-            children: post.tags
-                .map(
-                  (tag) => Text('#$tag'),
-                )
-                .toList(),
-          )
         ],
       ),
     );
