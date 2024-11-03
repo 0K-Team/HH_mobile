@@ -82,7 +82,7 @@ class HomePage extends StatelessWidget {
                   ElementWidget(
                     onTap: () {
                       get<VirtualGardenRepositoryImpl>()
-                          .fetchVirtualGarden(user.email)
+                          .fetchVirtualGarden(user.id)
                           .fold((virtualGarden) {
                         context.push('/virtual_garden/page',
                             extra: virtualGarden);

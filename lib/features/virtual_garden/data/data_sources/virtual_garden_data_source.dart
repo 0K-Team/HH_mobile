@@ -7,20 +7,51 @@ class VirtualGardenDataSource {
 
   VirtualGardenDataSource(this._dio);
 
-  Future<VirtualGardenModel?> fetchVirtualGarden(String email) {
+  Future<VirtualGardenModel?> fetchVirtualGarden(String user) {
     //fixme impl
     return Future.value(
       VirtualGardenModel(
+        id: 'id',
+        user: 'user',
         plants: [
-          VirtualGardenModelPlants(
-            plantId: 1,
-            type: 'Typ',
-            species: 'Species',
-            growthStage: 1,
-            plantedDate: DateTime.now(),
-            pointsEarned: 12,
+          VirtualGardenModelPlant(
+            plantId: '1',
+            name: 'Banan',
+            type: 'banana',
+            growthStage: 4,
+            wateringNeeded: 4,
+            fertilizerNeeded: 2,
+            planted: DateTime.now(),
+            harvestable: false,
+            lastWatered: DateTime.timestamp(),
+            lastFertilized: DateTime.timestamp(),
+            weedsRemovedNeeded: 2,
+          ),
+          VirtualGardenModelPlant(
+            plantId: '2',
+            name: 'Rozchodnik Morgana',
+            type: 'sedum-morganianum',
+            growthStage: 2,
+            wateringNeeded: 1,
+            fertilizerNeeded: 0,
+            weedsRemovedNeeded: 2,
+            planted: DateTime.now(),
+            harvestable: false,
+            lastWatered: DateTime.timestamp(),
+            lastFertilized: DateTime.timestamp(),
           ),
         ],
+        userActions: VirtualGardenModelUserActions(
+          wateringCount: 1,
+          wateringMaxCount: 2,
+          wateringRefill: DateTime.timestamp(),
+          fertilizingCount: 3,
+          fertilizingMaxCount: 4,
+          fertilizingRefill: DateTime.timestamp(),
+          weedsRemoved: 5,
+          weedsMaxRemoved: 6,
+          weedsRefill: DateTime.timestamp(),
+        ),
       ),
     );
   }

@@ -32,7 +32,7 @@ class UserModel with _$UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
 
-  String get avatar => 'https://ecohero.q1000q.me/api/v1/avatar/$avatarHash';
+  String get avatar => 'https://ecohero.q1000q.me/api/v1/avatar/$id/$avatarHash';
 }
 
 @unfreezed

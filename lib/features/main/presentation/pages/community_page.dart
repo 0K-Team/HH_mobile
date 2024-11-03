@@ -34,85 +34,88 @@ class _CommunityPageState extends State<CommunityPage> {
             builder: (context, state) {
           if (state is CurrentUserLoadSuccess) {
             UserModel user = state.user;
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(height: 1.h),
-                  AppBarWidget(user: user),
-                  SizedBox(height: 0.5.h),
-                  Divider(color: shadow),
-                  SizedBox(height: 2.5.h),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        color: accent,
-                        width: 4.sp,
-                      ),
-                    ),
-                    width: 92.w,
-                    height: 10.h,
-                    child: Row(
-                      children: [
-                        SizedBox(width: 2.5.w),
-                        SizedBox(
-                          width: 80.w,
-                          child: TextField(
-                            controller: _controller,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: 'Ekologia au! Napisz co sądzisz',
-                                hintStyle: TextStyle(
-                                  color: shadow,
-                                ),),
-                            onSubmitted: (_) => sendMessage(),
-                            maxLines: 5,
-                          ),
-                        ),
-                        GestureDetector(
-                          behavior: HitTestBehavior.opaque,
-                          onTap: sendMessage,
-                          child: Icon(
-                            Icons.send,
-                            color: accent,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 1.h),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 4.w),
-                      child: Text(
-                        'Posty użytkowników',
-                        style: TextStyle(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w700,
+            return RefreshIndicator(
+              onRefresh: () async => get<PostsBloc>().add(PostsFetched()),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: 1.h),
+                    AppBarWidget(user: user),
+                    SizedBox(height: 0.5.h),
+                    Divider(color: shadow),
+                    SizedBox(height: 2.5.h),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: accent,
+                          width: 4.sp,
                         ),
                       ),
+                      width: 92.w,
+                      height: 10.h,
+                      child: Row(
+                        children: [
+                          SizedBox(width: 2.5.w),
+                          SizedBox(
+                            width: 80.w,
+                            child: TextField(
+                              controller: _controller,
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'Ekologia au! Napisz co sądzisz',
+                                  hintStyle: TextStyle(
+                                    color: shadow,
+                                  ),),
+                              onSubmitted: (_) => sendMessage(),
+                              maxLines: 5,
+                            ),
+                          ),
+                          GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onTap: sendMessage,
+                            child: Icon(
+                              Icons.send,
+                              color: accent,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  BlocBuilder<PostsBloc, PostsState>(builder: (context, state) {
-                    if (state is PostsLoadSuccess) {
-                      return SizedBox(
-                        width: 92.w,
-                        child: ListView.builder(
-                          itemBuilder: (context, index) {
-                            PostModel post = state.posts[index];
-                            return PostWidget(post: post);
-                          },
-                          itemCount: state.posts.length,
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+                    SizedBox(height: 1.h),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 4.w),
+                        child: Text(
+                          'Posty użytkowników',
+                          style: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
-                      );
-                    }
+                      ),
+                    ),
+                    BlocBuilder<PostsBloc, PostsState>(builder: (context, state) {
+                      if (state is PostsLoadSuccess) {
+                        return SizedBox(
+                          width: 92.w,
+                          child: ListView.builder(
+                            itemBuilder: (context, index) {
+                              PostModel post = state.posts[index];
+                              return PostWidget(post: post);
+                            },
+                            itemCount: state.posts.length,
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                          ),
+                        );
+                      }
 
-                    return CircularProgressIndicator();
-                  }),
-                ],
+                      return CircularProgressIndicator();
+                    }),
+                  ],
+                ),
               ),
             );
           }

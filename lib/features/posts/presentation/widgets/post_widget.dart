@@ -4,6 +4,7 @@ import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/features/posts/data/models/post_model.dart';
 import 'package:eco_hero_mobile/features/user/data/repositories/user_repository_impl.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -39,36 +40,40 @@ class PostWidget extends StatelessWidget {
                   (user) => Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                            radius: 18.sp,
-                            backgroundImage:
-                                CachedNetworkImageProvider(user.avatar),
-                          ),
-                          SizedBox(width: 2.5.w),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                user.fullName.full,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 17.sp,
-                                  height: 1,
-                                ),
-                              ),
-                              if (user.title != null)
+                      GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: () => context.push('/user/page', extra: user),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              radius: 18.sp,
+                              backgroundImage:
+                                  CachedNetworkImageProvider(user.avatar),
+                            ),
+                            SizedBox(width: 2.5.w),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
                                 Text(
-                                  user.title!,
+                                  user.fullName.full,
                                   style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 17.sp,
                                     height: 1,
                                   ),
                                 ),
-                            ],
-                          ),
-                        ],
+                                if (user.title != null)
+                                  Text(
+                                    user.title!,
+                                    style: TextStyle(
+                                      height: 1,
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                       if (post.createdAt != null)
                         Text(DateFormat('EEEE, HH:mm').format(post.createdAt!)),

@@ -183,8 +183,7 @@ class AuthPage extends StatelessWidget {
       UserModel userModel = UserModel.fromJson(user.data);
       await get<CurrentUserBloc>()
           .addAndWait(CurrentUserLoaded(userModel, jwt));
-      await get<PostsBloc>()
-          .addAndWait(PostsFetched());
+      await get<PostsBloc>().addAndWait(PostsFetched());
       get<NavigationPageCubit>().changePage(1);
       if (context.mounted) {
         context.push('/');

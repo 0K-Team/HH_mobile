@@ -20,8 +20,10 @@ PostModel _$PostModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PostModel {
+// ignore: invalid_annotation_target
   @JsonKey(name: '_id')
-  String get id => throw _privateConstructorUsedError;
+  String get id =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: '_id')
   set id(String value) => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
@@ -205,6 +207,7 @@ class _$PostModelImpl implements _PostModel {
   factory _$PostModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostModelImplFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: '_id')
   String id;
@@ -255,9 +258,10 @@ abstract class _PostModel implements PostModel {
   factory _PostModel.fromJson(Map<String, dynamic> json) =
       _$PostModelImpl.fromJson;
 
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: '_id')
-  String get id;
+  String get id; // ignore: invalid_annotation_target
   @JsonKey(name: '_id')
   set id(String value);
   @override

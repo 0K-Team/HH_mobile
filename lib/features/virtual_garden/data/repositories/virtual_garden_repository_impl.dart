@@ -9,8 +9,8 @@ class VirtualGardenRepositoryImpl extends VirtualGardenRepository {
   VirtualGardenRepositoryImpl(this._source);
 
   @override
-  Future<Either<VirtualGardenModel, Exception>> fetchVirtualGarden(String email) async {
-    VirtualGardenModel? virtualGarden = await _source.fetchVirtualGarden(email);
+  Future<Either<VirtualGardenModel, Exception>> fetchVirtualGarden(String user) async {
+    VirtualGardenModel? virtualGarden = await _source.fetchVirtualGarden(user);
     if (virtualGarden == null) {
       return Right(Exception('Error fetching virtual garden.'));
     }

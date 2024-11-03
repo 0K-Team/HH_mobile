@@ -3,5 +3,5 @@ import 'package:either_dart/either.dart';
 
 abstract class VirtualGardenRepository {
 
-  Future<Either<VirtualGardenModel, Exception>> fetchVirtualGarden(String email);
+  Future<Either<VirtualGardenModel, Exception>> fetchVirtualGarden(String user);
 }
