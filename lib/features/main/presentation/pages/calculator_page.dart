@@ -120,9 +120,9 @@ class CalculatorPage extends StatelessWidget {
         children: [
           Image.asset(
             asset,
-            width: 28.w,
-            height: 13.h,
-            fit: BoxFit.cover,
+            width: 25.w,
+            height: 12.h,
+            fit: BoxFit.fill,
           ),
           SizedBox(
             width: 55.w,

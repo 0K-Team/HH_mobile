@@ -32,7 +32,7 @@ class PlayPage extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.only(left: 4.w),
                           child: Text(
-                            'Play',
+                            'Education',
                             style: TextStyle(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.w700,
