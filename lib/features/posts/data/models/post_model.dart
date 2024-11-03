@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'post_model.freezed.dart';
@@ -7,7 +9,6 @@ part 'post_model.g.dart';
 @unfreezed
 class PostModel with _$PostModel {
   factory PostModel({
-    // ignore: invalid_annotation_target
     @JsonKey(name: '_id') required String id,
     required String author,
     required String content,
