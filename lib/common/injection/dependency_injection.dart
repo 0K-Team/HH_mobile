@@ -7,6 +7,8 @@ import 'package:eco_hero_mobile/features/main/navigation_page_cubit.dart';
 import 'package:eco_hero_mobile/features/posts/data/data_sources/posts_data_source.dart';
 import 'package:eco_hero_mobile/features/posts/data/repositories/posts_repository_impl.dart';
 import 'package:eco_hero_mobile/features/posts/presentation/blocs/posts_bloc.dart';
+import 'package:eco_hero_mobile/features/quizzes/data/data_sources/quizzes_data_source.dart';
+import 'package:eco_hero_mobile/features/quizzes/data/repositories/quizzes_repository_impl.dart';
 import 'package:eco_hero_mobile/features/user/data/data_sources/user_data_source.dart';
 import 'package:eco_hero_mobile/features/user/data/repositories/user_repository_impl.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user_bloc.dart';
@@ -63,4 +65,8 @@ void setupDependencyInjection() {
   get.registerLazySingleton(() => PostsDataSource(get()));
   get.registerLazySingleton(() => PostsRepositoryImpl(get()));
   get.registerLazySingleton(() => PostsBloc(get()));
+
+  // Quizzes
+  get.registerLazySingleton(() => QuizzesDataSource(get()));
+  get.registerLazySingleton(() => QuizzesRepositoryImpl(get()));
 }

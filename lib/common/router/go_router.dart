@@ -7,7 +7,7 @@ import 'package:eco_hero_mobile/features/main/presentation/pages/calculator_page
 import 'package:eco_hero_mobile/features/main/presentation/pages/home_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/maps_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/notifications_page.dart';
-import 'package:eco_hero_mobile/features/main/presentation/pages/play_page.dart';
+import 'package:eco_hero_mobile/features/main/presentation/pages/education_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/community_page.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/presentation/pages/user_configuration_page.dart';
@@ -33,9 +33,9 @@ final router = GoRouter(
       routes: [
         // Main
         GoRoute(
-          path: 'play/page',
+          path: 'education/page',
           pageBuilder: (context, state) => NoTransitionPage(
-            child: PlayPage(),
+            child: EducationPage(),
           ),
         ),
         GoRoute(

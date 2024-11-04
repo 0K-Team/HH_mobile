@@ -1,14 +1,15 @@
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/features/main/presentation/widgets/app_bar_widget.dart';
 import 'package:eco_hero_mobile/features/main/presentation/widgets/navigation_bar_widget.dart';
+import 'package:eco_hero_mobile/features/quizzes/presentation/quizzes_list_widget.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class PlayPage extends StatelessWidget {
-  const PlayPage({super.key});
+class EducationPage extends StatelessWidget {
+  const EducationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class PlayPage extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.only(left: 4.w),
                           child: Text(
-                            'Education',
+                            'Topics',
                             style: TextStyle(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.w700,
@@ -40,6 +41,8 @@ class PlayPage extends StatelessWidget {
                           ),
                         ),
                       ),
+                      SizedBox(height: 0.5.h),
+                      QuizzesListWidget(),
                     ],
                   ),
                 );
