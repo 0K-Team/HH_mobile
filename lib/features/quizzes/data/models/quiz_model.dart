@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
+import 'package:eco_hero_mobile/features/quizzes/data/models/quiz_topic_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'quiz_model.freezed.dart';
@@ -7,6 +8,8 @@ part 'quiz_model.g.dart';
 
 @unfreezed
 class QuizModel with _$QuizModel {
+  QuizModel._();
+
   factory QuizModel({
     @JsonKey(name: '_id') required String id,
     required String topic,
@@ -16,6 +19,15 @@ class QuizModel with _$QuizModel {
 
   factory QuizModel.fromJson(Map<String, dynamic> json) =>
       _$QuizModelFromJson(json);
+
+  QuizTopicType get type {
+    switch (category.toLowerCase()) {
+      case 'rainforest':
+        return QuizTopicType.rainforest;
+      default:
+        return QuizTopicType.unknown;
+    }
+  }
 }
 
 @unfreezed

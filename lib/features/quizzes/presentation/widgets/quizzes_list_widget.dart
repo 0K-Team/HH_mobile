@@ -1,7 +1,7 @@
 import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/features/quizzes/data/models/quiz_topic_model.dart';
 import 'package:eco_hero_mobile/features/quizzes/data/repositories/quizzes_repository_impl.dart';
-import 'package:eco_hero_mobile/features/quizzes/presentation/quiz_topic_widget.dart';
+import 'package:eco_hero_mobile/features/quizzes/presentation/widgets/quiz_topic_widget.dart';
 import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';

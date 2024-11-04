@@ -151,12 +151,13 @@ class __$$QuizModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$QuizModelImpl implements _QuizModel {
+class _$QuizModelImpl extends _QuizModel {
   _$QuizModelImpl(
       {@JsonKey(name: '_id') required this.id,
       required this.topic,
       required this.questions,
-      required this.category});
+      required this.category})
+      : super._();
 
   factory _$QuizModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuizModelImplFromJson(json);
@@ -192,12 +193,13 @@ class _$QuizModelImpl implements _QuizModel {
   }
 }
 
-abstract class _QuizModel implements QuizModel {
+abstract class _QuizModel extends QuizModel {
   factory _QuizModel(
       {@JsonKey(name: '_id') required String id,
       required String topic,
       required List<QuizModelQuestions> questions,
       required String category}) = _$QuizModelImpl;
+  _QuizModel._() : super._();
 
   factory _QuizModel.fromJson(Map<String, dynamic> json) =
       _$QuizModelImpl.fromJson;

@@ -4,11 +4,13 @@ import 'package:eco_hero_mobile/features/blogs/presentation/pages/blog_page.dart
 import 'package:eco_hero_mobile/features/daily_challenge/data/models/user_daily_challenge_model.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/presentation/pages/daily_challenge_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/calculator_page.dart';
+import 'package:eco_hero_mobile/features/main/presentation/pages/community_page.dart';
+import 'package:eco_hero_mobile/features/main/presentation/pages/education_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/home_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/maps_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/notifications_page.dart';
-import 'package:eco_hero_mobile/features/main/presentation/pages/education_page.dart';
-import 'package:eco_hero_mobile/features/main/presentation/pages/community_page.dart';
+import 'package:eco_hero_mobile/features/quizzes/data/models/quiz_model.dart';
+import 'package:eco_hero_mobile/features/quizzes/presentation/pages/quiz_page.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/presentation/pages/user_configuration_page.dart';
 import 'package:eco_hero_mobile/features/user/presentation/pages/user_page.dart';
@@ -105,20 +107,22 @@ final router = GoRouter(
         ),
         // Daily challenges
         GoRoute(
-          path: 'daily_challenge',
-          builder: (_, __) => HomePage(),
-          routes: [
-            GoRoute(
-              path: '/page',
-              builder: (_, state) {
-                assert(state.extra != null &&
-                    state.extra is UserDailyChallengeModel);
-                return DailyChallengePage(
-                    dailyChallenge: state.extra as UserDailyChallengeModel);
-              },
-            )
-          ],
+          path: 'daily_challenge/page',
+          builder: (_, state) {
+            assert(
+                state.extra != null && state.extra is UserDailyChallengeModel);
+            return DailyChallengePage(
+                dailyChallenge: state.extra as UserDailyChallengeModel);
+          },
         ),
+        // Quizzes
+        GoRoute(
+          path: 'quiz/page',
+          builder: (_, state) {
+            assert(state.extra != null && state.extra is QuizModel);
+            return QuizPage(quiz: state.extra as QuizModel);
+          },
+        )
       ],
     ),
   ],

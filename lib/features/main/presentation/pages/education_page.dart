@@ -1,7 +1,7 @@
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/features/main/presentation/widgets/app_bar_widget.dart';
 import 'package:eco_hero_mobile/features/main/presentation/widgets/navigation_bar_widget.dart';
-import 'package:eco_hero_mobile/features/quizzes/presentation/quizzes_list_widget.dart';
+import 'package:eco_hero_mobile/features/quizzes/presentation/widgets/quizzes_list_widget.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user_bloc.dart';
 import 'package:flutter/material.dart';
