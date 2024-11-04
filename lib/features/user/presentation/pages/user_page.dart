@@ -6,7 +6,6 @@ import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user.dart';
 import 'package:eco_hero_mobile/features/virtual_garden/data/repositories/virtual_garden_repository_impl.dart';
 import 'package:either_dart/either.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -21,10 +20,6 @@ class UserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (kDebugMode) {
-      print(user.toString());
-    }
-
     return Scaffold(
       body: SafeArea(
         child: Column(

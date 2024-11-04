@@ -43,9 +43,33 @@ class PostsRepositoryImpl extends PostsRepository {
   }
 
   @override
-  Future<Either<List<PostModel>, Either>> fetchUserPosts(UserModel user) {
-    // TODO: implement fetchUserPosts
-    throw UnimplementedError();
+  Future<Either<List<PostModel>, Exception>> fetchUserPosts(UserModel user) async {
+    List<PostModel>? posts = await _source.fetchPosts(1, user: user.id);
+    if (posts == null) {
+      return Right(Exception('Error fetching posts'));
+    }
+
+    return Left(posts);
+  }
+
+  @override
+  Future<Either<PostModel, Exception>> dislikePost(PostModel post) async {
+    PostModel? postModel = await _source.dislikePost(post);
+    if (postModel == null) {
+      return Right(Exception('Error disliking posts'));
+    }
+
+    return Left(postModel);
+  }
+
+  @override
+  Future<Either<PostModel, Exception>> likePost(PostModel post) async {
+    PostModel? postModel = await _source.likePost(post);
+    if (postModel == null) {
+      return Right(Exception('Error liking posts'));
+    }
+
+    return Left(postModel);
   }
 
 }

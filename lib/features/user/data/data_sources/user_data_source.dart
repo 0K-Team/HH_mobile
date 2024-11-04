@@ -32,4 +32,40 @@ class UserDataSource {
 
     return null;
   }
+
+  Future<UserModel?> updateLastName(String lastName) async {
+    Response response = await _dio
+        .patch('https://ecohero.q1000q.me/api/v1/user/me/lastName', data: {
+      'lastName': lastName,
+    });
+    if (response.statusCode == 200) {
+      return UserModel.fromJson(response.data);
+    }
+
+    return null;
+  }
+
+  Future<UserModel?> updateBio(String bio) async {
+    Response response = await _dio
+        .patch('https://ecohero.q1000q.me/api/v1/user/me/bio', data: {
+      'bio': bio,
+    });
+    if (response.statusCode == 200) {
+      return UserModel.fromJson(response.data);
+    }
+
+    return null;
+  }
+
+  Future<UserModel?> updateLocation(String location) async {
+    Response response = await _dio
+        .patch('https://ecohero.q1000q.me/api/v1/user/me/location', data: {
+      'location': location,
+    });
+    if (response.statusCode == 200) {
+      return UserModel.fromJson(response.data);
+    }
+
+    return null;
+  }
 }

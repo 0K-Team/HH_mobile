@@ -37,8 +37,10 @@ class QuizPage extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 17.sp,
+                          height: 1,
                         ),
                       ),
+                      SizedBox(height: 0.25.h),
                       Text(
                         'A. ${question.answers.A}',
                         style: TextStyle(

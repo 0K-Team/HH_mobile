@@ -22,46 +22,112 @@ class UserConfigurationPage extends StatefulWidget {
 }
 
 class _UserConfigurationPageState extends State<UserConfigurationPage> {
+  bool isDirty = false;
   late TextEditingController _firstNameController;
+  late TextEditingController _lastNameController;
+  late TextEditingController _bioController;
+  late TextEditingController _locationController;
 
   @override
   void initState() {
     _firstNameController =
         TextEditingController(text: widget.user.fullName.givenName ?? '');
+    _lastNameController =
+        TextEditingController(text: widget.user.fullName.familyName ?? '');
+    _bioController = TextEditingController(text: widget.user.bio ?? '');
+    _locationController =
+        TextEditingController(text: widget.user.location ?? '');
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton:
-          _firstNameController.text != widget.user.fullName.givenName
-              ? FloatingActionButton.extended(
-                  onPressed: () async {
-                    bool changed = await get<UserRepositoryImpl>()
-                        .updateFirstName(_firstNameController.text);
-                    if (changed) {
-                      Future.delayed(Duration.zero, () {
-                        if (context.mounted) {
-                          context.replace('/user/page/configuration',
-                              extra: currentUser);
-                        }
-                      });
-                      success('Zmieniono pierwsze imię.');
-                    } else {
-                      error('Błąd przy zmianie pierwszego imienia.');
-                    }
-                  },
-                  label: Text(
-                    'Zapisz',
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w600,
-                      color: element,
-                    ),
-                  ),
-                )
-              : null,
+      floatingActionButton: isDirty
+          ? FloatingActionButton.extended(
+              onPressed: () async {
+                if (_firstNameController.text !=
+                    widget.user.fullName.givenName) {
+                  bool changed = await get<UserRepositoryImpl>()
+                      .updateFirstName(_firstNameController.text);
+                  if (changed) {
+                    isDirty = false;
+                    Future.delayed(Duration.zero, () {
+                      if (context.mounted) {
+                        context.replace('/user/page/configuration',
+                            extra: currentUser);
+                      }
+                    });
+                    success('Zmieniono pierwsze imię.');
+                  } else {
+                    error('Błąd przy zmianie pierwszego imienia.');
+                  }
+                }
+
+                if (_lastNameController.text !=
+                    widget.user.fullName.familyName) {
+                  bool changed = await get<UserRepositoryImpl>()
+                      .updateLastName(_lastNameController.text);
+                  if (changed) {
+                    isDirty = false;
+                    Future.delayed(Duration.zero, () {
+                      if (context.mounted) {
+                        context.replace('/user/page/configuration',
+                            extra: currentUser);
+                      }
+                    });
+                    success('Zmieniono nazwisko.');
+                  } else {
+                    error('Błąd przy zmianie nazwiska.');
+                  }
+                }
+
+                if (_bioController.text != widget.user.bio &&
+                    (widget.user.bio != null || _bioController.text.isNotEmpty)) {
+                  bool changed = await get<UserRepositoryImpl>()
+                      .updateBio(_bioController.text);
+                  if (changed) {
+                    isDirty = false;
+                    Future.delayed(Duration.zero, () {
+                      if (context.mounted) {
+                        context.replace('/user/page/configuration',
+                            extra: currentUser);
+                      }
+                    });
+                    success('Zmieniono opis.');
+                  } else {
+                    error('Błąd przy zmianie opisu.');
+                  }
+                }
+
+                if (_locationController.text != widget.user.location &&
+                    (widget.user.location != null || _locationController.text.isNotEmpty)) {
+                  bool changed = await get<UserRepositoryImpl>()
+                      .updateLocation(_locationController.text);
+                  if (changed) {
+                    isDirty = false;
+                    Future.delayed(Duration.zero, () {
+                      if (context.mounted) {
+                        context.replace('/user/page/configuration',
+                            extra: currentUser);
+                      }
+                    });
+                    success('Zmieniono lokalizację.');
+                  } else {
+                    error('Błąd przy zmianie lokalizacji.');
+                  }
+                }
+              },
+              label: Text(
+                'Zapisz',
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600,
+                  color: element,
+                ),
+              ),
+            )
+          : null,
       body: SafeArea(
         child: Column(
           children: [
@@ -78,13 +144,79 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
               padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
               child: TextField(
                 controller: _firstNameController,
-                onChanged: (_) => setState(() {}),
+                onChanged: (_) => setState(() => isDirty = true),
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   labelText: 'Pierwsze imię',
                   labelStyle: TextStyle(
                     fontWeight: FontWeight.w300,
-                    fontSize: 15.5.sp,
+                    fontSize: 16.5.sp,
+                    height: 1,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 1.h),
+            Container(
+              width: 92.w,
+              decoration: BoxDecoration(
+                color: element,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+              child: TextField(
+                controller: _lastNameController,
+                onChanged: (_) => setState(() => isDirty = true),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  labelText: 'Nazwisko',
+                  labelStyle: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    fontSize: 16.5.sp,
+                    height: 1,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 1.h),
+            Container(
+              width: 92.w,
+              decoration: BoxDecoration(
+                color: element,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+              child: TextField(
+                controller: _bioController,
+                onChanged: (_) => setState(() => isDirty = true),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  labelText: 'Opis',
+                  labelStyle: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    fontSize: 16.5.sp,
+                    height: 1,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 1.h),
+            Container(
+              width: 92.w,
+              decoration: BoxDecoration(
+                color: element,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+              child: TextField(
+                controller: _locationController,
+                onChanged: (_) => setState(() => isDirty = true),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  labelText: 'Lokalizacja',
+                  labelStyle: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    fontSize: 16.5.sp,
                     height: 1,
                   ),
                 ),

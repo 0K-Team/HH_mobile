@@ -11,5 +11,9 @@ abstract class PostsRepository {
 
   Future<PostModel> updatePost(int id, PostModel newPost);
 
-  Future<Either<List<PostModel>, Either>> fetchUserPosts(UserModel user);
+  Future<Either<List<PostModel>, Exception>> fetchUserPosts(UserModel user);
+
+  Future<Either<PostModel, Exception>> likePost(PostModel post);
+
+  Future<Either<PostModel, Exception>> dislikePost(PostModel post);
 }

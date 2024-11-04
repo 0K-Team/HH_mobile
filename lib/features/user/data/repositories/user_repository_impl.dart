@@ -54,9 +54,20 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<bool> updateBio(String bio) {
-    // TODO: implement updateBio
-    throw UnimplementedError();
+  Future<bool> updateBio(String bio) async {
+    CurrentUserBloc currentUser = get();
+    if (currentUser.state is! CurrentUserLoadSuccess) {
+      return false;
+    }
+
+    UserModel? userModel = await _source.updateBio(bio);
+    if (userModel == null) {
+      return false;
+    }
+
+    currentUser.add(CurrentUserLoaded(userModel, (currentUser.state as CurrentUserLoadSuccess).jwt));
+    _cache[userModel.id] = _CachedUser(user: userModel, timestamp: DateTime.now());
+    return true;
   }
 
   @override
@@ -77,15 +88,38 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<bool> updateLastName(String lastName) {
-    // TODO: implement updateLastName
-    throw UnimplementedError();
+  Future<bool> updateLastName(String lastName) async {
+    CurrentUserBloc currentUser = get();
+    if (currentUser.state is! CurrentUserLoadSuccess) {
+      return false;
+    }
+
+    UserModel? userModel = await _source.updateLastName(lastName);
+    if (userModel == null) {
+      return false;
+    }
+
+    currentUser.add(CurrentUserLoaded(userModel, (currentUser.state as CurrentUserLoadSuccess).jwt));
+    _cache[userModel.id] = _CachedUser(user: userModel, timestamp: DateTime.now());
+    return true;
+
   }
 
   @override
-  Future<bool> updateLocation(String location) {
-    // TODO: implement updateLocation
-    throw UnimplementedError();
+  Future<bool> updateLocation(String location) async {
+    CurrentUserBloc currentUser = get();
+    if (currentUser.state is! CurrentUserLoadSuccess) {
+      return false;
+    }
+
+    UserModel? userModel = await _source.updateLocation(location);
+    if (userModel == null) {
+      return false;
+    }
+
+    currentUser.add(CurrentUserLoaded(userModel, (currentUser.state as CurrentUserLoadSuccess).jwt));
+    _cache[userModel.id] = _CachedUser(user: userModel, timestamp: DateTime.now());
+    return true;
   }
 }
 
