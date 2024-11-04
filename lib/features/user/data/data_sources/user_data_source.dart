@@ -68,4 +68,22 @@ class UserDataSource {
 
     return null;
   }
+
+  Future<UserModel?> addPreferredTopic(String topic) async {
+    Response response = await _dio.post('https://ecohero.q1000q.me/api/v1/user/me/preferredTopics/$topic');
+    if (response.statusCode == 200) {
+      return UserModel.fromJson(response.data);
+    }
+
+    return null;
+  }
+
+  Future<UserModel?> removePreferredTopic(String topic) async {
+    Response response = await _dio.delete('https://ecohero.q1000q.me/api/v1/user/me/preferredTopics/$topic');
+    if (response.statusCode == 200) {
+      return UserModel.fromJson(response.data);
+    }
+
+    return null;
+  }
 }

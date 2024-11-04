@@ -181,9 +181,7 @@ class _PostWidgetState extends State<PostWidget> {
   }
 
   addLike() async {
-    print('Adding like');
     await get<PostsRepositoryImpl>().likePost(widget.post).fold((post) {
-      print('Updating and post: $post');
       setState(() {
         isLiked = true;
         post = post;

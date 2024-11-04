@@ -6,6 +6,7 @@ import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/data/repositories/user_repository_impl.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user.dart';
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -27,6 +28,7 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
   late TextEditingController _lastNameController;
   late TextEditingController _bioController;
   late TextEditingController _locationController;
+  late List<String> _preferredTopics;
 
   @override
   void initState() {
@@ -37,6 +39,7 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
     _bioController = TextEditingController(text: widget.user.bio ?? '');
     _locationController =
         TextEditingController(text: widget.user.location ?? '');
+    _preferredTopics = widget.user.preferredTopics.toList();
     super.initState();
   }
 
@@ -83,7 +86,8 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
                 }
 
                 if (_bioController.text != widget.user.bio &&
-                    (widget.user.bio != null || _bioController.text.isNotEmpty)) {
+                    (widget.user.bio != null ||
+                        _bioController.text.isNotEmpty)) {
                   bool changed = await get<UserRepositoryImpl>()
                       .updateBio(_bioController.text);
                   if (changed) {
@@ -101,7 +105,8 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
                 }
 
                 if (_locationController.text != widget.user.location &&
-                    (widget.user.location != null || _locationController.text.isNotEmpty)) {
+                    (widget.user.location != null ||
+                        _locationController.text.isNotEmpty)) {
                   bool changed = await get<UserRepositoryImpl>()
                       .updateLocation(_locationController.text);
                   if (changed) {
@@ -116,6 +121,30 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
                   } else {
                     error('Błąd przy zmianie lokalizacji.');
                   }
+                }
+
+                if (_preferredTopics != widget.user.preferredTopics) {
+                  for (String topic in _preferredTopics) {
+                    if (!widget.user.preferredTopics
+                        .any((string) => string == topic)) {
+                      await get<UserRepositoryImpl>().addPreferredTopic(topic);
+                    }
+                  }
+
+                  for (String topic in widget.user.preferredTopics) {
+                    if (!_preferredTopics
+                        .any((string) => string == topic)) {
+                      await get<UserRepositoryImpl>().removePreferredTopic(topic);
+                    }
+                  }
+
+                  isDirty = false;
+                  Future.delayed(Duration.zero, () {
+                    if (context.mounted) {
+                      context.replace('/user/page/configuration',
+                          extra: currentUser);
+                    }
+                  });
                 }
               },
               label: Text(
@@ -135,6 +164,20 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
               title: 'Konfiguracja profilu',
             ),
             SizedBox(height: 2.5.h),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.only(left: 4.w),
+                child: Text(
+                  'Podstawowe informacje',
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 0.5.h),
             Container(
               width: 92.w,
               decoration: BoxDecoration(
@@ -222,6 +265,69 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
                 ),
               ),
             ),
+            SizedBox(height: 1.h),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.only(left: 4.w),
+                child: Text(
+                  'Preferowane tematy',
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 0.5.h),
+            Wrap(
+              spacing: 10.sp,
+              runSpacing: 10.sp,
+              alignment: WrapAlignment.spaceEvenly,
+              children: [
+                ...['Zero waste', 'Ekologia w mieście', 'Energia odnawialna']
+                    .map(
+                  (topic) => GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        if (_preferredTopics.any((string) => string == topic)) {
+                          isDirty = true;
+                          _preferredTopics
+                              .removeWhere((string) => string == topic);
+                        } else {
+                          isDirty = true;
+                          _preferredTopics.add(topic);
+                        }
+                      });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: element,
+                        borderRadius: BorderRadius.circular(8),
+                        border:
+                            _preferredTopics.any((string) => string == topic)
+                                ? Border.all(
+                                    color: accent,
+                                    strokeAlign: BorderSide.strokeAlignOutside,
+                                  )
+                                : null,
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        vertical: 0.25.h,
+                        horizontal: 1.5.w,
+                      ),
+                      child: Text(
+                        topic,
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),

@@ -42,15 +42,37 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<bool> addPreferredTopic(String topic) {
-    // TODO: implement addPreferredTopic
-    throw UnimplementedError();
+  Future<bool> addPreferredTopic(String topic) async {
+    CurrentUserBloc currentUser = get();
+    if (currentUser.state is! CurrentUserLoadSuccess) {
+      return false;
+    }
+
+    UserModel? userModel = await _source.addPreferredTopic(topic);
+    if (userModel == null) {
+      return false;
+    }
+
+    currentUser.add(CurrentUserLoaded(userModel, (currentUser.state as CurrentUserLoadSuccess).jwt));
+    _cache[userModel.id] = _CachedUser(user: userModel, timestamp: DateTime.now());
+    return true;
   }
 
   @override
-  Future<bool> removePreferredTopic(String topic) {
-    // TODO: implement removePreferredTopic
-    throw UnimplementedError();
+  Future<bool> removePreferredTopic(String topic) async {
+    CurrentUserBloc currentUser = get();
+    if (currentUser.state is! CurrentUserLoadSuccess) {
+      return false;
+    }
+
+    UserModel? userModel = await _source.removePreferredTopic(topic);
+    if (userModel == null) {
+      return false;
+    }
+
+    currentUser.add(CurrentUserLoaded(userModel, (currentUser.state as CurrentUserLoadSuccess).jwt));
+    _cache[userModel.id] = _CachedUser(user: userModel, timestamp: DateTime.now());
+    return true;
   }
 
   @override
