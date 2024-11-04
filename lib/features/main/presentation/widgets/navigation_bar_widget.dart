@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/features/main/navigation_page_cubit.dart';
@@ -28,18 +30,21 @@ class NavigationBarWidget extends StatelessWidget {
             children: [
               createNavigationElement(
                   context, 'Home', 'assets/home.svg', 1, '/'),
-              createNavigationElement(context, 'Community',
+              createNavigationElement(context, 'Socials',
                   'assets/socials.svg', 5, '/socials/page'),
-              createNavigationElement(
-                  context, 'Maps', 'assets/maps.svg', 4, '/maps/page'),
-              createNavigationElement(
-                  context, 'Education', 'assets/play.svg', 2, '/play/page'),
               createNavigationElement(context, 'Calculator',
                   'assets/calculator.svg', 3, '/calculator/page'),
+              createNavigationElement(
+                  context, 'Education', 'assets/play.svg', 2, '/play/page'),
+              createNavigationElement(
+                  context, 'Maps', 'assets/maps.svg', 4, '/maps/page'),
             ],
           ),
           // trick to make the spaces at the top and bottom of navigation bar the same height
-          SizedBox(height: 1.5.h),
+          if (Platform.isAndroid)
+            SizedBox(height: 1.5.h),
+          if (Platform.isIOS)
+            SizedBox(height: 3.5.h),
           Container(
             width: 100.w,
             height: 4.sp,
@@ -89,6 +94,8 @@ class NavigationBarWidget extends StatelessWidget {
                 color: color,
                 letterSpacing: -0.4,
               ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             )
           ],
         ),

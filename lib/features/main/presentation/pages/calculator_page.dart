@@ -58,6 +58,7 @@ class CalculatorPage extends StatelessWidget {
                                 'Zobacz jak możesz ograniczyć swój ślad węglowy.',
                                 style: TextStyle(
                                   height: 1.1,
+                                  fontSize: 15.5.sp,
                                 ),
                               ),
                             ],

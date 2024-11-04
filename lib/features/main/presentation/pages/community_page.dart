@@ -62,11 +62,16 @@ class _CommunityPageState extends State<CommunityPage> {
                             child: TextField(
                               controller: _controller,
                               decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Ekologia au! Napisz co sądzisz',
-                                  hintStyle: TextStyle(
-                                    color: shadow,
-                                  ),),
+                                border: InputBorder.none,
+                                hintText: 'Ekologia au! Napisz co sądzisz',
+                                hintStyle: TextStyle(
+                                  color: shadow,
+                                  fontSize: 17.sp,
+                                ),
+                              ),
+                              style: TextStyle(
+                                fontSize: 17.sp,
+                              ),
                               onSubmitted: (_) => sendMessage(),
                               maxLines: 5,
                             ),
@@ -96,7 +101,8 @@ class _CommunityPageState extends State<CommunityPage> {
                         ),
                       ),
                     ),
-                    BlocBuilder<PostsBloc, PostsState>(builder: (context, state) {
+                    BlocBuilder<PostsBloc, PostsState>(
+                        builder: (context, state) {
                       if (state is PostsLoadSuccess) {
                         return SizedBox(
                           width: 92.w,
