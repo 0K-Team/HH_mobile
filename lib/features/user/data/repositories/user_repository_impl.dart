@@ -1,6 +1,8 @@
+import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/features/user/data/data_sources/user_data_source.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/domain/repositories/user_repository.dart';
+import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user_bloc.dart';
 import 'package:either_dart/either.dart';
 
 class UserRepositoryImpl extends UserRepository {
@@ -37,6 +39,53 @@ class UserRepositoryImpl extends UserRepository {
 
   void clearCache() {
     _cache.clear();
+  }
+
+  @override
+  Future<bool> addPreferredTopic(String topic) {
+    // TODO: implement addPreferredTopic
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> removePreferredTopic(String topic) {
+    // TODO: implement removePreferredTopic
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> updateBio(String bio) {
+    // TODO: implement updateBio
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> updateFirstName(String firstName) async {
+    CurrentUserBloc currentUser = get();
+    if (currentUser.state is! CurrentUserLoadSuccess) {
+      return false;
+    }
+
+    UserModel? userModel = await _source.updateFirstName(firstName);
+    if (userModel == null) {
+      return false;
+    }
+
+    currentUser.add(CurrentUserLoaded(userModel, (currentUser.state as CurrentUserLoadSuccess).jwt));
+    _cache[userModel.id] = _CachedUser(user: userModel, timestamp: DateTime.now());
+    return true;
+  }
+
+  @override
+  Future<bool> updateLastName(String lastName) {
+    // TODO: implement updateLastName
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> updateLocation(String location) {
+    // TODO: implement updateLocation
+    throw UnimplementedError();
   }
 }
 

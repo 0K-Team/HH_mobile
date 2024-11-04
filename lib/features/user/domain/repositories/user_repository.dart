@@ -5,5 +5,16 @@ abstract class UserRepository {
 
   Future<Either<UserModel, Exception>> fetchUser(String id);
 
+  Future<bool> updateFirstName(String firstName);
+
+  Future<bool> updateLastName(String lastName);
+
+  Future<bool> updateBio(String bio);
+
+  Future<bool> updateLocation(String location);
+
+  Future<bool> addPreferredTopic(String topic);
+
+  Future<bool> removePreferredTopic(String topic);
 
 }

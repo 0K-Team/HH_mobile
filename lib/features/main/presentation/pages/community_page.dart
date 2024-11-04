@@ -133,7 +133,7 @@ class _CommunityPageState extends State<CommunityPage> {
   }
 
   sendMessage() {
-    if (user != null) {
+    if (currentUser != null) {
       String text = _controller.text;
       if (text.isEmpty) {
         error('Tekst postu nie może być pusty!');
@@ -146,7 +146,7 @@ class _CommunityPageState extends State<CommunityPage> {
           .createPost(
         PostModel(
           id: '',
-          author: user!.id,
+          author: currentUser!.id,
           content: text,
           likes: [],
           tags: [],

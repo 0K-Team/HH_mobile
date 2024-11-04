@@ -3,6 +3,7 @@ import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/util/back_with_text.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
+import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user.dart';
 import 'package:eco_hero_mobile/features/virtual_garden/data/repositories/virtual_garden_repository_impl.dart';
 import 'package:either_dart/either.dart';
 import 'package:flutter/foundation.dart';
@@ -29,7 +30,8 @@ class UserPage extends StatelessWidget {
         child: Column(
           children: [
             BackWithText(
-              title: 'Profil ${user.fullName.full}',
+              title:
+                  'Profil ${user.admin ? 'Admina ' : ''}${user.fullName.full}',
               ending: GestureDetector(
                 onTapDown: (details) {
                   final offset = details.globalPosition;
@@ -43,17 +45,18 @@ class UserPage extends StatelessWidget {
                     ),
                     color: element,
                     items: [
-                      PopupMenuItem(
-                        child: Text(
-                          'Dodaj do znajomych',
-                          style: TextStyle(
-                            fontSize: 18.sp,
+                      if (currentUser?.id != user.id)
+                        PopupMenuItem(
+                          child: Text(
+                            'Dodaj do znajomych',
+                            style: TextStyle(
+                              fontSize: 18.sp,
+                            ),
                           ),
+                          onTap: () {
+                            //todo impl
+                          },
                         ),
-                        onTap: () {
-                          //todo impl
-                        },
-                      ),
                       PopupMenuItem(
                         child: Text(
                           'Wyświetl wirtualny ogródek',

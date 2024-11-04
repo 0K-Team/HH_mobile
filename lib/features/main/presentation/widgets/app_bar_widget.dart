@@ -21,7 +21,7 @@ class AppBarWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
-            onTap: () => context.push('/user/page', extra: user),
+            onTap: () => context.push('/user/page/configuration', extra: user),
             child: Row(
               children: [
                 CircleAvatar(

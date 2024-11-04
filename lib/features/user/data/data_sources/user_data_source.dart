@@ -20,4 +20,16 @@ class UserDataSource {
       return null;
     }
   }
+
+  Future<UserModel?> updateFirstName(String firstName) async {
+    Response response = await _dio
+        .patch('https://ecohero.q1000q.me/api/v1/user/me/firstName', data: {
+      'firstName': firstName,
+    });
+    if (response.statusCode == 200) {
+      return UserModel.fromJson(response.data);
+    }
+
+    return null;
+  }
 }
