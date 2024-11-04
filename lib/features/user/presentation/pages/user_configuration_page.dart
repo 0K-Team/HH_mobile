@@ -6,7 +6,6 @@ import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/data/repositories/user_repository_impl.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user.dart';
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
