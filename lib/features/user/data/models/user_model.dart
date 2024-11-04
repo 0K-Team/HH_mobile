@@ -27,6 +27,8 @@ class UserModel with _$UserModel {
     required List<String> skills,
     required List<String> badges,
     required List<String> preferredTopics,
+    @Default(false) bool admin,
+    DateTime? createdAt,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

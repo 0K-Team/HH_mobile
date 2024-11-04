@@ -20,7 +20,9 @@ VirtualGardenModel _$VirtualGardenModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$VirtualGardenModel {
+  @JsonKey(name: '_id')
   String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: '_id')
   set id(String value) => throw _privateConstructorUsedError;
   String get user => throw _privateConstructorUsedError;
   set user(String value) => throw _privateConstructorUsedError;
@@ -28,10 +30,8 @@ mixin _$VirtualGardenModel {
       throw _privateConstructorUsedError;
   set plants(List<VirtualGardenModelPlant> value) =>
       throw _privateConstructorUsedError;
-  @JsonKey(name: 'user_actions')
   VirtualGardenModelUserActions get userActions =>
       throw _privateConstructorUsedError;
-  @JsonKey(name: 'user_actions')
   set userActions(VirtualGardenModelUserActions value) =>
       throw _privateConstructorUsedError;
 
@@ -52,10 +52,9 @@ abstract class $VirtualGardenModelCopyWith<$Res> {
       _$VirtualGardenModelCopyWithImpl<$Res, VirtualGardenModel>;
   @useResult
   $Res call(
-      {String id,
+      {@JsonKey(name: '_id') String id,
       String user,
       List<VirtualGardenModelPlant> plants,
-      @JsonKey(name: 'user_actions')
       VirtualGardenModelUserActions userActions});
 
   $VirtualGardenModelUserActionsCopyWith<$Res> get userActions;
@@ -122,10 +121,9 @@ abstract class _$$VirtualGardenModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {@JsonKey(name: '_id') String id,
       String user,
       List<VirtualGardenModelPlant> plants,
-      @JsonKey(name: 'user_actions')
       VirtualGardenModelUserActions userActions});
 
   @override
@@ -175,22 +173,22 @@ class __$$VirtualGardenModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$VirtualGardenModelImpl implements _VirtualGardenModel {
   _$VirtualGardenModelImpl(
-      {required this.id,
+      {@JsonKey(name: '_id') required this.id,
       required this.user,
       required this.plants,
-      @JsonKey(name: 'user_actions') required this.userActions});
+      required this.userActions});
 
   factory _$VirtualGardenModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$VirtualGardenModelImplFromJson(json);
 
   @override
+  @JsonKey(name: '_id')
   String id;
   @override
   String user;
   @override
   List<VirtualGardenModelPlant> plants;
   @override
-  @JsonKey(name: 'user_actions')
   VirtualGardenModelUserActions userActions;
 
   @override
@@ -217,10 +215,9 @@ class _$VirtualGardenModelImpl implements _VirtualGardenModel {
 
 abstract class _VirtualGardenModel implements VirtualGardenModel {
   factory _VirtualGardenModel(
-          {required String id,
+          {@JsonKey(name: '_id') required String id,
           required String user,
           required List<VirtualGardenModelPlant> plants,
-          @JsonKey(name: 'user_actions')
           required VirtualGardenModelUserActions userActions}) =
       _$VirtualGardenModelImpl;
 
@@ -228,7 +225,9 @@ abstract class _VirtualGardenModel implements VirtualGardenModel {
       _$VirtualGardenModelImpl.fromJson;
 
   @override
+  @JsonKey(name: '_id')
   String get id;
+  @JsonKey(name: '_id')
   set id(String value);
   @override
   String get user;
@@ -237,9 +236,7 @@ abstract class _VirtualGardenModel implements VirtualGardenModel {
   List<VirtualGardenModelPlant> get plants;
   set plants(List<VirtualGardenModelPlant> value);
   @override
-  @JsonKey(name: 'user_actions')
   VirtualGardenModelUserActions get userActions;
-  @JsonKey(name: 'user_actions')
   set userActions(VirtualGardenModelUserActions value);
 
   /// Create a copy of VirtualGardenModel
@@ -257,42 +254,34 @@ VirtualGardenModelPlant _$VirtualGardenModelPlantFromJson(
 
 /// @nodoc
 mixin _$VirtualGardenModelPlant {
-  @JsonKey(name: 'plant_id')
+  @JsonKey(name: '_id')
   String get plantId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'plant_id')
+  @JsonKey(name: '_id')
   set plantId(String value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   set name(String value) => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   set type(String value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'growth_stage')
   int get growthStage => throw _privateConstructorUsedError;
-  @JsonKey(name: 'growth_stage')
   set growthStage(int value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'watering_needed')
   int get wateringNeeded => throw _privateConstructorUsedError;
-  @JsonKey(name: 'watering_needed')
   set wateringNeeded(int value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'fertilizer_needed')
   int get fertilizerNeeded => throw _privateConstructorUsedError;
-  @JsonKey(name: 'fertilizer_needed')
   set fertilizerNeeded(int value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'weeds_removed_needed')
   int get weedsRemovedNeeded => throw _privateConstructorUsedError;
-  @JsonKey(name: 'weeds_removed_needed')
   set weedsRemovedNeeded(int value) => throw _privateConstructorUsedError;
   DateTime get planted => throw _privateConstructorUsedError;
   set planted(DateTime value) => throw _privateConstructorUsedError;
   bool get harvestable => throw _privateConstructorUsedError;
   set harvestable(bool value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_watered')
-  DateTime get lastWatered => throw _privateConstructorUsedError;
+  DateTime? get lastWatered => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_watered')
-  set lastWatered(DateTime value) => throw _privateConstructorUsedError;
+  set lastWatered(DateTime? value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_fertilized')
-  DateTime get lastFertilized => throw _privateConstructorUsedError;
+  DateTime? get lastFertilized => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_fertilized')
-  set lastFertilized(DateTime value) => throw _privateConstructorUsedError;
+  set lastFertilized(DateTime? value) => throw _privateConstructorUsedError;
 
   /// Serializes this VirtualGardenModelPlant to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -311,17 +300,17 @@ abstract class $VirtualGardenModelPlantCopyWith<$Res> {
       _$VirtualGardenModelPlantCopyWithImpl<$Res, VirtualGardenModelPlant>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'plant_id') String plantId,
+      {@JsonKey(name: '_id') String plantId,
       String name,
       String type,
-      @JsonKey(name: 'growth_stage') int growthStage,
-      @JsonKey(name: 'watering_needed') int wateringNeeded,
-      @JsonKey(name: 'fertilizer_needed') int fertilizerNeeded,
-      @JsonKey(name: 'weeds_removed_needed') int weedsRemovedNeeded,
+      int growthStage,
+      int wateringNeeded,
+      int fertilizerNeeded,
+      int weedsRemovedNeeded,
       DateTime planted,
       bool harvestable,
-      @JsonKey(name: 'last_watered') DateTime lastWatered,
-      @JsonKey(name: 'last_fertilized') DateTime lastFertilized});
+      @JsonKey(name: 'last_watered') DateTime? lastWatered,
+      @JsonKey(name: 'last_fertilized') DateTime? lastFertilized});
 }
 
 /// @nodoc
@@ -349,8 +338,8 @@ class _$VirtualGardenModelPlantCopyWithImpl<$Res,
     Object? weedsRemovedNeeded = null,
     Object? planted = null,
     Object? harvestable = null,
-    Object? lastWatered = null,
-    Object? lastFertilized = null,
+    Object? lastWatered = freezed,
+    Object? lastFertilized = freezed,
   }) {
     return _then(_value.copyWith(
       plantId: null == plantId
@@ -389,14 +378,14 @@ class _$VirtualGardenModelPlantCopyWithImpl<$Res,
           ? _value.harvestable
           : harvestable // ignore: cast_nullable_to_non_nullable
               as bool,
-      lastWatered: null == lastWatered
+      lastWatered: freezed == lastWatered
           ? _value.lastWatered
           : lastWatered // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      lastFertilized: null == lastFertilized
+              as DateTime?,
+      lastFertilized: freezed == lastFertilized
           ? _value.lastFertilized
           : lastFertilized // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -411,17 +400,17 @@ abstract class _$$VirtualGardenModelPlantImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'plant_id') String plantId,
+      {@JsonKey(name: '_id') String plantId,
       String name,
       String type,
-      @JsonKey(name: 'growth_stage') int growthStage,
-      @JsonKey(name: 'watering_needed') int wateringNeeded,
-      @JsonKey(name: 'fertilizer_needed') int fertilizerNeeded,
-      @JsonKey(name: 'weeds_removed_needed') int weedsRemovedNeeded,
+      int growthStage,
+      int wateringNeeded,
+      int fertilizerNeeded,
+      int weedsRemovedNeeded,
       DateTime planted,
       bool harvestable,
-      @JsonKey(name: 'last_watered') DateTime lastWatered,
-      @JsonKey(name: 'last_fertilized') DateTime lastFertilized});
+      @JsonKey(name: 'last_watered') DateTime? lastWatered,
+      @JsonKey(name: 'last_fertilized') DateTime? lastFertilized});
 }
 
 /// @nodoc
@@ -448,8 +437,8 @@ class __$$VirtualGardenModelPlantImplCopyWithImpl<$Res>
     Object? weedsRemovedNeeded = null,
     Object? planted = null,
     Object? harvestable = null,
-    Object? lastWatered = null,
-    Object? lastFertilized = null,
+    Object? lastWatered = freezed,
+    Object? lastFertilized = freezed,
   }) {
     return _then(_$VirtualGardenModelPlantImpl(
       plantId: null == plantId
@@ -488,14 +477,14 @@ class __$$VirtualGardenModelPlantImplCopyWithImpl<$Res>
           ? _value.harvestable
           : harvestable // ignore: cast_nullable_to_non_nullable
               as bool,
-      lastWatered: null == lastWatered
+      lastWatered: freezed == lastWatered
           ? _value.lastWatered
           : lastWatered // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      lastFertilized: null == lastFertilized
+              as DateTime?,
+      lastFertilized: freezed == lastFertilized
           ? _value.lastFertilized
           : lastFertilized // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -504,39 +493,35 @@ class __$$VirtualGardenModelPlantImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$VirtualGardenModelPlantImpl implements _VirtualGardenModelPlant {
   _$VirtualGardenModelPlantImpl(
-      {@JsonKey(name: 'plant_id') required this.plantId,
+      {@JsonKey(name: '_id') required this.plantId,
       required this.name,
       required this.type,
-      @JsonKey(name: 'growth_stage') required this.growthStage,
-      @JsonKey(name: 'watering_needed') required this.wateringNeeded,
-      @JsonKey(name: 'fertilizer_needed') required this.fertilizerNeeded,
-      @JsonKey(name: 'weeds_removed_needed') required this.weedsRemovedNeeded,
+      required this.growthStage,
+      required this.wateringNeeded,
+      required this.fertilizerNeeded,
+      required this.weedsRemovedNeeded,
       required this.planted,
       required this.harvestable,
-      @JsonKey(name: 'last_watered') required this.lastWatered,
-      @JsonKey(name: 'last_fertilized') required this.lastFertilized});
+      @JsonKey(name: 'last_watered') this.lastWatered,
+      @JsonKey(name: 'last_fertilized') this.lastFertilized});
 
   factory _$VirtualGardenModelPlantImpl.fromJson(Map<String, dynamic> json) =>
       _$$VirtualGardenModelPlantImplFromJson(json);
 
   @override
-  @JsonKey(name: 'plant_id')
+  @JsonKey(name: '_id')
   String plantId;
   @override
   String name;
   @override
   String type;
   @override
-  @JsonKey(name: 'growth_stage')
   int growthStage;
   @override
-  @JsonKey(name: 'watering_needed')
   int wateringNeeded;
   @override
-  @JsonKey(name: 'fertilizer_needed')
   int fertilizerNeeded;
   @override
-  @JsonKey(name: 'weeds_removed_needed')
   int weedsRemovedNeeded;
   @override
   DateTime planted;
@@ -544,10 +529,10 @@ class _$VirtualGardenModelPlantImpl implements _VirtualGardenModelPlant {
   bool harvestable;
   @override
   @JsonKey(name: 'last_watered')
-  DateTime lastWatered;
+  DateTime? lastWatered;
   @override
   @JsonKey(name: 'last_fertilized')
-  DateTime lastFertilized;
+  DateTime? lastFertilized;
 
   @override
   String toString() {
@@ -573,26 +558,26 @@ class _$VirtualGardenModelPlantImpl implements _VirtualGardenModelPlant {
 
 abstract class _VirtualGardenModelPlant implements VirtualGardenModelPlant {
   factory _VirtualGardenModelPlant(
-      {@JsonKey(name: 'plant_id') required String plantId,
-      required String name,
-      required String type,
-      @JsonKey(name: 'growth_stage') required int growthStage,
-      @JsonKey(name: 'watering_needed') required int wateringNeeded,
-      @JsonKey(name: 'fertilizer_needed') required int fertilizerNeeded,
-      @JsonKey(name: 'weeds_removed_needed') required int weedsRemovedNeeded,
-      required DateTime planted,
-      required bool harvestable,
-      @JsonKey(name: 'last_watered') required DateTime lastWatered,
-      @JsonKey(name: 'last_fertilized')
-      required DateTime lastFertilized}) = _$VirtualGardenModelPlantImpl;
+          {@JsonKey(name: '_id') required String plantId,
+          required String name,
+          required String type,
+          required int growthStage,
+          required int wateringNeeded,
+          required int fertilizerNeeded,
+          required int weedsRemovedNeeded,
+          required DateTime planted,
+          required bool harvestable,
+          @JsonKey(name: 'last_watered') DateTime? lastWatered,
+          @JsonKey(name: 'last_fertilized') DateTime? lastFertilized}) =
+      _$VirtualGardenModelPlantImpl;
 
   factory _VirtualGardenModelPlant.fromJson(Map<String, dynamic> json) =
       _$VirtualGardenModelPlantImpl.fromJson;
 
   @override
-  @JsonKey(name: 'plant_id')
+  @JsonKey(name: '_id')
   String get plantId;
-  @JsonKey(name: 'plant_id')
+  @JsonKey(name: '_id')
   set plantId(String value);
   @override
   String get name;
@@ -601,24 +586,16 @@ abstract class _VirtualGardenModelPlant implements VirtualGardenModelPlant {
   String get type;
   set type(String value);
   @override
-  @JsonKey(name: 'growth_stage')
   int get growthStage;
-  @JsonKey(name: 'growth_stage')
   set growthStage(int value);
   @override
-  @JsonKey(name: 'watering_needed')
   int get wateringNeeded;
-  @JsonKey(name: 'watering_needed')
   set wateringNeeded(int value);
   @override
-  @JsonKey(name: 'fertilizer_needed')
   int get fertilizerNeeded;
-  @JsonKey(name: 'fertilizer_needed')
   set fertilizerNeeded(int value);
   @override
-  @JsonKey(name: 'weeds_removed_needed')
   int get weedsRemovedNeeded;
-  @JsonKey(name: 'weeds_removed_needed')
   set weedsRemovedNeeded(int value);
   @override
   DateTime get planted;
@@ -628,14 +605,14 @@ abstract class _VirtualGardenModelPlant implements VirtualGardenModelPlant {
   set harvestable(bool value);
   @override
   @JsonKey(name: 'last_watered')
-  DateTime get lastWatered;
+  DateTime? get lastWatered;
   @JsonKey(name: 'last_watered')
-  set lastWatered(DateTime value);
+  set lastWatered(DateTime? value);
   @override
   @JsonKey(name: 'last_fertilized')
-  DateTime get lastFertilized;
+  DateTime? get lastFertilized;
   @JsonKey(name: 'last_fertilized')
-  set lastFertilized(DateTime value);
+  set lastFertilized(DateTime? value);
 
   /// Create a copy of VirtualGardenModelPlant
   /// with the given fields replaced by the non-null parameter values.
@@ -652,42 +629,24 @@ VirtualGardenModelUserActions _$VirtualGardenModelUserActionsFromJson(
 
 /// @nodoc
 mixin _$VirtualGardenModelUserActions {
-  @JsonKey(name: 'watering_count')
   int get wateringCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'watering_count')
   set wateringCount(int value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'watering_max_count')
-  int get wateringMaxCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'watering_max_count')
-  set wateringMaxCount(int value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'watering_refill')
-  DateTime get wateringRefill => throw _privateConstructorUsedError;
-  @JsonKey(name: 'watering_refill')
-  set wateringRefill(DateTime value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'fertilizing_count')
+  int? get wateringMaxCount => throw _privateConstructorUsedError;
+  set wateringMaxCount(int? value) => throw _privateConstructorUsedError;
+  DateTime? get wateringRefill => throw _privateConstructorUsedError;
+  set wateringRefill(DateTime? value) => throw _privateConstructorUsedError;
   int get fertilizingCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'fertilizing_count')
   set fertilizingCount(int value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'fertilizing_max_count')
-  int get fertilizingMaxCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'fertilizing_max_count')
-  set fertilizingMaxCount(int value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'fertilizing_refill')
-  DateTime get fertilizingRefill => throw _privateConstructorUsedError;
-  @JsonKey(name: 'fertilizing_refill')
-  set fertilizingRefill(DateTime value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'weeds_removed')
+  int? get fertilizingMaxCount => throw _privateConstructorUsedError;
+  set fertilizingMaxCount(int? value) => throw _privateConstructorUsedError;
+  DateTime? get fertilizingRefill => throw _privateConstructorUsedError;
+  set fertilizingRefill(DateTime? value) => throw _privateConstructorUsedError;
   int get weedsRemoved => throw _privateConstructorUsedError;
-  @JsonKey(name: 'weeds_removed')
   set weedsRemoved(int value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'weeds_max_removed')
-  int get weedsMaxRemoved => throw _privateConstructorUsedError;
-  @JsonKey(name: 'weeds_max_removed')
-  set weedsMaxRemoved(int value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'weeds_refill')
-  DateTime get weedsRefill => throw _privateConstructorUsedError;
-  @JsonKey(name: 'weeds_refill')
-  set weedsRefill(DateTime value) => throw _privateConstructorUsedError;
+  int? get weedsMaxRemoved => throw _privateConstructorUsedError;
+  set weedsMaxRemoved(int? value) => throw _privateConstructorUsedError;
+  DateTime? get weedsRefill => throw _privateConstructorUsedError;
+  set weedsRefill(DateTime? value) => throw _privateConstructorUsedError;
 
   /// Serializes this VirtualGardenModelUserActions to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -708,15 +667,15 @@ abstract class $VirtualGardenModelUserActionsCopyWith<$Res> {
           VirtualGardenModelUserActions>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'watering_count') int wateringCount,
-      @JsonKey(name: 'watering_max_count') int wateringMaxCount,
-      @JsonKey(name: 'watering_refill') DateTime wateringRefill,
-      @JsonKey(name: 'fertilizing_count') int fertilizingCount,
-      @JsonKey(name: 'fertilizing_max_count') int fertilizingMaxCount,
-      @JsonKey(name: 'fertilizing_refill') DateTime fertilizingRefill,
-      @JsonKey(name: 'weeds_removed') int weedsRemoved,
-      @JsonKey(name: 'weeds_max_removed') int weedsMaxRemoved,
-      @JsonKey(name: 'weeds_refill') DateTime weedsRefill});
+      {int wateringCount,
+      int? wateringMaxCount,
+      DateTime? wateringRefill,
+      int fertilizingCount,
+      int? fertilizingMaxCount,
+      DateTime? fertilizingRefill,
+      int weedsRemoved,
+      int? weedsMaxRemoved,
+      DateTime? weedsRefill});
 }
 
 /// @nodoc
@@ -736,52 +695,52 @@ class _$VirtualGardenModelUserActionsCopyWithImpl<$Res,
   @override
   $Res call({
     Object? wateringCount = null,
-    Object? wateringMaxCount = null,
-    Object? wateringRefill = null,
+    Object? wateringMaxCount = freezed,
+    Object? wateringRefill = freezed,
     Object? fertilizingCount = null,
-    Object? fertilizingMaxCount = null,
-    Object? fertilizingRefill = null,
+    Object? fertilizingMaxCount = freezed,
+    Object? fertilizingRefill = freezed,
     Object? weedsRemoved = null,
-    Object? weedsMaxRemoved = null,
-    Object? weedsRefill = null,
+    Object? weedsMaxRemoved = freezed,
+    Object? weedsRefill = freezed,
   }) {
     return _then(_value.copyWith(
       wateringCount: null == wateringCount
           ? _value.wateringCount
           : wateringCount // ignore: cast_nullable_to_non_nullable
               as int,
-      wateringMaxCount: null == wateringMaxCount
+      wateringMaxCount: freezed == wateringMaxCount
           ? _value.wateringMaxCount
           : wateringMaxCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      wateringRefill: null == wateringRefill
+              as int?,
+      wateringRefill: freezed == wateringRefill
           ? _value.wateringRefill
           : wateringRefill // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       fertilizingCount: null == fertilizingCount
           ? _value.fertilizingCount
           : fertilizingCount // ignore: cast_nullable_to_non_nullable
               as int,
-      fertilizingMaxCount: null == fertilizingMaxCount
+      fertilizingMaxCount: freezed == fertilizingMaxCount
           ? _value.fertilizingMaxCount
           : fertilizingMaxCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      fertilizingRefill: null == fertilizingRefill
+              as int?,
+      fertilizingRefill: freezed == fertilizingRefill
           ? _value.fertilizingRefill
           : fertilizingRefill // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       weedsRemoved: null == weedsRemoved
           ? _value.weedsRemoved
           : weedsRemoved // ignore: cast_nullable_to_non_nullable
               as int,
-      weedsMaxRemoved: null == weedsMaxRemoved
+      weedsMaxRemoved: freezed == weedsMaxRemoved
           ? _value.weedsMaxRemoved
           : weedsMaxRemoved // ignore: cast_nullable_to_non_nullable
-              as int,
-      weedsRefill: null == weedsRefill
+              as int?,
+      weedsRefill: freezed == weedsRefill
           ? _value.weedsRefill
           : weedsRefill // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -796,15 +755,15 @@ abstract class _$$VirtualGardenModelUserActionsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'watering_count') int wateringCount,
-      @JsonKey(name: 'watering_max_count') int wateringMaxCount,
-      @JsonKey(name: 'watering_refill') DateTime wateringRefill,
-      @JsonKey(name: 'fertilizing_count') int fertilizingCount,
-      @JsonKey(name: 'fertilizing_max_count') int fertilizingMaxCount,
-      @JsonKey(name: 'fertilizing_refill') DateTime fertilizingRefill,
-      @JsonKey(name: 'weeds_removed') int weedsRemoved,
-      @JsonKey(name: 'weeds_max_removed') int weedsMaxRemoved,
-      @JsonKey(name: 'weeds_refill') DateTime weedsRefill});
+      {int wateringCount,
+      int? wateringMaxCount,
+      DateTime? wateringRefill,
+      int fertilizingCount,
+      int? fertilizingMaxCount,
+      DateTime? fertilizingRefill,
+      int weedsRemoved,
+      int? weedsMaxRemoved,
+      DateTime? weedsRefill});
 }
 
 /// @nodoc
@@ -823,52 +782,52 @@ class __$$VirtualGardenModelUserActionsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? wateringCount = null,
-    Object? wateringMaxCount = null,
-    Object? wateringRefill = null,
+    Object? wateringMaxCount = freezed,
+    Object? wateringRefill = freezed,
     Object? fertilizingCount = null,
-    Object? fertilizingMaxCount = null,
-    Object? fertilizingRefill = null,
+    Object? fertilizingMaxCount = freezed,
+    Object? fertilizingRefill = freezed,
     Object? weedsRemoved = null,
-    Object? weedsMaxRemoved = null,
-    Object? weedsRefill = null,
+    Object? weedsMaxRemoved = freezed,
+    Object? weedsRefill = freezed,
   }) {
     return _then(_$VirtualGardenModelUserActionsImpl(
       wateringCount: null == wateringCount
           ? _value.wateringCount
           : wateringCount // ignore: cast_nullable_to_non_nullable
               as int,
-      wateringMaxCount: null == wateringMaxCount
+      wateringMaxCount: freezed == wateringMaxCount
           ? _value.wateringMaxCount
           : wateringMaxCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      wateringRefill: null == wateringRefill
+              as int?,
+      wateringRefill: freezed == wateringRefill
           ? _value.wateringRefill
           : wateringRefill // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       fertilizingCount: null == fertilizingCount
           ? _value.fertilizingCount
           : fertilizingCount // ignore: cast_nullable_to_non_nullable
               as int,
-      fertilizingMaxCount: null == fertilizingMaxCount
+      fertilizingMaxCount: freezed == fertilizingMaxCount
           ? _value.fertilizingMaxCount
           : fertilizingMaxCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      fertilizingRefill: null == fertilizingRefill
+              as int?,
+      fertilizingRefill: freezed == fertilizingRefill
           ? _value.fertilizingRefill
           : fertilizingRefill // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       weedsRemoved: null == weedsRemoved
           ? _value.weedsRemoved
           : weedsRemoved // ignore: cast_nullable_to_non_nullable
               as int,
-      weedsMaxRemoved: null == weedsMaxRemoved
+      weedsMaxRemoved: freezed == weedsMaxRemoved
           ? _value.weedsMaxRemoved
           : weedsMaxRemoved // ignore: cast_nullable_to_non_nullable
-              as int,
-      weedsRefill: null == weedsRefill
+              as int?,
+      weedsRefill: freezed == weedsRefill
           ? _value.weedsRefill
           : weedsRefill // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -878,47 +837,38 @@ class __$$VirtualGardenModelUserActionsImplCopyWithImpl<$Res>
 class _$VirtualGardenModelUserActionsImpl
     implements _VirtualGardenModelUserActions {
   _$VirtualGardenModelUserActionsImpl(
-      {@JsonKey(name: 'watering_count') required this.wateringCount,
-      @JsonKey(name: 'watering_max_count') required this.wateringMaxCount,
-      @JsonKey(name: 'watering_refill') required this.wateringRefill,
-      @JsonKey(name: 'fertilizing_count') required this.fertilizingCount,
-      @JsonKey(name: 'fertilizing_max_count') required this.fertilizingMaxCount,
-      @JsonKey(name: 'fertilizing_refill') required this.fertilizingRefill,
-      @JsonKey(name: 'weeds_removed') required this.weedsRemoved,
-      @JsonKey(name: 'weeds_max_removed') required this.weedsMaxRemoved,
-      @JsonKey(name: 'weeds_refill') required this.weedsRefill});
+      {required this.wateringCount,
+      this.wateringMaxCount,
+      this.wateringRefill,
+      required this.fertilizingCount,
+      this.fertilizingMaxCount,
+      this.fertilizingRefill,
+      required this.weedsRemoved,
+      this.weedsMaxRemoved,
+      this.weedsRefill});
 
   factory _$VirtualGardenModelUserActionsImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$VirtualGardenModelUserActionsImplFromJson(json);
 
   @override
-  @JsonKey(name: 'watering_count')
   int wateringCount;
   @override
-  @JsonKey(name: 'watering_max_count')
-  int wateringMaxCount;
+  int? wateringMaxCount;
   @override
-  @JsonKey(name: 'watering_refill')
-  DateTime wateringRefill;
+  DateTime? wateringRefill;
   @override
-  @JsonKey(name: 'fertilizing_count')
   int fertilizingCount;
   @override
-  @JsonKey(name: 'fertilizing_max_count')
-  int fertilizingMaxCount;
+  int? fertilizingMaxCount;
   @override
-  @JsonKey(name: 'fertilizing_refill')
-  DateTime fertilizingRefill;
+  DateTime? fertilizingRefill;
   @override
-  @JsonKey(name: 'weeds_removed')
   int weedsRemoved;
   @override
-  @JsonKey(name: 'weeds_max_removed')
-  int weedsMaxRemoved;
+  int? weedsMaxRemoved;
   @override
-  @JsonKey(name: 'weeds_refill')
-  DateTime weedsRefill;
+  DateTime? weedsRefill;
 
   @override
   String toString() {
@@ -946,65 +896,46 @@ class _$VirtualGardenModelUserActionsImpl
 abstract class _VirtualGardenModelUserActions
     implements VirtualGardenModelUserActions {
   factory _VirtualGardenModelUserActions(
-      {@JsonKey(name: 'watering_count') required int wateringCount,
-      @JsonKey(name: 'watering_max_count') required int wateringMaxCount,
-      @JsonKey(name: 'watering_refill') required DateTime wateringRefill,
-      @JsonKey(name: 'fertilizing_count') required int fertilizingCount,
-      @JsonKey(name: 'fertilizing_max_count') required int fertilizingMaxCount,
-      @JsonKey(name: 'fertilizing_refill') required DateTime fertilizingRefill,
-      @JsonKey(name: 'weeds_removed') required int weedsRemoved,
-      @JsonKey(name: 'weeds_max_removed') required int weedsMaxRemoved,
-      @JsonKey(name: 'weeds_refill')
-      required DateTime weedsRefill}) = _$VirtualGardenModelUserActionsImpl;
+      {required int wateringCount,
+      int? wateringMaxCount,
+      DateTime? wateringRefill,
+      required int fertilizingCount,
+      int? fertilizingMaxCount,
+      DateTime? fertilizingRefill,
+      required int weedsRemoved,
+      int? weedsMaxRemoved,
+      DateTime? weedsRefill}) = _$VirtualGardenModelUserActionsImpl;
 
   factory _VirtualGardenModelUserActions.fromJson(Map<String, dynamic> json) =
       _$VirtualGardenModelUserActionsImpl.fromJson;
 
   @override
-  @JsonKey(name: 'watering_count')
   int get wateringCount;
-  @JsonKey(name: 'watering_count')
   set wateringCount(int value);
   @override
-  @JsonKey(name: 'watering_max_count')
-  int get wateringMaxCount;
-  @JsonKey(name: 'watering_max_count')
-  set wateringMaxCount(int value);
+  int? get wateringMaxCount;
+  set wateringMaxCount(int? value);
   @override
-  @JsonKey(name: 'watering_refill')
-  DateTime get wateringRefill;
-  @JsonKey(name: 'watering_refill')
-  set wateringRefill(DateTime value);
+  DateTime? get wateringRefill;
+  set wateringRefill(DateTime? value);
   @override
-  @JsonKey(name: 'fertilizing_count')
   int get fertilizingCount;
-  @JsonKey(name: 'fertilizing_count')
   set fertilizingCount(int value);
   @override
-  @JsonKey(name: 'fertilizing_max_count')
-  int get fertilizingMaxCount;
-  @JsonKey(name: 'fertilizing_max_count')
-  set fertilizingMaxCount(int value);
+  int? get fertilizingMaxCount;
+  set fertilizingMaxCount(int? value);
   @override
-  @JsonKey(name: 'fertilizing_refill')
-  DateTime get fertilizingRefill;
-  @JsonKey(name: 'fertilizing_refill')
-  set fertilizingRefill(DateTime value);
+  DateTime? get fertilizingRefill;
+  set fertilizingRefill(DateTime? value);
   @override
-  @JsonKey(name: 'weeds_removed')
   int get weedsRemoved;
-  @JsonKey(name: 'weeds_removed')
   set weedsRemoved(int value);
   @override
-  @JsonKey(name: 'weeds_max_removed')
-  int get weedsMaxRemoved;
-  @JsonKey(name: 'weeds_max_removed')
-  set weedsMaxRemoved(int value);
+  int? get weedsMaxRemoved;
+  set weedsMaxRemoved(int? value);
   @override
-  @JsonKey(name: 'weeds_refill')
-  DateTime get weedsRefill;
-  @JsonKey(name: 'weeds_refill')
-  set weedsRefill(DateTime value);
+  DateTime? get weedsRefill;
+  set weedsRefill(DateTime? value);
 
   /// Create a copy of VirtualGardenModelUserActions
   /// with the given fields replaced by the non-null parameter values.

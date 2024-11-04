@@ -60,6 +60,10 @@ mixin _$UserModel {
   set badges(List<String> value) => throw _privateConstructorUsedError;
   List<String> get preferredTopics => throw _privateConstructorUsedError;
   set preferredTopics(List<String> value) => throw _privateConstructorUsedError;
+  bool get admin => throw _privateConstructorUsedError;
+  set admin(bool value) => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  set createdAt(DateTime? value) => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -94,7 +98,9 @@ abstract class $UserModelCopyWith<$Res> {
       List<UserModelAchievement> achievements,
       List<String> skills,
       List<String> badges,
-      List<String> preferredTopics});
+      List<String> preferredTopics,
+      bool admin,
+      DateTime? createdAt});
 
   $UserModelFullNameCopyWith<$Res> get fullName;
 }
@@ -132,6 +138,8 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? skills = null,
     Object? badges = null,
     Object? preferredTopics = null,
+    Object? admin = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -206,6 +214,14 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.preferredTopics
           : preferredTopics // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      admin: null == admin
+          ? _value.admin
+          : admin // ignore: cast_nullable_to_non_nullable
+              as bool,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 
@@ -246,7 +262,9 @@ abstract class _$$UserModelImplCopyWith<$Res>
       List<UserModelAchievement> achievements,
       List<String> skills,
       List<String> badges,
-      List<String> preferredTopics});
+      List<String> preferredTopics,
+      bool admin,
+      DateTime? createdAt});
 
   @override
   $UserModelFullNameCopyWith<$Res> get fullName;
@@ -283,6 +301,8 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? skills = null,
     Object? badges = null,
     Object? preferredTopics = null,
+    Object? admin = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_$UserModelImpl(
       id: null == id
@@ -357,6 +377,14 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.preferredTopics
           : preferredTopics // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      admin: null == admin
+          ? _value.admin
+          : admin // ignore: cast_nullable_to_non_nullable
+              as bool,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -382,7 +410,9 @@ class _$UserModelImpl extends _UserModel {
       required this.achievements,
       required this.skills,
       required this.badges,
-      required this.preferredTopics})
+      required this.preferredTopics,
+      this.admin = false,
+      this.createdAt})
       : super._();
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -424,10 +454,15 @@ class _$UserModelImpl extends _UserModel {
   List<String> badges;
   @override
   List<String> preferredTopics;
+  @override
+  @JsonKey()
+  bool admin;
+  @override
+  DateTime? createdAt;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, email: $email, provider: $provider, googleID: $googleID, facebookID: $facebookID, title: $title, location: $location, bio: $bio, username: $username, points: $points, fullName: $fullName, avatarHash: $avatarHash, notifications: $notifications, friends: $friends, achievements: $achievements, skills: $skills, badges: $badges, preferredTopics: $preferredTopics)';
+    return 'UserModel(id: $id, email: $email, provider: $provider, googleID: $googleID, facebookID: $facebookID, title: $title, location: $location, bio: $bio, username: $username, points: $points, fullName: $fullName, avatarHash: $avatarHash, notifications: $notifications, friends: $friends, achievements: $achievements, skills: $skills, badges: $badges, preferredTopics: $preferredTopics, admin: $admin, createdAt: $createdAt)';
   }
 
   /// Create a copy of UserModel
@@ -465,7 +500,9 @@ abstract class _UserModel extends UserModel {
       required List<UserModelAchievement> achievements,
       required List<String> skills,
       required List<String> badges,
-      required List<String> preferredTopics}) = _$UserModelImpl;
+      required List<String> preferredTopics,
+      bool admin,
+      DateTime? createdAt}) = _$UserModelImpl;
   _UserModel._() : super._();
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -525,6 +562,12 @@ abstract class _UserModel extends UserModel {
   @override
   List<String> get preferredTopics;
   set preferredTopics(List<String> value);
+  @override
+  bool get admin;
+  set admin(bool value);
+  @override
+  DateTime? get createdAt;
+  set createdAt(DateTime? value);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.

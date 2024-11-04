@@ -36,6 +36,10 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       preferredTopics: (json['preferredTopics'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
+      admin: json['admin'] as bool? ?? false,
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -58,6 +62,8 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'skills': instance.skills,
       'badges': instance.badges,
       'preferredTopics': instance.preferredTopics,
+      'admin': instance.admin,
+      'createdAt': instance.createdAt?.toIso8601String(),
     };
 
 _$UserModelFullNameImpl _$$UserModelFullNameImplFromJson(

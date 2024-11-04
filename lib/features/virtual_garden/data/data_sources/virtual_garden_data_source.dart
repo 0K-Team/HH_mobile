@@ -7,7 +7,14 @@ class VirtualGardenDataSource {
 
   VirtualGardenDataSource(this._dio);
 
-  Future<VirtualGardenModel?> fetchVirtualGarden(String user) {
+  Future<VirtualGardenModel?> fetchVirtualGarden(String user) async {
+    //fixme remove
+    user = '781823040534480';
+    Response response = await _dio.get('https://ecohero.q1000q.me/api/v1/garden/user/$user');
+    if (response.statusCode == 200) {
+      return VirtualGardenModel.fromJson(response.data);
+    }
+
     //fixme impl
     return Future.value(
       VirtualGardenModel(
