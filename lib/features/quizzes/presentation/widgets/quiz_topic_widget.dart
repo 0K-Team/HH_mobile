@@ -1,7 +1,9 @@
 import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
+import 'package:eco_hero_mobile/features/quizzes/data/models/quiz_model.dart';
 import 'package:eco_hero_mobile/features/quizzes/data/models/quiz_topic_model.dart';
 import 'package:eco_hero_mobile/features/quizzes/data/repositories/quizzes_repository_impl.dart';
+import 'package:eco_hero_mobile/features/quizzes/presentation/blocs/quizzes_bloc.dart';
 import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -19,9 +21,19 @@ class QuizTopicWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        await get<QuizzesRepositoryImpl>().fetchQuiz(topic).fold((quiz) {
-          context.push('/quiz/page', extra: quiz);
-        }, (exception) {});
+        QuizzesState state = get<QuizzesBloc>().state;
+        if (state is QuizzesLoadSuccess) {
+          List<QuizModel> quizzes = state.quizzes;
+          QuizModel? quiz =
+              quizzes.where((quiz) => quiz.topic == topic.topic).firstOrNull;
+          if (quiz != null) {
+            context.push('/quiz/page', extra: quiz);
+          }
+        } else {
+          await get<QuizzesRepositoryImpl>().fetchQuiz(topic).fold((quiz) {
+            context.push('/quiz/page', extra: quiz);
+          }, (exception) {});
+        }
       },
       child: Container(
         decoration: BoxDecoration(

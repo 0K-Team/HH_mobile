@@ -1,9 +1,7 @@
-import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
-import 'package:eco_hero_mobile/features/quizzes/data/models/quiz_topic_model.dart';
-import 'package:eco_hero_mobile/features/quizzes/data/repositories/quizzes_repository_impl.dart';
+import 'package:eco_hero_mobile/features/quizzes/presentation/blocs/quizzes_bloc.dart';
 import 'package:eco_hero_mobile/features/quizzes/presentation/widgets/quiz_topic_widget.dart';
-import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class QuizzesListWidget extends StatelessWidget {
@@ -11,32 +9,27 @@ class QuizzesListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: get<QuizzesRepositoryImpl>().fetchQuizTopics(),
-      builder: (BuildContext context,
-          AsyncSnapshot<Either<List<QuizTopicModel>, Exception>> snapshot) {
-        if (snapshot.data == null) {
-          return CircularProgressIndicator();
-        }
+    return BlocBuilder<QuizzesBloc, QuizzesState>(builder: (context, state) {
+      if (state is QuizzesLoadError) {
+        return Text(state.exception.toString());
+      }
 
-        return snapshot.data!.fold(
-          (topics) => Wrap(
-            spacing: 10.sp,
-            runSpacing: 10.sp,
-            alignment: WrapAlignment.center,
-            children: [
-              ...topics.map(
+      if (state is! QuizzesLoadSuccess) {
+        return CircularProgressIndicator();
+      }
+
+      return Wrap(
+        spacing: 10.sp,
+        runSpacing: 10.sp,
+        alignment: WrapAlignment.center,
+        children: [
+          ...state.topics.map(
                 (topic) => QuizTopicWidget(
-                  topic: topic,
-                ),
-              ),
-            ],
+              topic: topic,
+            ),
           ),
-          (exception) => Text(
-            exception.toString(),
-          ),
-        );
-      },
-    );
+        ],
+      );
+    });
   }
 }
