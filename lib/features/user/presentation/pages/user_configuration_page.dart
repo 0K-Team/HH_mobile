@@ -1,10 +1,14 @@
 import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/util/back_with_text.dart';
+import 'package:eco_hero_mobile/common/util/button.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
+import 'package:eco_hero_mobile/common/util/extensions/bloc_extension.dart';
 import 'package:eco_hero_mobile/common/util/snackbar.dart';
+import 'package:eco_hero_mobile/features/posts/presentation/blocs/posts_bloc.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/data/repositories/user_repository_impl.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user.dart';
+import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -45,117 +49,7 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: isDirty
-          ? FloatingActionButton.extended(
-              onPressed: () async {
-                if (_firstNameController.text !=
-                    widget.user.fullName.givenName) {
-                  bool changed = await get<UserRepositoryImpl>()
-                      .updateFirstName(_firstNameController.text);
-                  if (changed) {
-                    isDirty = false;
-                    Future.delayed(Duration.zero, () {
-                      if (context.mounted) {
-                        context.replace('/user/page/configuration',
-                            extra: currentUser);
-                      }
-                    });
-                    success('Zmieniono pierwsze imię.');
-                  } else {
-                    error('Błąd przy zmianie pierwszego imienia.');
-                  }
-                }
-
-                if (_lastNameController.text !=
-                    widget.user.fullName.familyName) {
-                  bool changed = await get<UserRepositoryImpl>()
-                      .updateLastName(_lastNameController.text);
-                  if (changed) {
-                    isDirty = false;
-                    Future.delayed(Duration.zero, () {
-                      if (context.mounted) {
-                        context.replace('/user/page/configuration',
-                            extra: currentUser);
-                      }
-                    });
-                    success('Zmieniono nazwisko.');
-                  } else {
-                    error('Błąd przy zmianie nazwiska.');
-                  }
-                }
-
-                if (_bioController.text != widget.user.bio &&
-                    (widget.user.bio != null ||
-                        _bioController.text.isNotEmpty)) {
-                  bool changed = await get<UserRepositoryImpl>()
-                      .updateBio(_bioController.text);
-                  if (changed) {
-                    isDirty = false;
-                    Future.delayed(Duration.zero, () {
-                      if (context.mounted) {
-                        context.replace('/user/page/configuration',
-                            extra: currentUser);
-                      }
-                    });
-                    success('Zmieniono opis.');
-                  } else {
-                    error('Błąd przy zmianie opisu.');
-                  }
-                }
-
-                if (_locationController.text != widget.user.location &&
-                    (widget.user.location != null ||
-                        _locationController.text.isNotEmpty)) {
-                  bool changed = await get<UserRepositoryImpl>()
-                      .updateLocation(_locationController.text);
-                  if (changed) {
-                    isDirty = false;
-                    Future.delayed(Duration.zero, () {
-                      if (context.mounted) {
-                        context.replace('/user/page/configuration',
-                            extra: currentUser);
-                      }
-                    });
-                    success('Zmieniono lokalizację.');
-                  } else {
-                    error('Błąd przy zmianie lokalizacji.');
-                  }
-                }
-
-                if (_preferredTopics != widget.user.preferredTopics) {
-                  for (String topic in _preferredTopics) {
-                    if (!widget.user.preferredTopics
-                        .any((string) => string == topic)) {
-                      await get<UserRepositoryImpl>().addPreferredTopic(topic);
-                    }
-                  }
-
-                  for (String topic in widget.user.preferredTopics) {
-                    if (!_preferredTopics
-                        .any((string) => string == topic)) {
-                      await get<UserRepositoryImpl>().removePreferredTopic(topic);
-                    }
-                  }
-
-                  isDirty = false;
-                  Future.delayed(Duration.zero, () {
-                    if (context.mounted) {
-                      context.replace('/user/page/configuration',
-                          extra: currentUser);
-                    }
-                  });
-                }
-              },
-              label: Text(
-                'Zapisz',
-                style: TextStyle(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w600,
-                  color: element,
-                ),
-              ),
-            )
-          : null,
+      floatingActionButton: isDirty ? buildFloatingActionButton(context) : null,
       body: SafeArea(
         child: Column(
           children: [
@@ -326,8 +220,119 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
                   ),
                 ),
               ],
+            ),
+            SizedBox(height: 2.5.h),
+            PrimaryButtonWidget(
+              onTap: () {
+                context.go('/auth/page');
+                get<PostsBloc>().reset(PostsInitial());
+                get<CurrentUserBloc>().reset(CurrentUserInitial());
+              },
+              title: 'Wyloguj się',
             )
           ],
+        ),
+      ),
+    );
+  }
+
+  buildFloatingActionButton(BuildContext context) {
+    return FloatingActionButton.extended(
+      onPressed: () async {
+        if (_firstNameController.text != widget.user.fullName.givenName) {
+          bool changed = await get<UserRepositoryImpl>()
+              .updateFirstName(_firstNameController.text);
+          if (changed) {
+            isDirty = false;
+            Future.delayed(Duration.zero, () {
+              if (context.mounted) {
+                context.replace('/user/page/configuration', extra: currentUser);
+              }
+            });
+            success('Zmieniono pierwsze imię.');
+          } else {
+            error('Błąd przy zmianie pierwszego imienia.');
+          }
+        }
+
+        if (_lastNameController.text != widget.user.fullName.familyName) {
+          bool changed = await get<UserRepositoryImpl>()
+              .updateLastName(_lastNameController.text);
+          if (changed) {
+            isDirty = false;
+            Future.delayed(Duration.zero, () {
+              if (context.mounted) {
+                context.replace('/user/page/configuration', extra: currentUser);
+              }
+            });
+            success('Zmieniono nazwisko.');
+          } else {
+            error('Błąd przy zmianie nazwiska.');
+          }
+        }
+
+        if (_bioController.text != widget.user.bio &&
+            (widget.user.bio != null || _bioController.text.isNotEmpty)) {
+          bool changed =
+              await get<UserRepositoryImpl>().updateBio(_bioController.text);
+          if (changed) {
+            isDirty = false;
+            Future.delayed(Duration.zero, () {
+              if (context.mounted) {
+                context.replace('/user/page/configuration', extra: currentUser);
+              }
+            });
+            success('Zmieniono opis.');
+          } else {
+            error('Błąd przy zmianie opisu.');
+          }
+        }
+
+        if (_locationController.text != widget.user.location &&
+            (widget.user.location != null ||
+                _locationController.text.isNotEmpty)) {
+          bool changed = await get<UserRepositoryImpl>()
+              .updateLocation(_locationController.text);
+          if (changed) {
+            isDirty = false;
+            Future.delayed(Duration.zero, () {
+              if (context.mounted) {
+                context.replace('/user/page/configuration', extra: currentUser);
+              }
+            });
+            success('Zmieniono lokalizację.');
+          } else {
+            error('Błąd przy zmianie lokalizacji.');
+          }
+        }
+
+        if (_preferredTopics != widget.user.preferredTopics) {
+          for (String topic in _preferredTopics) {
+            if (!widget.user.preferredTopics.any((string) => string == topic)) {
+              await get<UserRepositoryImpl>().addPreferredTopic(topic);
+            }
+          }
+
+          for (String topic in widget.user.preferredTopics) {
+            if (!_preferredTopics.any((string) => string == topic)) {
+              await get<UserRepositoryImpl>().removePreferredTopic(topic);
+            }
+          }
+
+          isDirty = false;
+          Future.delayed(Duration.zero, () {
+            if (context.mounted) {
+              context.replace('/user/page/configuration', extra: currentUser);
+            }
+          });
+        }
+      },
+      label: Text(
+        'Zapisz',
+        style: TextStyle(
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w600,
+          color: element,
         ),
       ),
     );

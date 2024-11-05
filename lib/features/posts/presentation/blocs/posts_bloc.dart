@@ -19,7 +19,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
   }
 
   FutureOr<void> _onPostsLoaded(PostsLoaded event, Emitter<PostsState> emit) {
-    List<PostModel> posts = event.posts;
+    List<PostModel> posts = event.posts.toList();
     if (state is PostsLoadSuccess) {
       posts.addAll((state as PostsLoadSuccess).posts);
     }

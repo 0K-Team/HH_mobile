@@ -29,3 +29,10 @@ extension BlocExtension<E, S> on Bloc<E, S> {
     return await completer.future;
   }
 }
+
+extension BlocReset on Bloc {
+  void reset(dynamic initialState) {
+    // ignore: invalid_use_of_visible_for_testing_member
+    emit(initialState);
+  }
+}

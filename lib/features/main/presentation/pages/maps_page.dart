@@ -46,7 +46,13 @@ class MapsPage extends StatelessWidget {
                     onTap: () {
                       get<FriendsDataSource>().fetchFriends();
                     },
-                    child: Text('Test'),
+                    child: Text('Friends'),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      get<FriendsDataSource>().fetchFriends();
+                    },
+                    child: Text('Friend Requests'),
                   ),
                 ],
               ),

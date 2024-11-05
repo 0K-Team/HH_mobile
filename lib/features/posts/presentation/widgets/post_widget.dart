@@ -3,6 +3,7 @@ import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/features/posts/data/models/post_model.dart';
 import 'package:eco_hero_mobile/features/posts/data/repositories/posts_repository_impl.dart';
+import 'package:eco_hero_mobile/features/posts/presentation/blocs/posts_bloc.dart';
 import 'package:eco_hero_mobile/features/user/data/repositories/user_repository_impl.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user.dart';
 import 'package:either_dart/either.dart';
@@ -131,7 +132,7 @@ class _PostWidgetState extends State<PostWidget> {
               ),
             ),
             Wrap(
-              children: widget.post.images
+              children: post.images
                   .map(
                     (image) => CachedNetworkImage(
                       imageUrl: image,
@@ -163,7 +164,7 @@ class _PostWidgetState extends State<PostWidget> {
                   ),
                   SizedBox(width: 0.5.w),
                   Text(
-                    widget.post.likes.length.toString(),
+                    post.likes.length.toString(),
                     style: TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: 18.sp,
@@ -181,20 +182,37 @@ class _PostWidgetState extends State<PostWidget> {
   }
 
   addLike() async {
-    await get<PostsRepositoryImpl>().likePost(widget.post).fold((post) {
+    await get<PostsRepositoryImpl>().likePost(post).fold((post) {
       setState(() {
         isLiked = true;
-        post = post;
+        this.post = post;
       });
+
+      updatePostsBloc(post);
     }, (exception) {});
   }
 
   removeLike() async {
-    await get<PostsRepositoryImpl>().dislikePost(widget.post).fold((post) {
+    await get<PostsRepositoryImpl>().dislikePost(post).fold((post) {
       setState(() {
-        isLiked = true;
-        post = post;
+        isLiked = false;
+        this.post = post;
       });
+
+      updatePostsBloc(post);
     }, (exception) {});
+  }
+
+  void updatePostsBloc(PostModel post) {
+    PostsBloc bloc = get();
+    if (bloc.state is PostsLoadSuccess) {
+      PostsLoadSuccess state = bloc.state as PostsLoadSuccess;
+      List<PostModel> posts = state.posts;
+      int index = posts.indexWhere((p) => p.id == widget.post.id);
+      if (index != -1) {
+        posts[index] = post;
+        bloc.add(PostsLoaded(posts));
+      }
+    }
   }
 }
