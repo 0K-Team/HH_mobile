@@ -162,6 +162,7 @@ class UserPage extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(height: 0.5.h),
         Container(
           decoration: BoxDecoration(
             color: element,
