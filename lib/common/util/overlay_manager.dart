@@ -14,7 +14,6 @@ class OverlayManager {
     _overlayEntry = OverlayEntry(
       builder: (context) => Stack(
         children: [
-          // Semi-transparent background with blur effect
           Positioned.fill(
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),

@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'quiz_model.freezed.dart';
 part 'quiz_model.g.dart';
 
-@unfreezed
+@freezed
 class QuizModel with _$QuizModel {
   QuizModel._();
 
@@ -30,7 +30,7 @@ class QuizModel with _$QuizModel {
   }
 }
 
-@unfreezed
+@freezed
 class QuizModelQuestions with _$QuizModelQuestions {
   factory QuizModelQuestions({
     required QuizModelQuestionsAnswers answers,
@@ -43,7 +43,7 @@ class QuizModelQuestions with _$QuizModelQuestions {
       _$QuizModelQuestionsFromJson(json);
 }
 
-@unfreezed
+@freezed
 class QuizModelQuestionsAnswers with _$QuizModelQuestionsAnswers {
   factory QuizModelQuestionsAnswers({
     @JsonKey(name: 'A') required String A,

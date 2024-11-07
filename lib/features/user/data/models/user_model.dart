@@ -4,7 +4,7 @@ part 'user_model.freezed.dart';
 
 part 'user_model.g.dart';
 
-@unfreezed
+@freezed
 class UserModel with _$UserModel {
   UserModel._();
 
@@ -37,7 +37,7 @@ class UserModel with _$UserModel {
   String get avatar => 'https://ecohero.q1000q.me/api/v1/avatar/$id/$avatarHash';
 }
 
-@unfreezed
+@freezed
 class UserModelFullName with _$UserModelFullName {
   UserModelFullName._();
 
@@ -62,7 +62,7 @@ class UserModelFullName with _$UserModelFullName {
   }
 }
 
-@unfreezed
+@freezed
 class UserModelNotification with _$UserModelNotification {
   factory UserModelNotification({
     required String title,
@@ -73,7 +73,7 @@ class UserModelNotification with _$UserModelNotification {
       _$UserModelNotificationFromJson(json);
 }
 
-@unfreezed
+@freezed
 class UserModelAchievement with _$UserModelAchievement {
   factory UserModelAchievement({
     required String name,

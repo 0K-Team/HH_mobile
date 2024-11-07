@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'blog_model.freezed.dart';
 part 'blog_model.g.dart';
 
-@unfreezed
+@freezed
 class BlogModel with _$BlogModel {
   factory BlogModel({
     required String image,

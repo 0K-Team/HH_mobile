@@ -6,7 +6,7 @@ part 'post_model.freezed.dart';
 
 part 'post_model.g.dart';
 
-@unfreezed
+@freezed
 class PostModel with _$PostModel {
   factory PostModel({
     @JsonKey(name: '_id') required String id,

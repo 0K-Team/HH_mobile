@@ -22,13 +22,9 @@ UserDailyChallengeModel _$UserDailyChallengeModelFromJson(
 /// @nodoc
 mixin _$UserDailyChallengeModel {
   String get title => throw _privateConstructorUsedError;
-  set title(String value) => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
-  set type(String value) => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
-  set amount(int value) => throw _privateConstructorUsedError;
   int get done => throw _privateConstructorUsedError;
-  set done(int value) => throw _privateConstructorUsedError;
 
   /// Serializes this UserDailyChallengeModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -157,18 +153,33 @@ class _$UserDailyChallengeModelImpl implements _UserDailyChallengeModel {
       _$$UserDailyChallengeModelImplFromJson(json);
 
   @override
-  String title;
+  final String title;
   @override
-  String type;
+  final String type;
   @override
-  int amount;
+  final int amount;
   @override
-  int done;
+  final int done;
 
   @override
   String toString() {
     return 'UserDailyChallengeModel(title: $title, type: $type, amount: $amount, done: $done)';
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserDailyChallengeModelImpl &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.done, done) || other.done == done));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, title, type, amount, done);
 
   /// Create a copy of UserDailyChallengeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -189,26 +200,22 @@ class _$UserDailyChallengeModelImpl implements _UserDailyChallengeModel {
 
 abstract class _UserDailyChallengeModel implements UserDailyChallengeModel {
   factory _UserDailyChallengeModel(
-      {required String title,
-      required String type,
-      required int amount,
-      required int done}) = _$UserDailyChallengeModelImpl;
+      {required final String title,
+      required final String type,
+      required final int amount,
+      required final int done}) = _$UserDailyChallengeModelImpl;
 
   factory _UserDailyChallengeModel.fromJson(Map<String, dynamic> json) =
       _$UserDailyChallengeModelImpl.fromJson;
 
   @override
   String get title;
-  set title(String value);
   @override
   String get type;
-  set type(String value);
   @override
   int get amount;
-  set amount(int value);
   @override
   int get done;
-  set done(int value);
 
   /// Create a copy of UserDailyChallengeModel
   /// with the given fields replaced by the non-null parameter values.

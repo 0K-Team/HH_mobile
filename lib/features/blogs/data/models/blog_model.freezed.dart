@@ -21,13 +21,9 @@ BlogModel _$BlogModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BlogModel {
   String get image => throw _privateConstructorUsedError;
-  set image(String value) => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  set title(String value) => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
-  set author(String value) => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
-  set content(String value) => throw _privateConstructorUsedError;
 
   /// Serializes this BlogModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -151,18 +147,33 @@ class _$BlogModelImpl implements _BlogModel {
       _$$BlogModelImplFromJson(json);
 
   @override
-  String image;
+  final String image;
   @override
-  String title;
+  final String title;
   @override
-  String author;
+  final String author;
   @override
-  String content;
+  final String content;
 
   @override
   String toString() {
     return 'BlogModel(image: $image, title: $title, author: $author, content: $content)';
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BlogModelImpl &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.author, author) || other.author == author) &&
+            (identical(other.content, content) || other.content == content));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, image, title, author, content);
 
   /// Create a copy of BlogModel
   /// with the given fields replaced by the non-null parameter values.
@@ -182,26 +193,22 @@ class _$BlogModelImpl implements _BlogModel {
 
 abstract class _BlogModel implements BlogModel {
   factory _BlogModel(
-      {required String image,
-      required String title,
-      required String author,
-      required String content}) = _$BlogModelImpl;
+      {required final String image,
+      required final String title,
+      required final String author,
+      required final String content}) = _$BlogModelImpl;
 
   factory _BlogModel.fromJson(Map<String, dynamic> json) =
       _$BlogModelImpl.fromJson;
 
   @override
   String get image;
-  set image(String value);
   @override
   String get title;
-  set title(String value);
   @override
   String get author;
-  set author(String value);
   @override
   String get content;
-  set content(String value);
 
   /// Create a copy of BlogModel
   /// with the given fields replaced by the non-null parameter values.

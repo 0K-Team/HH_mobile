@@ -5,7 +5,7 @@ part 'quiz_topic_model.freezed.dart';
 
 part 'quiz_topic_model.g.dart';
 
-@unfreezed
+@freezed
 class QuizTopicModel with _$QuizTopicModel {
   QuizTopicModel._();
 

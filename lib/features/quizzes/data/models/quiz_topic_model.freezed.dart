@@ -22,12 +22,8 @@ QuizTopicModel _$QuizTopicModelFromJson(Map<String, dynamic> json) {
 mixin _$QuizTopicModel {
   @JsonKey(name: '_id')
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: '_id')
-  set id(String value) => throw _privateConstructorUsedError;
   String get topic => throw _privateConstructorUsedError;
-  set topic(String value) => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
-  set category(String value) => throw _privateConstructorUsedError;
 
   /// Serializes this QuizTopicModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -143,16 +139,31 @@ class _$QuizTopicModelImpl extends _QuizTopicModel {
 
   @override
   @JsonKey(name: '_id')
-  String id;
+  final String id;
   @override
-  String topic;
+  final String topic;
   @override
-  String category;
+  final String category;
 
   @override
   String toString() {
     return 'QuizTopicModel(id: $id, topic: $topic, category: $category)';
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$QuizTopicModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.topic, topic) || other.topic == topic) &&
+            (identical(other.category, category) ||
+                other.category == category));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, topic, category);
 
   /// Create a copy of QuizTopicModel
   /// with the given fields replaced by the non-null parameter values.
@@ -173,9 +184,9 @@ class _$QuizTopicModelImpl extends _QuizTopicModel {
 
 abstract class _QuizTopicModel extends QuizTopicModel {
   factory _QuizTopicModel(
-      {@JsonKey(name: '_id') required String id,
-      required String topic,
-      required String category}) = _$QuizTopicModelImpl;
+      {@JsonKey(name: '_id') required final String id,
+      required final String topic,
+      required final String category}) = _$QuizTopicModelImpl;
   _QuizTopicModel._() : super._();
 
   factory _QuizTopicModel.fromJson(Map<String, dynamic> json) =
@@ -184,14 +195,10 @@ abstract class _QuizTopicModel extends QuizTopicModel {
   @override
   @JsonKey(name: '_id')
   String get id;
-  @JsonKey(name: '_id')
-  set id(String value);
   @override
   String get topic;
-  set topic(String value);
   @override
   String get category;
-  set category(String value);
 
   /// Create a copy of QuizTopicModel
   /// with the given fields replaced by the non-null parameter values.

@@ -7,7 +7,6 @@ import 'package:either_dart/either.dart';
 import 'package:equatable/equatable.dart';
 
 part 'posts_event.dart';
-
 part 'posts_state.dart';
 
 class PostsBloc extends Bloc<PostsEvent, PostsState> {
@@ -19,12 +18,12 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
   }
 
   FutureOr<void> _onPostsLoaded(PostsLoaded event, Emitter<PostsState> emit) {
-    List<PostModel> posts = event.posts.toList();
+    List<PostModel> posts = List.from(event.posts);
     if (state is PostsLoadSuccess) {
       posts.addAll((state as PostsLoadSuccess).posts);
     }
 
-    final uniquePosts = posts
+    final uniquePosts = List.from(posts)
         .fold<Map<String, PostModel>>({}, (map, post) {
           map[post.id] = post;
           return map;

@@ -22,17 +22,10 @@ VirtualGardenModel _$VirtualGardenModelFromJson(Map<String, dynamic> json) {
 mixin _$VirtualGardenModel {
   @JsonKey(name: '_id')
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: '_id')
-  set id(String value) => throw _privateConstructorUsedError;
   String get user => throw _privateConstructorUsedError;
-  set user(String value) => throw _privateConstructorUsedError;
   List<VirtualGardenModelPlant> get plants =>
       throw _privateConstructorUsedError;
-  set plants(List<VirtualGardenModelPlant> value) =>
-      throw _privateConstructorUsedError;
   VirtualGardenModelUserActions get userActions =>
-      throw _privateConstructorUsedError;
-  set userActions(VirtualGardenModelUserActions value) =>
       throw _privateConstructorUsedError;
 
   /// Serializes this VirtualGardenModel to a JSON map.
@@ -158,7 +151,7 @@ class __$$VirtualGardenModelImplCopyWithImpl<$Res>
           : user // ignore: cast_nullable_to_non_nullable
               as String,
       plants: null == plants
-          ? _value.plants
+          ? _value._plants
           : plants // ignore: cast_nullable_to_non_nullable
               as List<VirtualGardenModelPlant>,
       userActions: null == userActions
@@ -175,26 +168,50 @@ class _$VirtualGardenModelImpl implements _VirtualGardenModel {
   _$VirtualGardenModelImpl(
       {@JsonKey(name: '_id') required this.id,
       required this.user,
-      required this.plants,
-      required this.userActions});
+      required final List<VirtualGardenModelPlant> plants,
+      required this.userActions})
+      : _plants = plants;
 
   factory _$VirtualGardenModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$VirtualGardenModelImplFromJson(json);
 
   @override
   @JsonKey(name: '_id')
-  String id;
+  final String id;
   @override
-  String user;
+  final String user;
+  final List<VirtualGardenModelPlant> _plants;
   @override
-  List<VirtualGardenModelPlant> plants;
+  List<VirtualGardenModelPlant> get plants {
+    if (_plants is EqualUnmodifiableListView) return _plants;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_plants);
+  }
+
   @override
-  VirtualGardenModelUserActions userActions;
+  final VirtualGardenModelUserActions userActions;
 
   @override
   String toString() {
     return 'VirtualGardenModel(id: $id, user: $user, plants: $plants, userActions: $userActions)';
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$VirtualGardenModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.user, user) || other.user == user) &&
+            const DeepCollectionEquality().equals(other._plants, _plants) &&
+            (identical(other.userActions, userActions) ||
+                other.userActions == userActions));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, user,
+      const DeepCollectionEquality().hash(_plants), userActions);
 
   /// Create a copy of VirtualGardenModel
   /// with the given fields replaced by the non-null parameter values.
@@ -215,10 +232,10 @@ class _$VirtualGardenModelImpl implements _VirtualGardenModel {
 
 abstract class _VirtualGardenModel implements VirtualGardenModel {
   factory _VirtualGardenModel(
-          {@JsonKey(name: '_id') required String id,
-          required String user,
-          required List<VirtualGardenModelPlant> plants,
-          required VirtualGardenModelUserActions userActions}) =
+          {@JsonKey(name: '_id') required final String id,
+          required final String user,
+          required final List<VirtualGardenModelPlant> plants,
+          required final VirtualGardenModelUserActions userActions}) =
       _$VirtualGardenModelImpl;
 
   factory _VirtualGardenModel.fromJson(Map<String, dynamic> json) =
@@ -227,17 +244,12 @@ abstract class _VirtualGardenModel implements VirtualGardenModel {
   @override
   @JsonKey(name: '_id')
   String get id;
-  @JsonKey(name: '_id')
-  set id(String value);
   @override
   String get user;
-  set user(String value);
   @override
   List<VirtualGardenModelPlant> get plants;
-  set plants(List<VirtualGardenModelPlant> value);
   @override
   VirtualGardenModelUserActions get userActions;
-  set userActions(VirtualGardenModelUserActions value);
 
   /// Create a copy of VirtualGardenModel
   /// with the given fields replaced by the non-null parameter values.
@@ -256,32 +268,18 @@ VirtualGardenModelPlant _$VirtualGardenModelPlantFromJson(
 mixin _$VirtualGardenModelPlant {
   @JsonKey(name: '_id')
   String get plantId => throw _privateConstructorUsedError;
-  @JsonKey(name: '_id')
-  set plantId(String value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  set name(String value) => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
-  set type(String value) => throw _privateConstructorUsedError;
   int get growthStage => throw _privateConstructorUsedError;
-  set growthStage(int value) => throw _privateConstructorUsedError;
   int get wateringNeeded => throw _privateConstructorUsedError;
-  set wateringNeeded(int value) => throw _privateConstructorUsedError;
   int get fertilizerNeeded => throw _privateConstructorUsedError;
-  set fertilizerNeeded(int value) => throw _privateConstructorUsedError;
   int get weedsRemovedNeeded => throw _privateConstructorUsedError;
-  set weedsRemovedNeeded(int value) => throw _privateConstructorUsedError;
   DateTime get planted => throw _privateConstructorUsedError;
-  set planted(DateTime value) => throw _privateConstructorUsedError;
   bool get harvestable => throw _privateConstructorUsedError;
-  set harvestable(bool value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_watered')
   DateTime? get lastWatered => throw _privateConstructorUsedError;
-  @JsonKey(name: 'last_watered')
-  set lastWatered(DateTime? value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_fertilized')
   DateTime? get lastFertilized => throw _privateConstructorUsedError;
-  @JsonKey(name: 'last_fertilized')
-  set lastFertilized(DateTime? value) => throw _privateConstructorUsedError;
 
   /// Serializes this VirtualGardenModelPlant to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -510,34 +508,75 @@ class _$VirtualGardenModelPlantImpl implements _VirtualGardenModelPlant {
 
   @override
   @JsonKey(name: '_id')
-  String plantId;
+  final String plantId;
   @override
-  String name;
+  final String name;
   @override
-  String type;
+  final String type;
   @override
-  int growthStage;
+  final int growthStage;
   @override
-  int wateringNeeded;
+  final int wateringNeeded;
   @override
-  int fertilizerNeeded;
+  final int fertilizerNeeded;
   @override
-  int weedsRemovedNeeded;
+  final int weedsRemovedNeeded;
   @override
-  DateTime planted;
+  final DateTime planted;
   @override
-  bool harvestable;
+  final bool harvestable;
   @override
   @JsonKey(name: 'last_watered')
-  DateTime? lastWatered;
+  final DateTime? lastWatered;
   @override
   @JsonKey(name: 'last_fertilized')
-  DateTime? lastFertilized;
+  final DateTime? lastFertilized;
 
   @override
   String toString() {
     return 'VirtualGardenModelPlant(plantId: $plantId, name: $name, type: $type, growthStage: $growthStage, wateringNeeded: $wateringNeeded, fertilizerNeeded: $fertilizerNeeded, weedsRemovedNeeded: $weedsRemovedNeeded, planted: $planted, harvestable: $harvestable, lastWatered: $lastWatered, lastFertilized: $lastFertilized)';
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$VirtualGardenModelPlantImpl &&
+            (identical(other.plantId, plantId) || other.plantId == plantId) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.growthStage, growthStage) ||
+                other.growthStage == growthStage) &&
+            (identical(other.wateringNeeded, wateringNeeded) ||
+                other.wateringNeeded == wateringNeeded) &&
+            (identical(other.fertilizerNeeded, fertilizerNeeded) ||
+                other.fertilizerNeeded == fertilizerNeeded) &&
+            (identical(other.weedsRemovedNeeded, weedsRemovedNeeded) ||
+                other.weedsRemovedNeeded == weedsRemovedNeeded) &&
+            (identical(other.planted, planted) || other.planted == planted) &&
+            (identical(other.harvestable, harvestable) ||
+                other.harvestable == harvestable) &&
+            (identical(other.lastWatered, lastWatered) ||
+                other.lastWatered == lastWatered) &&
+            (identical(other.lastFertilized, lastFertilized) ||
+                other.lastFertilized == lastFertilized));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      plantId,
+      name,
+      type,
+      growthStage,
+      wateringNeeded,
+      fertilizerNeeded,
+      weedsRemovedNeeded,
+      planted,
+      harvestable,
+      lastWatered,
+      lastFertilized);
 
   /// Create a copy of VirtualGardenModelPlant
   /// with the given fields replaced by the non-null parameter values.
@@ -558,17 +597,17 @@ class _$VirtualGardenModelPlantImpl implements _VirtualGardenModelPlant {
 
 abstract class _VirtualGardenModelPlant implements VirtualGardenModelPlant {
   factory _VirtualGardenModelPlant(
-          {@JsonKey(name: '_id') required String plantId,
-          required String name,
-          required String type,
-          required int growthStage,
-          required int wateringNeeded,
-          required int fertilizerNeeded,
-          required int weedsRemovedNeeded,
-          required DateTime planted,
-          required bool harvestable,
-          @JsonKey(name: 'last_watered') DateTime? lastWatered,
-          @JsonKey(name: 'last_fertilized') DateTime? lastFertilized}) =
+          {@JsonKey(name: '_id') required final String plantId,
+          required final String name,
+          required final String type,
+          required final int growthStage,
+          required final int wateringNeeded,
+          required final int fertilizerNeeded,
+          required final int weedsRemovedNeeded,
+          required final DateTime planted,
+          required final bool harvestable,
+          @JsonKey(name: 'last_watered') final DateTime? lastWatered,
+          @JsonKey(name: 'last_fertilized') final DateTime? lastFertilized}) =
       _$VirtualGardenModelPlantImpl;
 
   factory _VirtualGardenModelPlant.fromJson(Map<String, dynamic> json) =
@@ -577,42 +616,28 @@ abstract class _VirtualGardenModelPlant implements VirtualGardenModelPlant {
   @override
   @JsonKey(name: '_id')
   String get plantId;
-  @JsonKey(name: '_id')
-  set plantId(String value);
   @override
   String get name;
-  set name(String value);
   @override
   String get type;
-  set type(String value);
   @override
   int get growthStage;
-  set growthStage(int value);
   @override
   int get wateringNeeded;
-  set wateringNeeded(int value);
   @override
   int get fertilizerNeeded;
-  set fertilizerNeeded(int value);
   @override
   int get weedsRemovedNeeded;
-  set weedsRemovedNeeded(int value);
   @override
   DateTime get planted;
-  set planted(DateTime value);
   @override
   bool get harvestable;
-  set harvestable(bool value);
   @override
   @JsonKey(name: 'last_watered')
   DateTime? get lastWatered;
-  @JsonKey(name: 'last_watered')
-  set lastWatered(DateTime? value);
   @override
   @JsonKey(name: 'last_fertilized')
   DateTime? get lastFertilized;
-  @JsonKey(name: 'last_fertilized')
-  set lastFertilized(DateTime? value);
 
   /// Create a copy of VirtualGardenModelPlant
   /// with the given fields replaced by the non-null parameter values.
@@ -630,23 +655,14 @@ VirtualGardenModelUserActions _$VirtualGardenModelUserActionsFromJson(
 /// @nodoc
 mixin _$VirtualGardenModelUserActions {
   int get wateringCount => throw _privateConstructorUsedError;
-  set wateringCount(int value) => throw _privateConstructorUsedError;
   int? get wateringMaxCount => throw _privateConstructorUsedError;
-  set wateringMaxCount(int? value) => throw _privateConstructorUsedError;
   DateTime? get wateringRefill => throw _privateConstructorUsedError;
-  set wateringRefill(DateTime? value) => throw _privateConstructorUsedError;
   int get fertilizingCount => throw _privateConstructorUsedError;
-  set fertilizingCount(int value) => throw _privateConstructorUsedError;
   int? get fertilizingMaxCount => throw _privateConstructorUsedError;
-  set fertilizingMaxCount(int? value) => throw _privateConstructorUsedError;
   DateTime? get fertilizingRefill => throw _privateConstructorUsedError;
-  set fertilizingRefill(DateTime? value) => throw _privateConstructorUsedError;
   int get weedsRemoved => throw _privateConstructorUsedError;
-  set weedsRemoved(int value) => throw _privateConstructorUsedError;
   int? get weedsMaxRemoved => throw _privateConstructorUsedError;
-  set weedsMaxRemoved(int? value) => throw _privateConstructorUsedError;
   DateTime? get weedsRefill => throw _privateConstructorUsedError;
-  set weedsRefill(DateTime? value) => throw _privateConstructorUsedError;
 
   /// Serializes this VirtualGardenModelUserActions to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -852,28 +868,67 @@ class _$VirtualGardenModelUserActionsImpl
       _$$VirtualGardenModelUserActionsImplFromJson(json);
 
   @override
-  int wateringCount;
+  final int wateringCount;
   @override
-  int? wateringMaxCount;
+  final int? wateringMaxCount;
   @override
-  DateTime? wateringRefill;
+  final DateTime? wateringRefill;
   @override
-  int fertilizingCount;
+  final int fertilizingCount;
   @override
-  int? fertilizingMaxCount;
+  final int? fertilizingMaxCount;
   @override
-  DateTime? fertilizingRefill;
+  final DateTime? fertilizingRefill;
   @override
-  int weedsRemoved;
+  final int weedsRemoved;
   @override
-  int? weedsMaxRemoved;
+  final int? weedsMaxRemoved;
   @override
-  DateTime? weedsRefill;
+  final DateTime? weedsRefill;
 
   @override
   String toString() {
     return 'VirtualGardenModelUserActions(wateringCount: $wateringCount, wateringMaxCount: $wateringMaxCount, wateringRefill: $wateringRefill, fertilizingCount: $fertilizingCount, fertilizingMaxCount: $fertilizingMaxCount, fertilizingRefill: $fertilizingRefill, weedsRemoved: $weedsRemoved, weedsMaxRemoved: $weedsMaxRemoved, weedsRefill: $weedsRefill)';
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$VirtualGardenModelUserActionsImpl &&
+            (identical(other.wateringCount, wateringCount) ||
+                other.wateringCount == wateringCount) &&
+            (identical(other.wateringMaxCount, wateringMaxCount) ||
+                other.wateringMaxCount == wateringMaxCount) &&
+            (identical(other.wateringRefill, wateringRefill) ||
+                other.wateringRefill == wateringRefill) &&
+            (identical(other.fertilizingCount, fertilizingCount) ||
+                other.fertilizingCount == fertilizingCount) &&
+            (identical(other.fertilizingMaxCount, fertilizingMaxCount) ||
+                other.fertilizingMaxCount == fertilizingMaxCount) &&
+            (identical(other.fertilizingRefill, fertilizingRefill) ||
+                other.fertilizingRefill == fertilizingRefill) &&
+            (identical(other.weedsRemoved, weedsRemoved) ||
+                other.weedsRemoved == weedsRemoved) &&
+            (identical(other.weedsMaxRemoved, weedsMaxRemoved) ||
+                other.weedsMaxRemoved == weedsMaxRemoved) &&
+            (identical(other.weedsRefill, weedsRefill) ||
+                other.weedsRefill == weedsRefill));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      wateringCount,
+      wateringMaxCount,
+      wateringRefill,
+      fertilizingCount,
+      fertilizingMaxCount,
+      fertilizingRefill,
+      weedsRemoved,
+      weedsMaxRemoved,
+      weedsRefill);
 
   /// Create a copy of VirtualGardenModelUserActions
   /// with the given fields replaced by the non-null parameter values.
@@ -896,46 +951,37 @@ class _$VirtualGardenModelUserActionsImpl
 abstract class _VirtualGardenModelUserActions
     implements VirtualGardenModelUserActions {
   factory _VirtualGardenModelUserActions(
-      {required int wateringCount,
-      int? wateringMaxCount,
-      DateTime? wateringRefill,
-      required int fertilizingCount,
-      int? fertilizingMaxCount,
-      DateTime? fertilizingRefill,
-      required int weedsRemoved,
-      int? weedsMaxRemoved,
-      DateTime? weedsRefill}) = _$VirtualGardenModelUserActionsImpl;
+      {required final int wateringCount,
+      final int? wateringMaxCount,
+      final DateTime? wateringRefill,
+      required final int fertilizingCount,
+      final int? fertilizingMaxCount,
+      final DateTime? fertilizingRefill,
+      required final int weedsRemoved,
+      final int? weedsMaxRemoved,
+      final DateTime? weedsRefill}) = _$VirtualGardenModelUserActionsImpl;
 
   factory _VirtualGardenModelUserActions.fromJson(Map<String, dynamic> json) =
       _$VirtualGardenModelUserActionsImpl.fromJson;
 
   @override
   int get wateringCount;
-  set wateringCount(int value);
   @override
   int? get wateringMaxCount;
-  set wateringMaxCount(int? value);
   @override
   DateTime? get wateringRefill;
-  set wateringRefill(DateTime? value);
   @override
   int get fertilizingCount;
-  set fertilizingCount(int value);
   @override
   int? get fertilizingMaxCount;
-  set fertilizingMaxCount(int? value);
   @override
   DateTime? get fertilizingRefill;
-  set fertilizingRefill(DateTime? value);
   @override
   int get weedsRemoved;
-  set weedsRemoved(int value);
   @override
   int? get weedsMaxRemoved;
-  set weedsMaxRemoved(int? value);
   @override
   DateTime? get weedsRefill;
-  set weedsRefill(DateTime? value);
 
   /// Create a copy of VirtualGardenModelUserActions
   /// with the given fields replaced by the non-null parameter values.

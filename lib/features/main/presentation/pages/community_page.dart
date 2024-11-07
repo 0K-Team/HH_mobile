@@ -36,90 +36,102 @@ class _CommunityPageState extends State<CommunityPage> {
             UserModel user = state.user;
             return RefreshIndicator(
               onRefresh: () async => get<PostsBloc>().add(PostsFetched()),
-              child: SingleChildScrollView(
-                child: Column(
+              child: Center(
+                child: ListView(
                   children: [
                     SizedBox(height: 1.h),
                     AppBarWidget(user: user),
                     SizedBox(height: 0.5.h),
                     Divider(color: shadow),
-                    SizedBox(height: 2.5.h),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                          color: accent,
-                          width: 4.sp,
-                        ),
-                      ),
+                    SizedBox(
                       width: 92.w,
-                      height: 10.h,
-                      child: Row(
+                      child: Column(
                         children: [
-                          SizedBox(width: 2.5.w),
-                          SizedBox(
-                            width: 80.w,
-                            child: TextField(
-                              controller: _controller,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: 'Ekologia au! Napisz co sądzisz',
-                                hintStyle: TextStyle(
-                                  color: shadow,
-                                  fontSize: 17.sp,
+                          SizedBox(height: 2.5.h),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: accent,
+                                width: 4.sp,
+                              ),
+                            ),
+                            width: 92.w,
+                            height: 10.h,
+                            child: Row(
+                              children: [
+                                SizedBox(width: 2.5.w),
+                                SizedBox(
+                                  width: 80.w,
+                                  child: TextField(
+                                    controller: _controller,
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText:
+                                          'Ekologia au! Napisz co sądzisz',
+                                      hintStyle: TextStyle(
+                                        color: shadow,
+                                        fontSize: 17.sp,
+                                      ),
+                                    ),
+                                    style: TextStyle(
+                                      fontSize: 17.sp,
+                                    ),
+                                    onSubmitted: (_) => sendMessage(),
+                                    maxLines: 5,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  behavior: HitTestBehavior.opaque,
+                                  onTap: sendMessage,
+                                  child: Icon(
+                                    Icons.send,
+                                    color: accent,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 1.h),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 4.w),
+                              child: Text(
+                                'Posty użytkowników',
+                                style: TextStyle(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.w700,
                                 ),
                               ),
-                              style: TextStyle(
-                                fontSize: 17.sp,
-                              ),
-                              onSubmitted: (_) => sendMessage(),
-                              maxLines: 5,
                             ),
                           ),
-                          GestureDetector(
-                            behavior: HitTestBehavior.opaque,
-                            onTap: sendMessage,
-                            child: Icon(
-                              Icons.send,
-                              color: accent,
-                            ),
-                          ),
+                          BlocBuilder<PostsBloc, PostsState>(
+                              builder: (context, state) {
+                            if (state is PostsLoadSuccess) {
+                              return SizedBox(
+                                width: 92.w,
+                                child: ListView.builder(
+                                  controller: ScrollController(),
+                                  itemBuilder: (context, index) {
+                                    PostModel post = state.posts[index];
+                                    return Container(
+                                      key: UniqueKey(),
+                                      child: PostWidget(post: post),
+                                    );
+                                  },
+                                  itemCount: state.posts.length,
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                ),
+                              );
+                            }
+
+                            return CircularProgressIndicator();
+                          }),
                         ],
                       ),
                     ),
-                    SizedBox(height: 1.h),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 4.w),
-                        child: Text(
-                          'Posty użytkowników',
-                          style: TextStyle(
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                    ),
-                    BlocBuilder<PostsBloc, PostsState>(
-                        builder: (context, state) {
-                      if (state is PostsLoadSuccess) {
-                        return SizedBox(
-                          width: 92.w,
-                          child: ListView.builder(
-                            itemBuilder: (context, index) {
-                              PostModel post = state.posts[index];
-                              return PostWidget(post: post);
-                            },
-                            itemCount: state.posts.length,
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                          ),
-                        );
-                      }
-
-                      return CircularProgressIndicator();
-                    }),
                   ],
                 ),
               ),
@@ -134,7 +146,7 @@ class _CommunityPageState extends State<CommunityPage> {
 
   sendMessage() {
     if (currentUser != null) {
-      String text = _controller.text;
+      String text = _controller.text.trim();
       if (text.isEmpty) {
         error('Tekst postu nie może być pusty!');
         return;

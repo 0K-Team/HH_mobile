@@ -22,20 +22,12 @@ PostModel _$PostModelFromJson(Map<String, dynamic> json) {
 mixin _$PostModel {
   @JsonKey(name: '_id')
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: '_id')
-  set id(String value) => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
-  set author(String value) => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
-  set content(String value) => throw _privateConstructorUsedError;
   List<String> get likes => throw _privateConstructorUsedError;
-  set likes(List<String> value) => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
-  set tags(List<String> value) => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
-  set images(List<String> value) => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
-  set createdAt(DateTime? value) => throw _privateConstructorUsedError;
 
   /// Serializes this PostModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -171,15 +163,15 @@ class __$$PostModelImplCopyWithImpl<$Res>
           : content // ignore: cast_nullable_to_non_nullable
               as String,
       likes: null == likes
-          ? _value.likes
+          ? _value._likes
           : likes // ignore: cast_nullable_to_non_nullable
               as List<String>,
       tags: null == tags
-          ? _value.tags
+          ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>,
       images: null == images
-          ? _value.images
+          ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
               as List<String>,
       createdAt: freezed == createdAt
@@ -197,34 +189,82 @@ class _$PostModelImpl implements _PostModel {
       {@JsonKey(name: '_id') required this.id,
       required this.author,
       required this.content,
-      required this.likes,
-      required this.tags,
-      required this.images,
-      this.createdAt});
+      required final List<String> likes,
+      required final List<String> tags,
+      required final List<String> images,
+      this.createdAt})
+      : _likes = likes,
+        _tags = tags,
+        _images = images;
 
   factory _$PostModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostModelImplFromJson(json);
 
   @override
   @JsonKey(name: '_id')
-  String id;
+  final String id;
   @override
-  String author;
+  final String author;
   @override
-  String content;
+  final String content;
+  final List<String> _likes;
   @override
-  List<String> likes;
+  List<String> get likes {
+    if (_likes is EqualUnmodifiableListView) return _likes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_likes);
+  }
+
+  final List<String> _tags;
   @override
-  List<String> tags;
+  List<String> get tags {
+    if (_tags is EqualUnmodifiableListView) return _tags;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tags);
+  }
+
+  final List<String> _images;
   @override
-  List<String> images;
+  List<String> get images {
+    if (_images is EqualUnmodifiableListView) return _images;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_images);
+  }
+
   @override
-  DateTime? createdAt;
+  final DateTime? createdAt;
 
   @override
   String toString() {
     return 'PostModel(id: $id, author: $author, content: $content, likes: $likes, tags: $tags, images: $images, createdAt: $createdAt)';
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PostModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.author, author) || other.author == author) &&
+            (identical(other.content, content) || other.content == content) &&
+            const DeepCollectionEquality().equals(other._likes, _likes) &&
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            const DeepCollectionEquality().equals(other._images, _images) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      author,
+      content,
+      const DeepCollectionEquality().hash(_likes),
+      const DeepCollectionEquality().hash(_tags),
+      const DeepCollectionEquality().hash(_images),
+      createdAt);
 
   /// Create a copy of PostModel
   /// with the given fields replaced by the non-null parameter values.
@@ -244,13 +284,13 @@ class _$PostModelImpl implements _PostModel {
 
 abstract class _PostModel implements PostModel {
   factory _PostModel(
-      {@JsonKey(name: '_id') required String id,
-      required String author,
-      required String content,
-      required List<String> likes,
-      required List<String> tags,
-      required List<String> images,
-      DateTime? createdAt}) = _$PostModelImpl;
+      {@JsonKey(name: '_id') required final String id,
+      required final String author,
+      required final String content,
+      required final List<String> likes,
+      required final List<String> tags,
+      required final List<String> images,
+      final DateTime? createdAt}) = _$PostModelImpl;
 
   factory _PostModel.fromJson(Map<String, dynamic> json) =
       _$PostModelImpl.fromJson;
@@ -258,26 +298,18 @@ abstract class _PostModel implements PostModel {
   @override
   @JsonKey(name: '_id')
   String get id;
-  @JsonKey(name: '_id')
-  set id(String value);
   @override
   String get author;
-  set author(String value);
   @override
   String get content;
-  set content(String value);
   @override
   List<String> get likes;
-  set likes(List<String> value);
   @override
   List<String> get tags;
-  set tags(List<String> value);
   @override
   List<String> get images;
-  set images(List<String> value);
   @override
   DateTime? get createdAt;
-  set createdAt(DateTime? value);
 
   /// Create a copy of PostModel
   /// with the given fields replaced by the non-null parameter values.

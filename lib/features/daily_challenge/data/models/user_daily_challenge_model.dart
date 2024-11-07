@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'user_daily_challenge_model.freezed.dart';
 part 'user_daily_challenge_model.g.dart';
 
-@unfreezed
+@freezed
 class UserDailyChallengeModel with _$UserDailyChallengeModel {
   factory UserDailyChallengeModel({
     required String title,

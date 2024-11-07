@@ -21,49 +21,27 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserModel {
   String get id => throw _privateConstructorUsedError;
-  set id(String value) => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  set email(String value) => throw _privateConstructorUsedError;
   String? get provider => throw _privateConstructorUsedError;
-  set provider(String? value) => throw _privateConstructorUsedError;
   String? get googleID => throw _privateConstructorUsedError;
-  set googleID(String? value) => throw _privateConstructorUsedError;
   String? get facebookID => throw _privateConstructorUsedError;
-  set facebookID(String? value) => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
-  set title(String? value) => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
-  set location(String? value) => throw _privateConstructorUsedError;
   String? get bio => throw _privateConstructorUsedError;
-  set bio(String? value) => throw _privateConstructorUsedError;
   String? get username => throw _privateConstructorUsedError;
-  set username(String? value) => throw _privateConstructorUsedError;
   int? get points => throw _privateConstructorUsedError;
-  set points(int? value) => throw _privateConstructorUsedError;
   UserModelFullName get fullName => throw _privateConstructorUsedError;
-  set fullName(UserModelFullName value) => throw _privateConstructorUsedError;
   String get avatarHash => throw _privateConstructorUsedError;
-  set avatarHash(String value) => throw _privateConstructorUsedError;
   List<UserModelNotification> get notifications =>
       throw _privateConstructorUsedError;
-  set notifications(List<UserModelNotification> value) =>
-      throw _privateConstructorUsedError;
   List<String> get friends => throw _privateConstructorUsedError;
-  set friends(List<String> value) => throw _privateConstructorUsedError;
   List<UserModelAchievement> get achievements =>
       throw _privateConstructorUsedError;
-  set achievements(List<UserModelAchievement> value) =>
-      throw _privateConstructorUsedError;
   List<String> get skills => throw _privateConstructorUsedError;
-  set skills(List<String> value) => throw _privateConstructorUsedError;
   List<String> get badges => throw _privateConstructorUsedError;
-  set badges(List<String> value) => throw _privateConstructorUsedError;
   List<String> get preferredTopics => throw _privateConstructorUsedError;
-  set preferredTopics(List<String> value) => throw _privateConstructorUsedError;
   bool get admin => throw _privateConstructorUsedError;
-  set admin(bool value) => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
-  set createdAt(DateTime? value) => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -354,27 +332,27 @@ class __$$UserModelImplCopyWithImpl<$Res>
           : avatarHash // ignore: cast_nullable_to_non_nullable
               as String,
       notifications: null == notifications
-          ? _value.notifications
+          ? _value._notifications
           : notifications // ignore: cast_nullable_to_non_nullable
               as List<UserModelNotification>,
       friends: null == friends
-          ? _value.friends
+          ? _value._friends
           : friends // ignore: cast_nullable_to_non_nullable
               as List<String>,
       achievements: null == achievements
-          ? _value.achievements
+          ? _value._achievements
           : achievements // ignore: cast_nullable_to_non_nullable
               as List<UserModelAchievement>,
       skills: null == skills
-          ? _value.skills
+          ? _value._skills
           : skills // ignore: cast_nullable_to_non_nullable
               as List<String>,
       badges: null == badges
-          ? _value.badges
+          ? _value._badges
           : badges // ignore: cast_nullable_to_non_nullable
               as List<String>,
       preferredTopics: null == preferredTopics
-          ? _value.preferredTopics
+          ? _value._preferredTopics
           : preferredTopics // ignore: cast_nullable_to_non_nullable
               as List<String>,
       admin: null == admin
@@ -405,65 +383,171 @@ class _$UserModelImpl extends _UserModel {
       this.points,
       required this.fullName,
       required this.avatarHash,
-      required this.notifications,
-      required this.friends,
-      required this.achievements,
-      required this.skills,
-      required this.badges,
-      required this.preferredTopics,
+      required final List<UserModelNotification> notifications,
+      required final List<String> friends,
+      required final List<UserModelAchievement> achievements,
+      required final List<String> skills,
+      required final List<String> badges,
+      required final List<String> preferredTopics,
       this.admin = false,
       this.createdAt})
-      : super._();
+      : _notifications = notifications,
+        _friends = friends,
+        _achievements = achievements,
+        _skills = skills,
+        _badges = badges,
+        _preferredTopics = preferredTopics,
+        super._();
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
 
   @override
-  String id;
+  final String id;
   @override
-  String email;
+  final String email;
   @override
-  String? provider;
+  final String? provider;
   @override
-  String? googleID;
+  final String? googleID;
   @override
-  String? facebookID;
+  final String? facebookID;
   @override
-  String? title;
+  final String? title;
   @override
-  String? location;
+  final String? location;
   @override
-  String? bio;
+  final String? bio;
   @override
-  String? username;
+  final String? username;
   @override
-  int? points;
+  final int? points;
   @override
-  UserModelFullName fullName;
+  final UserModelFullName fullName;
   @override
-  String avatarHash;
+  final String avatarHash;
+  final List<UserModelNotification> _notifications;
   @override
-  List<UserModelNotification> notifications;
+  List<UserModelNotification> get notifications {
+    if (_notifications is EqualUnmodifiableListView) return _notifications;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_notifications);
+  }
+
+  final List<String> _friends;
   @override
-  List<String> friends;
+  List<String> get friends {
+    if (_friends is EqualUnmodifiableListView) return _friends;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_friends);
+  }
+
+  final List<UserModelAchievement> _achievements;
   @override
-  List<UserModelAchievement> achievements;
+  List<UserModelAchievement> get achievements {
+    if (_achievements is EqualUnmodifiableListView) return _achievements;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_achievements);
+  }
+
+  final List<String> _skills;
   @override
-  List<String> skills;
+  List<String> get skills {
+    if (_skills is EqualUnmodifiableListView) return _skills;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_skills);
+  }
+
+  final List<String> _badges;
   @override
-  List<String> badges;
+  List<String> get badges {
+    if (_badges is EqualUnmodifiableListView) return _badges;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_badges);
+  }
+
+  final List<String> _preferredTopics;
   @override
-  List<String> preferredTopics;
+  List<String> get preferredTopics {
+    if (_preferredTopics is EqualUnmodifiableListView) return _preferredTopics;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_preferredTopics);
+  }
+
   @override
   @JsonKey()
-  bool admin;
+  final bool admin;
   @override
-  DateTime? createdAt;
+  final DateTime? createdAt;
 
   @override
   String toString() {
     return 'UserModel(id: $id, email: $email, provider: $provider, googleID: $googleID, facebookID: $facebookID, title: $title, location: $location, bio: $bio, username: $username, points: $points, fullName: $fullName, avatarHash: $avatarHash, notifications: $notifications, friends: $friends, achievements: $achievements, skills: $skills, badges: $badges, preferredTopics: $preferredTopics, admin: $admin, createdAt: $createdAt)';
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.provider, provider) ||
+                other.provider == provider) &&
+            (identical(other.googleID, googleID) ||
+                other.googleID == googleID) &&
+            (identical(other.facebookID, facebookID) ||
+                other.facebookID == facebookID) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.bio, bio) || other.bio == bio) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.points, points) || other.points == points) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.avatarHash, avatarHash) ||
+                other.avatarHash == avatarHash) &&
+            const DeepCollectionEquality()
+                .equals(other._notifications, _notifications) &&
+            const DeepCollectionEquality().equals(other._friends, _friends) &&
+            const DeepCollectionEquality()
+                .equals(other._achievements, _achievements) &&
+            const DeepCollectionEquality().equals(other._skills, _skills) &&
+            const DeepCollectionEquality().equals(other._badges, _badges) &&
+            const DeepCollectionEquality()
+                .equals(other._preferredTopics, _preferredTopics) &&
+            (identical(other.admin, admin) || other.admin == admin) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        email,
+        provider,
+        googleID,
+        facebookID,
+        title,
+        location,
+        bio,
+        username,
+        points,
+        fullName,
+        avatarHash,
+        const DeepCollectionEquality().hash(_notifications),
+        const DeepCollectionEquality().hash(_friends),
+        const DeepCollectionEquality().hash(_achievements),
+        const DeepCollectionEquality().hash(_skills),
+        const DeepCollectionEquality().hash(_badges),
+        const DeepCollectionEquality().hash(_preferredTopics),
+        admin,
+        createdAt
+      ]);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -483,26 +567,26 @@ class _$UserModelImpl extends _UserModel {
 
 abstract class _UserModel extends UserModel {
   factory _UserModel(
-      {required String id,
-      required String email,
-      String? provider,
-      String? googleID,
-      String? facebookID,
-      String? title,
-      String? location,
-      String? bio,
-      String? username,
-      int? points,
-      required UserModelFullName fullName,
-      required String avatarHash,
-      required List<UserModelNotification> notifications,
-      required List<String> friends,
-      required List<UserModelAchievement> achievements,
-      required List<String> skills,
-      required List<String> badges,
-      required List<String> preferredTopics,
-      bool admin,
-      DateTime? createdAt}) = _$UserModelImpl;
+      {required final String id,
+      required final String email,
+      final String? provider,
+      final String? googleID,
+      final String? facebookID,
+      final String? title,
+      final String? location,
+      final String? bio,
+      final String? username,
+      final int? points,
+      required final UserModelFullName fullName,
+      required final String avatarHash,
+      required final List<UserModelNotification> notifications,
+      required final List<String> friends,
+      required final List<UserModelAchievement> achievements,
+      required final List<String> skills,
+      required final List<String> badges,
+      required final List<String> preferredTopics,
+      final bool admin,
+      final DateTime? createdAt}) = _$UserModelImpl;
   _UserModel._() : super._();
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -510,64 +594,44 @@ abstract class _UserModel extends UserModel {
 
   @override
   String get id;
-  set id(String value);
   @override
   String get email;
-  set email(String value);
   @override
   String? get provider;
-  set provider(String? value);
   @override
   String? get googleID;
-  set googleID(String? value);
   @override
   String? get facebookID;
-  set facebookID(String? value);
   @override
   String? get title;
-  set title(String? value);
   @override
   String? get location;
-  set location(String? value);
   @override
   String? get bio;
-  set bio(String? value);
   @override
   String? get username;
-  set username(String? value);
   @override
   int? get points;
-  set points(int? value);
   @override
   UserModelFullName get fullName;
-  set fullName(UserModelFullName value);
   @override
   String get avatarHash;
-  set avatarHash(String value);
   @override
   List<UserModelNotification> get notifications;
-  set notifications(List<UserModelNotification> value);
   @override
   List<String> get friends;
-  set friends(List<String> value);
   @override
   List<UserModelAchievement> get achievements;
-  set achievements(List<UserModelAchievement> value);
   @override
   List<String> get skills;
-  set skills(List<String> value);
   @override
   List<String> get badges;
-  set badges(List<String> value);
   @override
   List<String> get preferredTopics;
-  set preferredTopics(List<String> value);
   @override
   bool get admin;
-  set admin(bool value);
   @override
   DateTime? get createdAt;
-  set createdAt(DateTime? value);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -584,9 +648,7 @@ UserModelFullName _$UserModelFullNameFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserModelFullName {
   String? get givenName => throw _privateConstructorUsedError;
-  set givenName(String? value) => throw _privateConstructorUsedError;
   String? get familyName => throw _privateConstructorUsedError;
-  set familyName(String? value) => throw _privateConstructorUsedError;
 
   /// Serializes this UserModelFullName to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -687,14 +749,29 @@ class _$UserModelFullNameImpl extends _UserModelFullName {
       _$$UserModelFullNameImplFromJson(json);
 
   @override
-  String? givenName;
+  final String? givenName;
   @override
-  String? familyName;
+  final String? familyName;
 
   @override
   String toString() {
     return 'UserModelFullName(givenName: $givenName, familyName: $familyName)';
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserModelFullNameImpl &&
+            (identical(other.givenName, givenName) ||
+                other.givenName == givenName) &&
+            (identical(other.familyName, familyName) ||
+                other.familyName == familyName));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, givenName, familyName);
 
   /// Create a copy of UserModelFullName
   /// with the given fields replaced by the non-null parameter values.
@@ -714,8 +791,9 @@ class _$UserModelFullNameImpl extends _UserModelFullName {
 }
 
 abstract class _UserModelFullName extends UserModelFullName {
-  factory _UserModelFullName({String? givenName, String? familyName}) =
-      _$UserModelFullNameImpl;
+  factory _UserModelFullName(
+      {final String? givenName,
+      final String? familyName}) = _$UserModelFullNameImpl;
   _UserModelFullName._() : super._();
 
   factory _UserModelFullName.fromJson(Map<String, dynamic> json) =
@@ -723,10 +801,8 @@ abstract class _UserModelFullName extends UserModelFullName {
 
   @override
   String? get givenName;
-  set givenName(String? value);
   @override
   String? get familyName;
-  set familyName(String? value);
 
   /// Create a copy of UserModelFullName
   /// with the given fields replaced by the non-null parameter values.
@@ -744,9 +820,7 @@ UserModelNotification _$UserModelNotificationFromJson(
 /// @nodoc
 mixin _$UserModelNotification {
   String get title => throw _privateConstructorUsedError;
-  set title(String value) => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
-  set date(String value) => throw _privateConstructorUsedError;
 
   /// Serializes this UserModelNotification to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -850,14 +924,27 @@ class _$UserModelNotificationImpl implements _UserModelNotification {
       _$$UserModelNotificationImplFromJson(json);
 
   @override
-  String title;
+  final String title;
   @override
-  String date;
+  final String date;
 
   @override
   String toString() {
     return 'UserModelNotification(title: $title, date: $date)';
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserModelNotificationImpl &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.date, date) || other.date == date));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, title, date);
 
   /// Create a copy of UserModelNotification
   /// with the given fields replaced by the non-null parameter values.
@@ -878,18 +965,16 @@ class _$UserModelNotificationImpl implements _UserModelNotification {
 
 abstract class _UserModelNotification implements UserModelNotification {
   factory _UserModelNotification(
-      {required String title,
-      required String date}) = _$UserModelNotificationImpl;
+      {required final String title,
+      required final String date}) = _$UserModelNotificationImpl;
 
   factory _UserModelNotification.fromJson(Map<String, dynamic> json) =
       _$UserModelNotificationImpl.fromJson;
 
   @override
   String get title;
-  set title(String value);
   @override
   String get date;
-  set date(String value);
 
   /// Create a copy of UserModelNotification
   /// with the given fields replaced by the non-null parameter values.
@@ -906,11 +991,8 @@ UserModelAchievement _$UserModelAchievementFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserModelAchievement {
   String get name => throw _privateConstructorUsedError;
-  set name(String value) => throw _privateConstructorUsedError;
   @JsonValue('date_awarded')
   DateTime get dateAwarded => throw _privateConstructorUsedError;
-  @JsonValue('date_awarded')
-  set dateAwarded(DateTime value) => throw _privateConstructorUsedError;
 
   /// Serializes this UserModelAchievement to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1014,15 +1096,29 @@ class _$UserModelAchievementImpl implements _UserModelAchievement {
       _$$UserModelAchievementImplFromJson(json);
 
   @override
-  String name;
+  final String name;
   @override
   @JsonValue('date_awarded')
-  DateTime dateAwarded;
+  final DateTime dateAwarded;
 
   @override
   String toString() {
     return 'UserModelAchievement(name: $name, dateAwarded: $dateAwarded)';
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserModelAchievementImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.dateAwarded, dateAwarded) ||
+                other.dateAwarded == dateAwarded));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, name, dateAwarded);
 
   /// Create a copy of UserModelAchievement
   /// with the given fields replaced by the non-null parameter values.
@@ -1044,8 +1140,8 @@ class _$UserModelAchievementImpl implements _UserModelAchievement {
 
 abstract class _UserModelAchievement implements UserModelAchievement {
   factory _UserModelAchievement(
-          {required String name,
-          @JsonValue('date_awarded') required DateTime dateAwarded}) =
+          {required final String name,
+          @JsonValue('date_awarded') required final DateTime dateAwarded}) =
       _$UserModelAchievementImpl;
 
   factory _UserModelAchievement.fromJson(Map<String, dynamic> json) =
@@ -1053,12 +1149,9 @@ abstract class _UserModelAchievement implements UserModelAchievement {
 
   @override
   String get name;
-  set name(String value);
   @override
   @JsonValue('date_awarded')
   DateTime get dateAwarded;
-  @JsonValue('date_awarded')
-  set dateAwarded(DateTime value);
 
   /// Create a copy of UserModelAchievement
   /// with the given fields replaced by the non-null parameter values.

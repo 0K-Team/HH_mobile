@@ -22,15 +22,9 @@ QuizModel _$QuizModelFromJson(Map<String, dynamic> json) {
 mixin _$QuizModel {
   @JsonKey(name: '_id')
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: '_id')
-  set id(String value) => throw _privateConstructorUsedError;
   String get topic => throw _privateConstructorUsedError;
-  set topic(String value) => throw _privateConstructorUsedError;
   List<QuizModelQuestions> get questions => throw _privateConstructorUsedError;
-  set questions(List<QuizModelQuestions> value) =>
-      throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
-  set category(String value) => throw _privateConstructorUsedError;
 
   /// Serializes this QuizModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -138,7 +132,7 @@ class __$$QuizModelImplCopyWithImpl<$Res>
           : topic // ignore: cast_nullable_to_non_nullable
               as String,
       questions: null == questions
-          ? _value.questions
+          ? _value._questions
           : questions // ignore: cast_nullable_to_non_nullable
               as List<QuizModelQuestions>,
       category: null == category
@@ -155,27 +149,52 @@ class _$QuizModelImpl extends _QuizModel {
   _$QuizModelImpl(
       {@JsonKey(name: '_id') required this.id,
       required this.topic,
-      required this.questions,
+      required final List<QuizModelQuestions> questions,
       required this.category})
-      : super._();
+      : _questions = questions,
+        super._();
 
   factory _$QuizModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuizModelImplFromJson(json);
 
   @override
   @JsonKey(name: '_id')
-  String id;
+  final String id;
   @override
-  String topic;
+  final String topic;
+  final List<QuizModelQuestions> _questions;
   @override
-  List<QuizModelQuestions> questions;
+  List<QuizModelQuestions> get questions {
+    if (_questions is EqualUnmodifiableListView) return _questions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_questions);
+  }
+
   @override
-  String category;
+  final String category;
 
   @override
   String toString() {
     return 'QuizModel(id: $id, topic: $topic, questions: $questions, category: $category)';
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$QuizModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.topic, topic) || other.topic == topic) &&
+            const DeepCollectionEquality()
+                .equals(other._questions, _questions) &&
+            (identical(other.category, category) ||
+                other.category == category));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, topic,
+      const DeepCollectionEquality().hash(_questions), category);
 
   /// Create a copy of QuizModel
   /// with the given fields replaced by the non-null parameter values.
@@ -195,10 +214,10 @@ class _$QuizModelImpl extends _QuizModel {
 
 abstract class _QuizModel extends QuizModel {
   factory _QuizModel(
-      {@JsonKey(name: '_id') required String id,
-      required String topic,
-      required List<QuizModelQuestions> questions,
-      required String category}) = _$QuizModelImpl;
+      {@JsonKey(name: '_id') required final String id,
+      required final String topic,
+      required final List<QuizModelQuestions> questions,
+      required final String category}) = _$QuizModelImpl;
   _QuizModel._() : super._();
 
   factory _QuizModel.fromJson(Map<String, dynamic> json) =
@@ -207,17 +226,12 @@ abstract class _QuizModel extends QuizModel {
   @override
   @JsonKey(name: '_id')
   String get id;
-  @JsonKey(name: '_id')
-  set id(String value);
   @override
   String get topic;
-  set topic(String value);
   @override
   List<QuizModelQuestions> get questions;
-  set questions(List<QuizModelQuestions> value);
   @override
   String get category;
-  set category(String value);
 
   /// Create a copy of QuizModel
   /// with the given fields replaced by the non-null parameter values.
@@ -234,18 +248,11 @@ QuizModelQuestions _$QuizModelQuestionsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$QuizModelQuestions {
   QuizModelQuestionsAnswers get answers => throw _privateConstructorUsedError;
-  set answers(QuizModelQuestionsAnswers value) =>
-      throw _privateConstructorUsedError;
   @JsonKey(name: '_id')
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: '_id')
-  set id(String value) => throw _privateConstructorUsedError;
   String get question => throw _privateConstructorUsedError;
-  set question(String value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'correct_answer')
   String get correctAnswer => throw _privateConstructorUsedError;
-  @JsonKey(name: 'correct_answer')
-  set correctAnswer(String value) => throw _privateConstructorUsedError;
 
   /// Serializes this QuizModelQuestions to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -393,20 +400,38 @@ class _$QuizModelQuestionsImpl implements _QuizModelQuestions {
       _$$QuizModelQuestionsImplFromJson(json);
 
   @override
-  QuizModelQuestionsAnswers answers;
+  final QuizModelQuestionsAnswers answers;
   @override
   @JsonKey(name: '_id')
-  String id;
+  final String id;
   @override
-  String question;
+  final String question;
   @override
   @JsonKey(name: 'correct_answer')
-  String correctAnswer;
+  final String correctAnswer;
 
   @override
   String toString() {
     return 'QuizModelQuestions(answers: $answers, id: $id, question: $question, correctAnswer: $correctAnswer)';
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$QuizModelQuestionsImpl &&
+            (identical(other.answers, answers) || other.answers == answers) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.question, question) ||
+                other.question == question) &&
+            (identical(other.correctAnswer, correctAnswer) ||
+                other.correctAnswer == correctAnswer));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, answers, id, question, correctAnswer);
 
   /// Create a copy of QuizModelQuestions
   /// with the given fields replaced by the non-null parameter values.
@@ -427,31 +452,25 @@ class _$QuizModelQuestionsImpl implements _QuizModelQuestions {
 
 abstract class _QuizModelQuestions implements QuizModelQuestions {
   factory _QuizModelQuestions(
-          {required QuizModelQuestionsAnswers answers,
-          @JsonKey(name: '_id') required String id,
-          required String question,
-          @JsonKey(name: 'correct_answer') required String correctAnswer}) =
-      _$QuizModelQuestionsImpl;
+      {required final QuizModelQuestionsAnswers answers,
+      @JsonKey(name: '_id') required final String id,
+      required final String question,
+      @JsonKey(name: 'correct_answer')
+      required final String correctAnswer}) = _$QuizModelQuestionsImpl;
 
   factory _QuizModelQuestions.fromJson(Map<String, dynamic> json) =
       _$QuizModelQuestionsImpl.fromJson;
 
   @override
   QuizModelQuestionsAnswers get answers;
-  set answers(QuizModelQuestionsAnswers value);
   @override
   @JsonKey(name: '_id')
   String get id;
-  @JsonKey(name: '_id')
-  set id(String value);
   @override
   String get question;
-  set question(String value);
   @override
   @JsonKey(name: 'correct_answer')
   String get correctAnswer;
-  @JsonKey(name: 'correct_answer')
-  set correctAnswer(String value);
 
   /// Create a copy of QuizModelQuestions
   /// with the given fields replaced by the non-null parameter values.
@@ -470,20 +489,12 @@ QuizModelQuestionsAnswers _$QuizModelQuestionsAnswersFromJson(
 mixin _$QuizModelQuestionsAnswers {
   @JsonKey(name: 'A')
   String get A => throw _privateConstructorUsedError;
-  @JsonKey(name: 'A')
-  set A(String value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'B')
   String get B => throw _privateConstructorUsedError;
-  @JsonKey(name: 'B')
-  set B(String value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'C')
   String get C => throw _privateConstructorUsedError;
-  @JsonKey(name: 'C')
-  set C(String value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'D')
   String get D => throw _privateConstructorUsedError;
-  @JsonKey(name: 'D')
-  set D(String value) => throw _privateConstructorUsedError;
 
   /// Serializes this QuizModelQuestionsAnswers to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -621,21 +632,36 @@ class _$QuizModelQuestionsAnswersImpl implements _QuizModelQuestionsAnswers {
 
   @override
   @JsonKey(name: 'A')
-  String A;
+  final String A;
   @override
   @JsonKey(name: 'B')
-  String B;
+  final String B;
   @override
   @JsonKey(name: 'C')
-  String C;
+  final String C;
   @override
   @JsonKey(name: 'D')
-  String D;
+  final String D;
 
   @override
   String toString() {
     return 'QuizModelQuestionsAnswers(A: $A, B: $B, C: $C, D: $D)';
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$QuizModelQuestionsAnswersImpl &&
+            (identical(other.A, A) || other.A == A) &&
+            (identical(other.B, B) || other.B == B) &&
+            (identical(other.C, C) || other.C == C) &&
+            (identical(other.D, D) || other.D == D));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, A, B, C, D);
 
   /// Create a copy of QuizModelQuestionsAnswers
   /// with the given fields replaced by the non-null parameter values.
@@ -656,10 +682,11 @@ class _$QuizModelQuestionsAnswersImpl implements _QuizModelQuestionsAnswers {
 
 abstract class _QuizModelQuestionsAnswers implements QuizModelQuestionsAnswers {
   factory _QuizModelQuestionsAnswers(
-      {@JsonKey(name: 'A') required String A,
-      @JsonKey(name: 'B') required String B,
-      @JsonKey(name: 'C') required String C,
-      @JsonKey(name: 'D') required String D}) = _$QuizModelQuestionsAnswersImpl;
+          {@JsonKey(name: 'A') required final String A,
+          @JsonKey(name: 'B') required final String B,
+          @JsonKey(name: 'C') required final String C,
+          @JsonKey(name: 'D') required final String D}) =
+      _$QuizModelQuestionsAnswersImpl;
 
   factory _QuizModelQuestionsAnswers.fromJson(Map<String, dynamic> json) =
       _$QuizModelQuestionsAnswersImpl.fromJson;
@@ -667,23 +694,15 @@ abstract class _QuizModelQuestionsAnswers implements QuizModelQuestionsAnswers {
   @override
   @JsonKey(name: 'A')
   String get A;
-  @JsonKey(name: 'A')
-  set A(String value);
   @override
   @JsonKey(name: 'B')
   String get B;
-  @JsonKey(name: 'B')
-  set B(String value);
   @override
   @JsonKey(name: 'C')
   String get C;
-  @JsonKey(name: 'C')
-  set C(String value);
   @override
   @JsonKey(name: 'D')
   String get D;
-  @JsonKey(name: 'D')
-  set D(String value);
 
   /// Create a copy of QuizModelQuestionsAnswers
   /// with the given fields replaced by the non-null parameter values.

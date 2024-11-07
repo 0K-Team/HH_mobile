@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'virtual_garden_model.freezed.dart';
 part 'virtual_garden_model.g.dart';
 
-@unfreezed
+@freezed
 class VirtualGardenModel with _$VirtualGardenModel {
   factory VirtualGardenModel({
     @JsonKey(name: '_id') required String id,
@@ -18,7 +18,7 @@ class VirtualGardenModel with _$VirtualGardenModel {
       _$VirtualGardenModelFromJson(json);
 }
 
-@unfreezed
+@freezed
 class VirtualGardenModelPlant with _$VirtualGardenModelPlant {
   factory VirtualGardenModelPlant({
     @JsonKey(name: '_id') required String plantId,
@@ -38,7 +38,7 @@ class VirtualGardenModelPlant with _$VirtualGardenModelPlant {
       _$VirtualGardenModelPlantFromJson(json);
 }
 
-@unfreezed
+@freezed
 class VirtualGardenModelUserActions with _$VirtualGardenModelUserActions {
   factory VirtualGardenModelUserActions({
     required int wateringCount,
