@@ -29,6 +29,7 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
   late TextEditingController _lastNameController;
   late TextEditingController _bioController;
   late TextEditingController _locationController;
+  late TextEditingController _titleController;
   late List<String> _preferredTopics;
 
   @override
@@ -41,6 +42,7 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
     _locationController =
         TextEditingController(text: widget.user.location ?? '');
     _preferredTopics = widget.user.preferredTopics.toList();
+    _titleController = TextEditingController(text: widget.user.title ?? '');
     super.initState();
   }
 
@@ -104,6 +106,28 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   labelText: 'Nazwisko',
+                  labelStyle: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    fontSize: 16.5.sp,
+                    height: 1,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 1.h),
+            Container(
+              width: 92.w,
+              decoration: BoxDecoration(
+                color: element,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+              child: TextField(
+                controller: _titleController,
+                onChanged: (_) => setState(() => isDirty = true),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  labelText: 'Tytuł',
                   labelStyle: TextStyle(
                     fontWeight: FontWeight.w300,
                     fontSize: 16.5.sp,
@@ -262,6 +286,22 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
             success('Zmieniono nazwisko.');
           } else {
             error('Błąd przy zmianie nazwiska.');
+          }
+        }
+
+        if (_titleController.text != widget.user.title) {
+          bool changed = await get<UserRepositoryImpl>()
+              .updateTitle(_titleController.text);
+          if (changed) {
+            isDirty = false;
+            Future.delayed(Duration.zero, () {
+              if (context.mounted) {
+                context.replace('/user/page/configuration', extra: currentUser);
+              }
+            });
+            success('Zmieniono tytuł.');
+          } else {
+            error('Błąd przy zmianie tytułu.');
           }
         }
 

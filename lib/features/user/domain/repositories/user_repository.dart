@@ -13,8 +13,12 @@ abstract class UserRepository {
 
   Future<bool> updateLocation(String location);
 
+  Future<bool> updateTitle(String title);
+
   Future<bool> addPreferredTopic(String topic);
 
   Future<bool> removePreferredTopic(String topic);
+
+
 
 }

@@ -143,6 +143,23 @@ class UserRepositoryImpl extends UserRepository {
     _cache[userModel.id] = _CachedUser(user: userModel, timestamp: DateTime.now());
     return true;
   }
+
+  @override
+  Future<bool> updateTitle(String title) async {
+    CurrentUserBloc currentUser = get();
+    if (currentUser.state is! CurrentUserLoadSuccess) {
+      return false;
+    }
+
+    UserModel? userModel = await _source.updateTitle(title);
+    if (userModel == null) {
+      return false;
+    }
+
+    currentUser.add(CurrentUserLoaded(userModel, (currentUser.state as CurrentUserLoadSuccess).jwt));
+    _cache[userModel.id] = _CachedUser(user: userModel, timestamp: DateTime.now());
+    return true;
+  }
 }
 
 class _CachedUser {

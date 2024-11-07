@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:eco_hero_mobile/features/posts/data/models/post_model.dart';
 
@@ -9,10 +11,12 @@ class PostsDataSource {
   Future<List<PostModel>?> fetchPosts(int page, {String? user}) async {
     try {
       final String url =
-          'https://ecohero.q1000q.me/api/v1/posts?page=$page&limit=10';
-      final response = await _dio.get(url, queryParameters: {
-        'user': user
-      });
+          'https://ecohero.q1000q.me/api/v1/posts?page=$page&limit=100';
+      Map<String, dynamic> queryParameters = {};
+      if (user != null) {
+        queryParameters['user'] = user;
+      }
+      final response = await _dio.get(url, queryParameters: queryParameters);
       if (response.statusCode == 200) {
         List<dynamic> json = response.data['data'];
         return json.map((dynamic) => PostModel.fromJson(dynamic)).toList();
@@ -20,6 +24,7 @@ class PostsDataSource {
         return null;
       }
     } catch (e) {
+      log(e.toString());
       return null;
     }
   }
