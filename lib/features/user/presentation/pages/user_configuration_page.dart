@@ -5,6 +5,7 @@ import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/common/util/snackbar.dart';
 import 'package:eco_hero_mobile/features/auth/auth_handler.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
+import 'package:eco_hero_mobile/features/user/data/repositories/preferred_topics_repository_impl.dart';
 import 'package:eco_hero_mobile/features/user/data/repositories/user_repository_impl.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user.dart';
 import 'package:flutter/material.dart';
@@ -51,204 +52,218 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
     return Scaffold(
       floatingActionButton: isDirty ? buildFloatingActionButton(context) : null,
       body: SafeArea(
-        child: Column(
-          children: [
-            BackWithText(
-              title: 'Konfiguracja profilu',
-            ),
-            SizedBox(height: 2.5.h),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: EdgeInsets.only(left: 4.w),
-                child: Text(
-                  'Podstawowe informacje',
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              BackWithText(
+                title: 'Konfiguracja profilu',
               ),
-            ),
-            SizedBox(height: 0.5.h),
-            Container(
-              width: 92.w,
-              decoration: BoxDecoration(
-                color: element,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
-              child: TextField(
-                controller: _firstNameController,
-                onChanged: (_) => setState(() => isDirty = true),
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  labelText: 'Pierwsze imię',
-                  labelStyle: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontSize: 16.5.sp,
-                    height: 1,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 1.h),
-            Container(
-              width: 92.w,
-              decoration: BoxDecoration(
-                color: element,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
-              child: TextField(
-                controller: _lastNameController,
-                onChanged: (_) => setState(() => isDirty = true),
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  labelText: 'Nazwisko',
-                  labelStyle: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontSize: 16.5.sp,
-                    height: 1,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 1.h),
-            Container(
-              width: 92.w,
-              decoration: BoxDecoration(
-                color: element,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
-              child: TextField(
-                controller: _titleController,
-                onChanged: (_) => setState(() => isDirty = true),
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  labelText: 'Tytuł',
-                  labelStyle: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontSize: 16.5.sp,
-                    height: 1,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 1.h),
-            Container(
-              width: 92.w,
-              decoration: BoxDecoration(
-                color: element,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
-              child: TextField(
-                controller: _bioController,
-                onChanged: (_) => setState(() => isDirty = true),
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  labelText: 'Opis',
-                  labelStyle: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontSize: 16.5.sp,
-                    height: 1,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 1.h),
-            Container(
-              width: 92.w,
-              decoration: BoxDecoration(
-                color: element,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
-              child: TextField(
-                controller: _locationController,
-                onChanged: (_) => setState(() => isDirty = true),
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  labelText: 'Lokalizacja',
-                  labelStyle: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontSize: 16.5.sp,
-                    height: 1,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 1.h),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: EdgeInsets.only(left: 4.w),
-                child: Text(
-                  'Preferowane tematy',
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 0.5.h),
-            Wrap(
-              spacing: 10.sp,
-              runSpacing: 10.sp,
-              alignment: WrapAlignment.spaceEvenly,
-              children: [
-                ...['Zero waste', 'Ekologia w mieście', 'Energia odnawialna']
-                    .map(
-                  (topic) => GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        if (_preferredTopics.any((string) => string == topic)) {
-                          isDirty = true;
-                          _preferredTopics
-                              .removeWhere((string) => string == topic);
-                        } else {
-                          isDirty = true;
-                          _preferredTopics.add(topic);
-                        }
-                      });
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: element,
-                        borderRadius: BorderRadius.circular(8),
-                        border:
-                            _preferredTopics.any((string) => string == topic)
-                                ? Border.all(
-                                    color: accent,
-                                    strokeAlign: BorderSide.strokeAlignOutside,
-                                  )
-                                : null,
-                      ),
-                      padding: EdgeInsets.symmetric(
-                        vertical: 0.25.h,
-                        horizontal: 1.5.w,
-                      ),
-                      child: Text(
-                        topic,
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
+              SizedBox(height: 2.5.h),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 4.w),
+                  child: Text(
+                    'Podstawowe informacje',
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ),
-              ],
-            ),
-            SizedBox(height: 2.5.h),
-            PrimaryButtonWidget(
-              onTap: () => AuthHandler.logout(context),
-              title: 'Wyloguj się',
-            )
-          ],
+              ),
+              SizedBox(height: 0.5.h),
+              Container(
+                width: 92.w,
+                decoration: BoxDecoration(
+                  color: element,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+                child: TextField(
+                  controller: _firstNameController,
+                  onChanged: (_) => setState(() => isDirty = true),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: 'Pierwsze imię',
+                    labelStyle: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 16.5.sp,
+                      height: 1,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 1.h),
+              Container(
+                width: 92.w,
+                decoration: BoxDecoration(
+                  color: element,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+                child: TextField(
+                  controller: _lastNameController,
+                  onChanged: (_) => setState(() => isDirty = true),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: 'Nazwisko',
+                    labelStyle: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 16.5.sp,
+                      height: 1,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 1.h),
+              Container(
+                width: 92.w,
+                decoration: BoxDecoration(
+                  color: element,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+                child: TextField(
+                  controller: _titleController,
+                  onChanged: (_) => setState(() => isDirty = true),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: 'Tytuł',
+                    labelStyle: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 16.5.sp,
+                      height: 1,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 1.h),
+              Container(
+                width: 92.w,
+                decoration: BoxDecoration(
+                  color: element,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+                child: TextField(
+                  controller: _bioController,
+                  onChanged: (_) => setState(() => isDirty = true),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: 'Opis',
+                    labelStyle: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 16.5.sp,
+                      height: 1,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 1.h),
+              Container(
+                width: 92.w,
+                decoration: BoxDecoration(
+                  color: element,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+                child: TextField(
+                  controller: _locationController,
+                  onChanged: (_) => setState(() => isDirty = true),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: 'Lokalizacja',
+                    labelStyle: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 16.5.sp,
+                      height: 1,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 1.h),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 4.w),
+                  child: Text(
+                    'Preferowane tematy',
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 0.5.h),
+              FutureBuilder(
+                  future: get<PreferredTopicsRepositoryImpl>()
+                      .fetchPreferredTopics(),
+                  builder: (context, snapshot) {
+                    if (snapshot.data == null) {
+                      return CircularProgressIndicator();
+                    }
+
+                    return snapshot.data!.fold((topics) {
+                      return Wrap(
+                        spacing: 10.sp,
+                        runSpacing: 10.sp,
+                        alignment: WrapAlignment.spaceEvenly,
+                        children: [
+                          ...snapshot.data!.left.map(
+                            (topic) => GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  if (_preferredTopics
+                                      .any((string) => string == topic.name)) {
+                                    isDirty = true;
+                                    _preferredTopics.removeWhere(
+                                        (string) => string == topic.name);
+                                  } else {
+                                    isDirty = true;
+                                    _preferredTopics.add(topic.name);
+                                  }
+                                });
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: element,
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: _preferredTopics
+                                          .any((string) => string == topic.name)
+                                      ? Border.all(
+                                          color: accent,
+                                          strokeAlign:
+                                              BorderSide.strokeAlignOutside,
+                                        )
+                                      : null,
+                                ),
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 0.25.h,
+                                  horizontal: 1.5.w,
+                                ),
+                                child: Text(
+                                  topic.name,
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }, (exception) => Text(exception.toString()));
+                  }),
+              SizedBox(height: 2.5.h),
+              PrimaryButtonWidget(
+                onTap: () => AuthHandler.logout(context),
+                title: 'Wyloguj się',
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -15,7 +15,9 @@ import 'package:eco_hero_mobile/features/posts/presentation/blocs/posts_bloc.dar
 import 'package:eco_hero_mobile/features/quizzes/data/data_sources/quizzes_data_source.dart';
 import 'package:eco_hero_mobile/features/quizzes/data/repositories/quizzes_repository_impl.dart';
 import 'package:eco_hero_mobile/features/quizzes/presentation/blocs/quizzes_bloc.dart';
+import 'package:eco_hero_mobile/features/user/data/data_sources/preferred_topics_data_source.dart';
 import 'package:eco_hero_mobile/features/user/data/data_sources/user_data_source.dart';
+import 'package:eco_hero_mobile/features/user/data/repositories/preferred_topics_repository_impl.dart';
 import 'package:eco_hero_mobile/features/user/data/repositories/user_repository_impl.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user_bloc.dart';
 import 'package:eco_hero_mobile/features/virtual_garden/data/data_sources/virtual_garden_data_source.dart';
@@ -65,6 +67,8 @@ void setupDependencyInjection() {
   get.registerLazySingleton(() => UserDataSource(get()));
   get.registerLazySingleton(() => UserRepositoryImpl(get()));
   get.registerLazySingleton(() => CurrentUserBloc());
+  get.registerLazySingleton(() => PreferredTopicsDataSource(get()));
+  get.registerLazySingleton(() => PreferredTopicsRepositoryImpl(get()));
 
   // Virtual garden
   get.registerLazySingleton(() => VirtualGardenDataSource(get()));
