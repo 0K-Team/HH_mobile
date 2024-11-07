@@ -1,17 +1,7 @@
-import 'package:dio/dio.dart';
-import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/util/button.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
-import 'package:eco_hero_mobile/common/util/extensions/bloc_extension.dart';
-import 'package:eco_hero_mobile/features/main/navigation_page_cubit.dart';
-import 'package:eco_hero_mobile/features/posts/presentation/blocs/posts_bloc.dart';
-import 'package:eco_hero_mobile/features/quizzes/presentation/blocs/quizzes_bloc.dart';
-import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
-import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user_bloc.dart';
-import 'package:flutter/foundation.dart';
+import 'package:eco_hero_mobile/features/auth/auth_handler.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AuthPage extends StatelessWidget {
@@ -19,14 +9,6 @@ class AuthPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const List<String> scopes = ['email', 'profile'];
-
-    GoogleSignIn googleSignIn = GoogleSignIn(
-      serverClientId:
-          '1025551109866-tghkfutlmpjfvdhfio9hi88pnpgskqfr.apps.googleusercontent.com',
-      scopes: scopes,
-    );
-
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -42,7 +24,7 @@ class AuthPage extends StatelessWidget {
               ),
               SizedBox(height: 4.h),
               PrimaryButtonWidget(
-                onTap: () async => await loginWithGoogle(context, googleSignIn),
+                onTap: () => AuthHandler.loginWithGoogle(context),
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -89,13 +71,6 @@ class AuthPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 1.h),
-              SecondaryButtonWidget(
-                title: 'Zaloguj się przykładowymi danymi',
-                onTap: () async {
-                  await loginWithMockData(context);
-                },
-              ),
               SizedBox(height: 4.h),
               SizedBox(
                 width: 92.w,
@@ -113,87 +88,5 @@ class AuthPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> loginWithMockData(BuildContext context) async {
-    await get<CurrentUserBloc>().addAndWait(CurrentUserLoaded(
-        UserModel(
-          email: 'opkarol11@wp.pl',
-          notifications: [
-            UserModelNotification(
-              title: 'powiadomienie',
-              date: 'date',
-            ),
-          ],
-          points: 999,
-          friends: [],
-          avatarHash: '1',
-          bio: 'Jestem bardzo fajnym ekologiem, który sprząta po swoim psie 🔥',
-          achievements: [],
-          skills: [],
-          badges: [],
-          location: 'Kraków, Poland',
-          preferredTopics: [
-            'Zero waste',
-            'Ekologia w mieście',
-            'Energia odnawialna'
-          ],
-          id: '',
-          username: '',
-          fullName: UserModelFullName(
-            givenName: 'Karol',
-            familyName: 'Gajda',
-          ),
-          provider: '',
-          googleID: '',
-          facebookID: '',
-          title: 'Ekolog',
-        ),
-        'n/a'));
-    if (context.mounted) {
-      get<NavigationPageCubit>().changePage(1);
-      context.push('/');
-    }
-  }
-
-  Future<void> loginWithGoogle(
-      BuildContext context, GoogleSignIn googleSignIn) async {
-    GoogleSignInAccount? account = await googleSignIn.signIn();
-    if (account != null) {
-      GoogleSignInAuthentication auth = await account.authentication;
-      String? idToken = auth.idToken;
-      googleSignIn.signOut();
-
-      Response response = await get<Dio>().get(
-        'https://ecohero.q1000q.me/api/v1/auth/googleToken',
-        data: {
-          'idToken': idToken,
-        },
-      );
-
-      String jwt = response.data;
-      Response user = await get<Dio>().get(
-        'https://ecohero.q1000q.me/api/v1/user/me',
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $jwt',
-          },
-        ),
-      );
-
-      UserModel userModel = UserModel.fromJson(user.data);
-      await get<CurrentUserBloc>()
-          .addAndWait(CurrentUserLoaded(userModel, jwt));
-      await get<PostsBloc>().addAndWait(PostsFetched());
-      await get<QuizzesBloc>().addAndWait(QuizzesFetched());
-      get<NavigationPageCubit>().changePage(1);
-      if (context.mounted) {
-        context.push('/');
-      }
-    } else {
-      if (kDebugMode) {
-        print('Google Sign-In failed');
-      }
-    }
   }
 }

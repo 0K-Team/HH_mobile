@@ -9,14 +9,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-
 class EcoHero extends StatelessWidget {
   const EcoHero({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       systemNavigationBarColor: background,
       systemNavigationBarIconBrightness: Brightness.light,

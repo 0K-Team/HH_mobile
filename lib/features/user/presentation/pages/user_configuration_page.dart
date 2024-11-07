@@ -4,6 +4,7 @@ import 'package:eco_hero_mobile/common/util/button.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/common/util/extensions/bloc_extension.dart';
 import 'package:eco_hero_mobile/common/util/snackbar.dart';
+import 'package:eco_hero_mobile/features/auth/auth_secure_storage.dart';
 import 'package:eco_hero_mobile/features/posts/presentation/blocs/posts_bloc.dart';
 import 'package:eco_hero_mobile/features/quizzes/presentation/blocs/quizzes_bloc.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
@@ -229,6 +230,7 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
                 get<PostsBloc>().reset(PostsInitial());
                 get<CurrentUserBloc>().reset(CurrentUserInitial());
                 get<QuizzesBloc>().reset(QuizzesInitial());
+                get<AuthSecureStorage>().deleteToken();
               },
               title: 'Wyloguj się',
             )

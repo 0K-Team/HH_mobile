@@ -1,3 +1,4 @@
+import 'package:eco_hero_mobile/common/app/init_page.dart';
 import 'package:eco_hero_mobile/features/auth/presentation/pages/auth_page.dart';
 import 'package:eco_hero_mobile/features/blogs/data/models/blog_model.dart';
 import 'package:eco_hero_mobile/features/blogs/presentation/pages/blog_page.dart';
@@ -23,7 +24,7 @@ import 'package:go_router/go_router.dart';
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 final router = GoRouter(
-  initialLocation: '/auth/page',
+  initialLocation: '/init',
   debugLogDiagnostics: kDebugMode,
   navigatorKey: navigatorKey,
   routes: [
@@ -33,6 +34,13 @@ final router = GoRouter(
         child: HomePage(),
       ),
       routes: [
+        // Init
+        GoRoute(
+          path: 'init',
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: InitPage(),
+          ),
+        ),
         // Main
         GoRoute(
           path: 'education/page',
