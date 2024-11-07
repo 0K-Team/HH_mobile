@@ -4,6 +4,9 @@ import 'package:eco_hero_mobile/features/blogs/data/data_sources/blog_data_sourc
 import 'package:eco_hero_mobile/features/blogs/data/repositories/blog_repository_impl.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/data/data_sources/user_daily_challenge_data_source.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/data/repositories/user_daily_challenge_repository_impl.dart';
+import 'package:eco_hero_mobile/features/events/data/data_sources/events_data_source.dart';
+import 'package:eco_hero_mobile/features/events/data/repositories/events_repository_impl.dart';
+import 'package:eco_hero_mobile/features/events/presentation/blocs/events_bloc.dart';
 import 'package:eco_hero_mobile/features/friends/data/data_sources/friends_data_source.dart';
 import 'package:eco_hero_mobile/features/main/navigation_page_cubit.dart';
 import 'package:eco_hero_mobile/features/posts/data/data_sources/posts_data_source.dart';
@@ -80,4 +83,8 @@ void setupDependencyInjection() {
   // Friends
   get.registerLazySingleton(() => FriendsDataSource(get()));
 
+  // Events
+  get.registerLazySingleton(() => EventsDataSource(get()));
+  get.registerLazySingleton(() => EventsRepositoryImpl(get()));
+  get.registerLazySingleton(() => EventsBloc(get()));
 }

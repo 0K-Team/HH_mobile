@@ -251,8 +251,6 @@ mixin _$QuizModelQuestions {
   @JsonKey(name: '_id')
   String get id => throw _privateConstructorUsedError;
   String get question => throw _privateConstructorUsedError;
-  @JsonKey(name: 'correct_answer')
-  String get correctAnswer => throw _privateConstructorUsedError;
 
   /// Serializes this QuizModelQuestions to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -273,8 +271,7 @@ abstract class $QuizModelQuestionsCopyWith<$Res> {
   $Res call(
       {QuizModelQuestionsAnswers answers,
       @JsonKey(name: '_id') String id,
-      String question,
-      @JsonKey(name: 'correct_answer') String correctAnswer});
+      String question});
 
   $QuizModelQuestionsAnswersCopyWith<$Res> get answers;
 }
@@ -297,7 +294,6 @@ class _$QuizModelQuestionsCopyWithImpl<$Res, $Val extends QuizModelQuestions>
     Object? answers = null,
     Object? id = null,
     Object? question = null,
-    Object? correctAnswer = null,
   }) {
     return _then(_value.copyWith(
       answers: null == answers
@@ -311,10 +307,6 @@ class _$QuizModelQuestionsCopyWithImpl<$Res, $Val extends QuizModelQuestions>
       question: null == question
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
-              as String,
-      correctAnswer: null == correctAnswer
-          ? _value.correctAnswer
-          : correctAnswer // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -341,8 +333,7 @@ abstract class _$$QuizModelQuestionsImplCopyWith<$Res>
   $Res call(
       {QuizModelQuestionsAnswers answers,
       @JsonKey(name: '_id') String id,
-      String question,
-      @JsonKey(name: 'correct_answer') String correctAnswer});
+      String question});
 
   @override
   $QuizModelQuestionsAnswersCopyWith<$Res> get answers;
@@ -364,7 +355,6 @@ class __$$QuizModelQuestionsImplCopyWithImpl<$Res>
     Object? answers = null,
     Object? id = null,
     Object? question = null,
-    Object? correctAnswer = null,
   }) {
     return _then(_$QuizModelQuestionsImpl(
       answers: null == answers
@@ -379,10 +369,6 @@ class __$$QuizModelQuestionsImplCopyWithImpl<$Res>
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
               as String,
-      correctAnswer: null == correctAnswer
-          ? _value.correctAnswer
-          : correctAnswer // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -393,8 +379,7 @@ class _$QuizModelQuestionsImpl implements _QuizModelQuestions {
   _$QuizModelQuestionsImpl(
       {required this.answers,
       @JsonKey(name: '_id') required this.id,
-      required this.question,
-      @JsonKey(name: 'correct_answer') required this.correctAnswer});
+      required this.question});
 
   factory _$QuizModelQuestionsImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuizModelQuestionsImplFromJson(json);
@@ -406,13 +391,10 @@ class _$QuizModelQuestionsImpl implements _QuizModelQuestions {
   final String id;
   @override
   final String question;
-  @override
-  @JsonKey(name: 'correct_answer')
-  final String correctAnswer;
 
   @override
   String toString() {
-    return 'QuizModelQuestions(answers: $answers, id: $id, question: $question, correctAnswer: $correctAnswer)';
+    return 'QuizModelQuestions(answers: $answers, id: $id, question: $question)';
   }
 
   @override
@@ -423,15 +405,12 @@ class _$QuizModelQuestionsImpl implements _QuizModelQuestions {
             (identical(other.answers, answers) || other.answers == answers) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.question, question) ||
-                other.question == question) &&
-            (identical(other.correctAnswer, correctAnswer) ||
-                other.correctAnswer == correctAnswer));
+                other.question == question));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, answers, id, question, correctAnswer);
+  int get hashCode => Object.hash(runtimeType, answers, id, question);
 
   /// Create a copy of QuizModelQuestions
   /// with the given fields replaced by the non-null parameter values.
@@ -454,9 +433,7 @@ abstract class _QuizModelQuestions implements QuizModelQuestions {
   factory _QuizModelQuestions(
       {required final QuizModelQuestionsAnswers answers,
       @JsonKey(name: '_id') required final String id,
-      required final String question,
-      @JsonKey(name: 'correct_answer')
-      required final String correctAnswer}) = _$QuizModelQuestionsImpl;
+      required final String question}) = _$QuizModelQuestionsImpl;
 
   factory _QuizModelQuestions.fromJson(Map<String, dynamic> json) =
       _$QuizModelQuestionsImpl.fromJson;
@@ -468,9 +445,6 @@ abstract class _QuizModelQuestions implements QuizModelQuestions {
   String get id;
   @override
   String get question;
-  @override
-  @JsonKey(name: 'correct_answer')
-  String get correctAnswer;
 
   /// Create a copy of QuizModelQuestions
   /// with the given fields replaced by the non-null parameter values.

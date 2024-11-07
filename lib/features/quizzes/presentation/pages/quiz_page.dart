@@ -1,5 +1,4 @@
 import 'package:eco_hero_mobile/common/util/back_with_text.dart';
-import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/features/quizzes/data/models/quiz_model.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -44,7 +43,6 @@ class QuizPage extends StatelessWidget {
                       Text(
                         'A. ${question.answers.A}',
                         style: TextStyle(
-                          color: question.correctAnswer == 'A' ? accent : null,
                           fontWeight: FontWeight.w400,
                           fontSize: 14.5.sp,
                         ),
@@ -52,7 +50,6 @@ class QuizPage extends StatelessWidget {
                       Text(
                         'B. ${question.answers.B}',
                         style: TextStyle(
-                          color: question.correctAnswer == 'B' ? accent : null,
                           fontWeight: FontWeight.w400,
                           fontSize: 14.5.sp,
                         ),
@@ -60,7 +57,6 @@ class QuizPage extends StatelessWidget {
                       Text(
                         'C. ${question.answers.C}',
                         style: TextStyle(
-                          color: question.correctAnswer == 'C' ? accent : null,
                           fontWeight: FontWeight.w400,
                           fontSize: 14.5.sp,
                         ),
@@ -68,7 +64,6 @@ class QuizPage extends StatelessWidget {
                       Text(
                         'D. ${question.answers.D}',
                         style: TextStyle(
-                          color: question.correctAnswer == 'D' ? accent : null,
                           fontWeight: FontWeight.w400,
                           fontSize: 14.5.sp,
                         ),

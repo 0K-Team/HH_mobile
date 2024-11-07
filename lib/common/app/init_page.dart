@@ -3,6 +3,7 @@ import 'package:eco_hero_mobile/features/auth/auth_handler.dart';
 import 'package:eco_hero_mobile/features/auth/auth_secure_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class InitPage extends StatefulWidget {
   const InitPage({super.key});
@@ -35,14 +36,22 @@ class _InitPageState extends State<InitPage> {
     return FutureBuilder(
       future: _handleAuth(context),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-        return Scaffold();
+        return Scaffold(
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/logo.png',
+                height: 30.h,
+                width: 30.h,
+                fit: BoxFit.cover,
+              ),
+              Center(
+                child: CircularProgressIndicator(),
+              ),
+            ],
+          ),
+        );
       },
     );
   }

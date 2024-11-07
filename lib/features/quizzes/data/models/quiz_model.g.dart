@@ -31,7 +31,6 @@ _$QuizModelQuestionsImpl _$$QuizModelQuestionsImplFromJson(
           json['answers'] as Map<String, dynamic>),
       id: json['_id'] as String,
       question: json['question'] as String,
-      correctAnswer: json['correct_answer'] as String,
     );
 
 Map<String, dynamic> _$$QuizModelQuestionsImplToJson(
@@ -40,7 +39,6 @@ Map<String, dynamic> _$$QuizModelQuestionsImplToJson(
       'answers': instance.answers,
       '_id': instance.id,
       'question': instance.question,
-      'correct_answer': instance.correctAnswer,
     };
 
 _$QuizModelQuestionsAnswersImpl _$$QuizModelQuestionsAnswersImplFromJson(

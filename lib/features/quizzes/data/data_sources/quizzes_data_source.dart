@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:eco_hero_mobile/features/quizzes/data/models/quiz_model.dart';
 import 'package:eco_hero_mobile/features/quizzes/data/models/quiz_topic_model.dart';
@@ -20,6 +22,7 @@ class QuizzesDataSource {
   Future<QuizModel?> fetchQuiz(QuizTopicModel topic) async {
     Response response = await _dio.get('https://ecohero.q1000q.me/api/v1/quizzes/${topic.id}');
     if (response.statusCode == 200) {
+      log('json: ${response.data}');
       return QuizModel.fromJson(response.data);
     }
 

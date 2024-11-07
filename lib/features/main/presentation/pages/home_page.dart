@@ -2,6 +2,7 @@ import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/features/blogs/presentation/widgets/blogs_carousel_widget.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/data/repositories/user_daily_challenge_repository_impl.dart';
+import 'package:eco_hero_mobile/features/events/presentation/widgets/events_list_widget.dart';
 import 'package:eco_hero_mobile/features/main/presentation/widgets/button_widget.dart';
 import 'package:eco_hero_mobile/features/main/presentation/widgets/element_widget.dart';
 import 'package:eco_hero_mobile/features/main/presentation/widgets/app_bar_widget.dart';
@@ -198,6 +199,7 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(height: 0.5.h),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 4.w),
                     padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
@@ -238,6 +240,23 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(height: 2.5.h),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 4.w),
+                      child: Text(
+                        'EkoWydarzenia',
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 1.h),
+                  EventsListWidget(),
+                  SizedBox(height: 1.h),
                 ],
               ),
             );

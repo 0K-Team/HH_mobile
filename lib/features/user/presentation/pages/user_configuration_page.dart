@@ -2,15 +2,11 @@ import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/util/back_with_text.dart';
 import 'package:eco_hero_mobile/common/util/button.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
-import 'package:eco_hero_mobile/common/util/extensions/bloc_extension.dart';
 import 'package:eco_hero_mobile/common/util/snackbar.dart';
-import 'package:eco_hero_mobile/features/auth/auth_secure_storage.dart';
-import 'package:eco_hero_mobile/features/posts/presentation/blocs/posts_bloc.dart';
-import 'package:eco_hero_mobile/features/quizzes/presentation/blocs/quizzes_bloc.dart';
+import 'package:eco_hero_mobile/features/auth/auth_handler.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/data/repositories/user_repository_impl.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user.dart';
-import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -225,13 +221,7 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
             ),
             SizedBox(height: 2.5.h),
             PrimaryButtonWidget(
-              onTap: () {
-                context.go('/auth/page');
-                get<PostsBloc>().reset(PostsInitial());
-                get<CurrentUserBloc>().reset(CurrentUserInitial());
-                get<QuizzesBloc>().reset(QuizzesInitial());
-                get<AuthSecureStorage>().deleteToken();
-              },
+              onTap: () => AuthHandler.logout(context),
               title: 'Wyloguj się',
             )
           ],

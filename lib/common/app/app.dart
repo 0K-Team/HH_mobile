@@ -1,6 +1,7 @@
 import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/router/go_router.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
+import 'package:eco_hero_mobile/features/events/presentation/blocs/events_bloc.dart';
 import 'package:eco_hero_mobile/features/posts/presentation/blocs/posts_bloc.dart';
 import 'package:eco_hero_mobile/features/quizzes/presentation/blocs/quizzes_bloc.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user_bloc.dart';
@@ -25,9 +26,10 @@ class EcoHero extends StatelessWidget {
       builder: (_, __, ___) {
         return MultiBlocProvider(
           providers: [
-            BlocProvider<CurrentUserBloc>(create: (context) => get()),
-            BlocProvider<PostsBloc>(create: (context) => get()),
-            BlocProvider<QuizzesBloc>(create: (context) => get()),
+            BlocProvider<CurrentUserBloc>(create: (_) => get()),
+            BlocProvider<PostsBloc>(create: (_) => get()),
+            BlocProvider<QuizzesBloc>(create: (_) => get()),
+            BlocProvider<EventsBloc>(create: (_) => get()),
           ],
           child: MaterialApp.router(
             routerConfig: router,

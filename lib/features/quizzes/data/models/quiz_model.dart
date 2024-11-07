@@ -36,7 +36,6 @@ class QuizModelQuestions with _$QuizModelQuestions {
     required QuizModelQuestionsAnswers answers,
     @JsonKey(name: '_id') required String id,
     required String question,
-    @JsonKey(name: 'correct_answer') required String correctAnswer,
   }) = _QuizModelQuestions;
 
   factory QuizModelQuestions.fromJson(Map<String, dynamic> json) =>

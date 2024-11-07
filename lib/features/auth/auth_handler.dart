@@ -4,6 +4,7 @@ import 'package:eco_hero_mobile/common/router/go_router.dart';
 import 'package:eco_hero_mobile/common/util/extensions/bloc_extension.dart';
 import 'package:eco_hero_mobile/common/util/overlay_manager.dart';
 import 'package:eco_hero_mobile/features/auth/auth_secure_storage.dart';
+import 'package:eco_hero_mobile/features/events/presentation/blocs/events_bloc.dart';
 import 'package:eco_hero_mobile/features/main/navigation_page_cubit.dart';
 import 'package:eco_hero_mobile/features/posts/presentation/blocs/posts_bloc.dart';
 import 'package:eco_hero_mobile/features/quizzes/presentation/blocs/quizzes_bloc.dart';
@@ -44,6 +45,7 @@ class AuthHandler {
       await get<PostsBloc>().addAndWait(PostsFetched());
       await get<QuizzesBloc>().addAndWait(QuizzesFetched());
       await get<AuthSecureStorage>().saveToken(jwt);
+      await get<EventsBloc>().addAndWait(EventsFetched());
       get<NavigationPageCubit>().changePage(1);
       if (navigatorKey.currentState != null &&
           navigatorKey.currentState!.mounted) {
@@ -88,5 +90,15 @@ class AuthHandler {
         print('Google Sign-In failed');
       }
     }
+  }
+
+  static Future<void> logout(BuildContext context) async {
+    context.go('/auth/page');
+    get<PostsBloc>().reset(PostsInitial());
+    get<CurrentUserBloc>().reset(CurrentUserInitial());
+    get<QuizzesBloc>().reset(QuizzesInitial());
+    get<EventsBloc>().reset(EventsInitial());
+    get<AuthSecureStorage>().deleteToken();
+    get.reset();
   }
 }
