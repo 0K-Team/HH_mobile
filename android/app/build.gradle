@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    ndkVersion = "27.0.12077973"
+    ndkVersion = "27.2.12479018"
     namespace = "me.opkarol.eco_hero_mobile"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion

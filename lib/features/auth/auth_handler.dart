@@ -19,7 +19,7 @@ class AuthHandler {
   static const List<String> _scopes = ['email', 'profile'];
   static final GoogleSignIn googleSignIn = GoogleSignIn(
     serverClientId:
-        '1025551109866-tghkfutlmpjfvdhfio9hi88pnpgskqfr.apps.googleusercontent.com',
+        '1025551109866-n37gq85rnl1f3d5e7jmomlsdaqqi586k.apps.googleusercontent.com',
     scopes: _scopes,
   );
 
