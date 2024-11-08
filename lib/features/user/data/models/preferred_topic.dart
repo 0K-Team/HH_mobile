@@ -4,12 +4,12 @@ part 'preferred_topic.freezed.dart';
 part 'preferred_topic.g.dart';
 
 @unfreezed
-class PreferredTopic with _$PreferredTopic {
-  factory PreferredTopic({
+class PreferredTopicModel with _$PreferredTopicModel {
+  factory PreferredTopicModel({
     @JsonKey(name: '_id') required String id,
     required String name,
-  }) = _PreferredTopic;
+  }) = _PreferredTopicModel;
 
-  factory PreferredTopic.fromJson(Map<String, dynamic> json) =>
-      _$PreferredTopicFromJson(json);
+  factory PreferredTopicModel.fromJson(Map<String, dynamic> json) =>
+      _$PreferredTopicModelFromJson(json);
 }

@@ -3,5 +3,5 @@ import 'package:either_dart/either.dart';
 
 abstract class PreferredTopicsRepository {
 
-  Future<Either<List<PreferredTopic>, Exception>> fetchPreferredTopics();
+  Future<Either<List<PreferredTopicModel>, Exception>> fetchPreferredTopics();
 }

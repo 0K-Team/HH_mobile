@@ -7,27 +7,30 @@ class EventsDataSource {
   EventsDataSource(this._dio);
 
   Future<List<EventModel>?> fetchEvents() async {
+    Response response = await _dio.get('https://ecohero.q1000q.me/api/v1/events');
+    if (response.statusCode == 200) {
+      List<dynamic> list = response.data;
+      return list.map((dynamic) => EventModel.fromJson(dynamic)).toList();
+    }
+    
+    return null;
+  }
 
-    return [
-      EventModel(
-        id: '',
-        title: 'Sprzątanie miejskiej plaży',
-        description: 'Dołącz do nas i pomóż w sprzątaniu miejskiej plaży! Wspólnie zadbajmy o naszą okolicę.',
-        category: 'Akcja sprzątania',
-        isOffline: false,
-        location: EventModelLocation(
-          address: 'address',
-          latitude: 45.9,
-          longitude: 46.7,
-        ),
-        date: DateTime.timestamp(),
-        duration: '2h',
-        organizer: 'organizer',
-        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl1cvI_MS8oxczCxgYZmc1eGlHKeJoi1ES2g&s',
-        additionalInfo: EventModelAdditionalInfo(
-          whatToBring: 'bring 2 tooth',
-        ),
-      )
-    ];
+  Future<EventModel?> joinEvent(EventModel event) async {
+    Response response = await _dio.post('https://ecohero.q1000q.me/api/v1/events/${event.id}/members/me');
+    if (response.statusCode == 200) {
+      return EventModel.fromJson(response.data);
+    }
+
+    return null;
+  }
+
+  Future<EventModel?> quitEvent(EventModel event) async {
+    Response response = await _dio.delete('https://ecohero.q1000q.me/api/v1/events/${event.id}/members/me');
+    if (response.statusCode == 200) {
+      return EventModel.fromJson(response.data);
+    }
+
+    return null;
   }
 }

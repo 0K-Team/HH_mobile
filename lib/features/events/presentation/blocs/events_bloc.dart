@@ -7,6 +7,7 @@ import 'package:either_dart/either.dart';
 import 'package:equatable/equatable.dart';
 
 part 'events_event.dart';
+
 part 'events_state.dart';
 
 class EventsBloc extends Bloc<EventsEvent, EventsState> {
@@ -14,6 +15,9 @@ class EventsBloc extends Bloc<EventsEvent, EventsState> {
 
   EventsBloc(this._repository) : super(EventsInitial()) {
     on<EventsFetched>(_onEventsFetch);
+    on<EventsAdded>(_onEventsAdded);
+    on<EventsJoined>(_onEventsJoined);
+    on<EventsQuited>(_onEventsQuited);
   }
 
   FutureOr<void> _onEventsFetch(
@@ -27,5 +31,42 @@ class EventsBloc extends Bloc<EventsEvent, EventsState> {
 
     List<EventModel> events = either.left;
     emit(EventsLoadSuccess(events));
+  }
+
+  FutureOr<void> _onEventsAdded(EventsAdded event, Emitter<EventsState> emit) {
+    List<EventModel> events = [];
+    if (state is EventsLoadSuccess) {
+      events.addAll((state as EventsLoadSuccess).events);
+    }
+
+    events.addAll(event.events);
+
+    final uniqueEvents = List.from(events)
+        .fold<Map<String, EventModel>>({}, (map, event) {
+          map[event.id] = event;
+          return map;
+        })
+        .values
+        .toList();
+
+    emit(EventsLoadSuccess(uniqueEvents));
+  }
+
+  FutureOr<void> _onEventsJoined(
+      EventsJoined event, Emitter<EventsState> emit) {
+    _repository.joinEvent(event.event).fold((event) {
+      add(EventsAdded([event]));
+    }, (exception) {
+      emit(EventsLoadError(exception));
+    });
+  }
+
+  FutureOr<void> _onEventsQuited(
+      EventsQuited event, Emitter<EventsState> emit) {
+    _repository.quitEvent(event.event).fold((event) {
+      add(EventsAdded([event]));
+    }, (exception) {
+      emit(EventsLoadError(exception));
+    });
   }
 }

@@ -25,14 +25,13 @@ mixin _$EventModel {
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_offline')
   bool get isOffline => throw _privateConstructorUsedError;
   EventModelLocation get location => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
   String get duration => throw _privateConstructorUsedError;
   String get organizer => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
-  @JsonKey(name: 'additional_info')
+  List<String> get members => throw _privateConstructorUsedError;
   EventModelAdditionalInfo get additionalInfo =>
       throw _privateConstructorUsedError;
 
@@ -57,13 +56,13 @@ abstract class $EventModelCopyWith<$Res> {
       String title,
       String description,
       String category,
-      @JsonKey(name: 'is_offline') bool isOffline,
+      bool isOffline,
       EventModelLocation location,
       DateTime date,
       String duration,
       String organizer,
       String image,
-      @JsonKey(name: 'additional_info')
+      List<String> members,
       EventModelAdditionalInfo additionalInfo});
 
   $EventModelLocationCopyWith<$Res> get location;
@@ -95,6 +94,7 @@ class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
     Object? duration = null,
     Object? organizer = null,
     Object? image = null,
+    Object? members = null,
     Object? additionalInfo = null,
   }) {
     return _then(_value.copyWith(
@@ -138,6 +138,10 @@ class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      members: null == members
+          ? _value.members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       additionalInfo: null == additionalInfo
           ? _value.additionalInfo
           : additionalInfo // ignore: cast_nullable_to_non_nullable
@@ -180,13 +184,13 @@ abstract class _$$EventModelImplCopyWith<$Res>
       String title,
       String description,
       String category,
-      @JsonKey(name: 'is_offline') bool isOffline,
+      bool isOffline,
       EventModelLocation location,
       DateTime date,
       String duration,
       String organizer,
       String image,
-      @JsonKey(name: 'additional_info')
+      List<String> members,
       EventModelAdditionalInfo additionalInfo});
 
   @override
@@ -218,6 +222,7 @@ class __$$EventModelImplCopyWithImpl<$Res>
     Object? duration = null,
     Object? organizer = null,
     Object? image = null,
+    Object? members = null,
     Object? additionalInfo = null,
   }) {
     return _then(_$EventModelImpl(
@@ -261,6 +266,10 @@ class __$$EventModelImplCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      members: null == members
+          ? _value._members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       additionalInfo: null == additionalInfo
           ? _value.additionalInfo
           : additionalInfo // ignore: cast_nullable_to_non_nullable
@@ -277,13 +286,15 @@ class _$EventModelImpl implements _EventModel {
       required this.title,
       required this.description,
       required this.category,
-      @JsonKey(name: 'is_offline') required this.isOffline,
+      required this.isOffline,
       required this.location,
       required this.date,
       required this.duration,
       required this.organizer,
       required this.image,
-      @JsonKey(name: 'additional_info') required this.additionalInfo});
+      required final List<String> members,
+      required this.additionalInfo})
+      : _members = members;
 
   factory _$EventModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$EventModelImplFromJson(json);
@@ -298,7 +309,6 @@ class _$EventModelImpl implements _EventModel {
   @override
   final String category;
   @override
-  @JsonKey(name: 'is_offline')
   final bool isOffline;
   @override
   final EventModelLocation location;
@@ -310,13 +320,20 @@ class _$EventModelImpl implements _EventModel {
   final String organizer;
   @override
   final String image;
+  final List<String> _members;
   @override
-  @JsonKey(name: 'additional_info')
+  List<String> get members {
+    if (_members is EqualUnmodifiableListView) return _members;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_members);
+  }
+
+  @override
   final EventModelAdditionalInfo additionalInfo;
 
   @override
   String toString() {
-    return 'EventModel(id: $id, title: $title, description: $description, category: $category, isOffline: $isOffline, location: $location, date: $date, duration: $duration, organizer: $organizer, image: $image, additionalInfo: $additionalInfo)';
+    return 'EventModel(id: $id, title: $title, description: $description, category: $category, isOffline: $isOffline, location: $location, date: $date, duration: $duration, organizer: $organizer, image: $image, members: $members, additionalInfo: $additionalInfo)';
   }
 
   @override
@@ -340,14 +357,27 @@ class _$EventModelImpl implements _EventModel {
             (identical(other.organizer, organizer) ||
                 other.organizer == organizer) &&
             (identical(other.image, image) || other.image == image) &&
+            const DeepCollectionEquality().equals(other._members, _members) &&
             (identical(other.additionalInfo, additionalInfo) ||
                 other.additionalInfo == additionalInfo));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, description, category,
-      isOffline, location, date, duration, organizer, image, additionalInfo);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      description,
+      category,
+      isOffline,
+      location,
+      date,
+      duration,
+      organizer,
+      image,
+      const DeepCollectionEquality().hash(_members),
+      additionalInfo);
 
   /// Create a copy of EventModel
   /// with the given fields replaced by the non-null parameter values.
@@ -371,13 +401,13 @@ abstract class _EventModel implements EventModel {
           required final String title,
           required final String description,
           required final String category,
-          @JsonKey(name: 'is_offline') required final bool isOffline,
+          required final bool isOffline,
           required final EventModelLocation location,
           required final DateTime date,
           required final String duration,
           required final String organizer,
           required final String image,
-          @JsonKey(name: 'additional_info')
+          required final List<String> members,
           required final EventModelAdditionalInfo additionalInfo}) =
       _$EventModelImpl;
 
@@ -394,7 +424,6 @@ abstract class _EventModel implements EventModel {
   @override
   String get category;
   @override
-  @JsonKey(name: 'is_offline')
   bool get isOffline;
   @override
   EventModelLocation get location;
@@ -407,7 +436,8 @@ abstract class _EventModel implements EventModel {
   @override
   String get image;
   @override
-  @JsonKey(name: 'additional_info')
+  List<String> get members;
+  @override
   EventModelAdditionalInfo get additionalInfo;
 
   /// Create a copy of EventModel
@@ -613,9 +643,7 @@ EventModelAdditionalInfo _$EventModelAdditionalInfoFromJson(
 
 /// @nodoc
 mixin _$EventModelAdditionalInfo {
-  @JsonKey(name: 'what_to_bring')
   String? get whatToBring => throw _privateConstructorUsedError;
-  @JsonKey(name: 'event_rules')
   String? get eventRules => throw _privateConstructorUsedError;
 
   /// Serializes this EventModelAdditionalInfo to a JSON map.
@@ -634,9 +662,7 @@ abstract class $EventModelAdditionalInfoCopyWith<$Res> {
           $Res Function(EventModelAdditionalInfo) then) =
       _$EventModelAdditionalInfoCopyWithImpl<$Res, EventModelAdditionalInfo>;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'what_to_bring') String? whatToBring,
-      @JsonKey(name: 'event_rules') String? eventRules});
+  $Res call({String? whatToBring, String? eventRules});
 }
 
 /// @nodoc
@@ -680,9 +706,7 @@ abstract class _$$EventModelAdditionalInfoImplCopyWith<$Res>
       __$$EventModelAdditionalInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'what_to_bring') String? whatToBring,
-      @JsonKey(name: 'event_rules') String? eventRules});
+  $Res call({String? whatToBring, String? eventRules});
 }
 
 /// @nodoc
@@ -719,18 +743,14 @@ class __$$EventModelAdditionalInfoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EventModelAdditionalInfoImpl implements _EventModelAdditionalInfo {
-  _$EventModelAdditionalInfoImpl(
-      {@JsonKey(name: 'what_to_bring') this.whatToBring,
-      @JsonKey(name: 'event_rules') this.eventRules});
+  _$EventModelAdditionalInfoImpl({this.whatToBring, this.eventRules});
 
   factory _$EventModelAdditionalInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$EventModelAdditionalInfoImplFromJson(json);
 
   @override
-  @JsonKey(name: 'what_to_bring')
   final String? whatToBring;
   @override
-  @JsonKey(name: 'event_rules')
   final String? eventRules;
 
   @override
@@ -772,18 +792,15 @@ class _$EventModelAdditionalInfoImpl implements _EventModelAdditionalInfo {
 
 abstract class _EventModelAdditionalInfo implements EventModelAdditionalInfo {
   factory _EventModelAdditionalInfo(
-          {@JsonKey(name: 'what_to_bring') final String? whatToBring,
-          @JsonKey(name: 'event_rules') final String? eventRules}) =
-      _$EventModelAdditionalInfoImpl;
+      {final String? whatToBring,
+      final String? eventRules}) = _$EventModelAdditionalInfoImpl;
 
   factory _EventModelAdditionalInfo.fromJson(Map<String, dynamic> json) =
       _$EventModelAdditionalInfoImpl.fromJson;
 
   @override
-  @JsonKey(name: 'what_to_bring')
   String? get whatToBring;
   @override
-  @JsonKey(name: 'event_rules')
   String? get eventRules;
 
   /// Create a copy of EventModelAdditionalInfo

@@ -18,14 +18,17 @@ class BackWithText extends StatelessWidget {
         Row(
           children: [
             BackButton(),
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 19.sp,
-                fontWeight: FontWeight.w600,
+            SizedBox(
+              width: ending == null ? 80.w : null,
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: 19.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
-
           ],
         ),
         if (ending != null)

@@ -17,9 +17,15 @@ class EventsListWidget extends StatelessWidget {
         return CircularProgressIndicator();
       }
 
-      return Column(
-        children:
-            state.events.map((event) => EventWidget(event: event)).toList(),
+      return ListView.builder(
+        shrinkWrap: true,
+        itemCount: state.events.length,
+        itemBuilder: (context, index) {
+          return Align(
+            alignment: Alignment.center,
+            child: EventWidget(event: state.events[index]),
+          );
+        },
       );
     });
   }

@@ -25,14 +25,22 @@ class EventsRepositoryImpl extends EventsRepository {
   }
 
   @override
-  Future<Either<EventModel, Exception>> joinEvent(EventModel event) {
-    // TODO: implement joinEvent
-    throw UnimplementedError();
+  Future<Either<EventModel, Exception>> joinEvent(EventModel event) async {
+    EventModel? eventResult = await _source.joinEvent(event);
+    if (eventResult == null) {
+      return Right(Exception('Error joining event'));
+    }
+
+    return Left(eventResult);
   }
 
   @override
-  Future<Either<EventModel, Exception>> quitEvent(EventModel event) {
-    // TODO: implement quitEvent
-    throw UnimplementedError();
+  Future<Either<EventModel, Exception>> quitEvent(EventModel event) async {
+    EventModel? eventResult = await _source.quitEvent(event);
+    if (eventResult == null) {
+      return Right(Exception('Error quiting event'));
+    }
+
+    return Left(eventResult);
   }
 }

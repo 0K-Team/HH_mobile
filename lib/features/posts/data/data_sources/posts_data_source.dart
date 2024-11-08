@@ -11,7 +11,7 @@ class PostsDataSource {
   Future<List<PostModel>?> fetchPosts(int page, {String? user}) async {
     try {
       final String url =
-          'https://ecohero.q1000q.me/api/v1/posts?page=$page&limit=100';
+          'https://ecohero.q1000q.me/api/v1/posts?page=$page&limit=25';
       Map<String, dynamic> queryParameters = {};
       if (user != null) {
         queryParameters['user'] = user;

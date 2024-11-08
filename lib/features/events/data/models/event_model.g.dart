@@ -12,15 +12,17 @@ _$EventModelImpl _$$EventModelImplFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String,
       description: json['description'] as String,
       category: json['category'] as String,
-      isOffline: json['is_offline'] as bool,
+      isOffline: json['isOffline'] as bool,
       location:
           EventModelLocation.fromJson(json['location'] as Map<String, dynamic>),
       date: DateTime.parse(json['date'] as String),
       duration: json['duration'] as String,
       organizer: json['organizer'] as String,
       image: json['image'] as String,
+      members:
+          (json['members'] as List<dynamic>).map((e) => e as String).toList(),
       additionalInfo: EventModelAdditionalInfo.fromJson(
-          json['additional_info'] as Map<String, dynamic>),
+          json['additionalInfo'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$EventModelImplToJson(_$EventModelImpl instance) =>
@@ -29,13 +31,14 @@ Map<String, dynamic> _$$EventModelImplToJson(_$EventModelImpl instance) =>
       'title': instance.title,
       'description': instance.description,
       'category': instance.category,
-      'is_offline': instance.isOffline,
+      'isOffline': instance.isOffline,
       'location': instance.location,
       'date': instance.date.toIso8601String(),
       'duration': instance.duration,
       'organizer': instance.organizer,
       'image': instance.image,
-      'additional_info': instance.additionalInfo,
+      'members': instance.members,
+      'additionalInfo': instance.additionalInfo,
     };
 
 _$EventModelLocationImpl _$$EventModelLocationImplFromJson(
@@ -57,13 +60,13 @@ Map<String, dynamic> _$$EventModelLocationImplToJson(
 _$EventModelAdditionalInfoImpl _$$EventModelAdditionalInfoImplFromJson(
         Map<String, dynamic> json) =>
     _$EventModelAdditionalInfoImpl(
-      whatToBring: json['what_to_bring'] as String?,
-      eventRules: json['event_rules'] as String?,
+      whatToBring: json['whatToBring'] as String?,
+      eventRules: json['eventRules'] as String?,
     );
 
 Map<String, dynamic> _$$EventModelAdditionalInfoImplToJson(
         _$EventModelAdditionalInfoImpl instance) =>
     <String, dynamic>{
-      'what_to_bring': instance.whatToBring,
-      'event_rules': instance.eventRules,
+      'whatToBring': instance.whatToBring,
+      'eventRules': instance.eventRules,
     };

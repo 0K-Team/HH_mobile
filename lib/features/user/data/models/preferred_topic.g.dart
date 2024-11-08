@@ -6,14 +6,15 @@ part of 'preferred_topic.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PreferredTopicImpl _$$PreferredTopicImplFromJson(Map<String, dynamic> json) =>
-    _$PreferredTopicImpl(
+_$PreferredTopicModelImpl _$$PreferredTopicModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PreferredTopicModelImpl(
       id: json['_id'] as String,
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$$PreferredTopicImplToJson(
-        _$PreferredTopicImpl instance) =>
+Map<String, dynamic> _$$PreferredTopicModelImplToJson(
+        _$PreferredTopicModelImpl instance) =>
     <String, dynamic>{
       '_id': instance.id,
       'name': instance.name,

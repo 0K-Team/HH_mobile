@@ -6,12 +6,12 @@ class PreferredTopicsDataSource {
 
   PreferredTopicsDataSource(this._dio);
 
-  Future<List<PreferredTopic>?> fetchPreferredTopics() async {
+  Future<List<PreferredTopicModel>?> fetchPreferredTopics() async {
     Response response =
         await _dio.get('https://ecohero.q1000q.me/api/v1/preferredTopics');
     if (response.statusCode == 200) {
       return (response.data as List<dynamic>)
-          .map((dynamic) => PreferredTopic.fromJson(dynamic))
+          .map((dynamic) => PreferredTopicModel.fromJson(dynamic))
           .toList();
     }
 

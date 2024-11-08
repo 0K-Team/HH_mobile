@@ -11,13 +11,13 @@ class EventModel with _$EventModel {
     required String title,
     required String description,
     required String category,
-    @JsonKey(name: 'is_offline') required bool isOffline,
+    required bool isOffline,
     required EventModelLocation location,
     required DateTime date,
     required String duration,
     required String organizer,
     required String image,
-    @JsonKey(name: 'additional_info')
+    required List<String> members,
     required EventModelAdditionalInfo additionalInfo,
   }) = _EventModel;
 
@@ -40,8 +40,8 @@ class EventModelLocation with _$EventModelLocation {
 @freezed
 class EventModelAdditionalInfo with _$EventModelAdditionalInfo {
   factory EventModelAdditionalInfo({
-    @JsonKey(name: 'what_to_bring') String? whatToBring,
-    @JsonKey(name: 'event_rules') String? eventRules,
+    String? whatToBring,
+    String? eventRules,
   }) = _EventModelAdditionalInfo;
 
   factory EventModelAdditionalInfo.fromJson(Map<String, dynamic> json) =>

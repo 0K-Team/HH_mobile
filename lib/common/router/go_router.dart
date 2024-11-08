@@ -4,6 +4,8 @@ import 'package:eco_hero_mobile/features/blogs/data/models/blog_model.dart';
 import 'package:eco_hero_mobile/features/blogs/presentation/pages/blog_page.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/data/models/user_daily_challenge_model.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/presentation/pages/daily_challenge_page.dart';
+import 'package:eco_hero_mobile/features/events/data/models/event_model.dart';
+import 'package:eco_hero_mobile/features/events/presentation/pages/event_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/calculator_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/community_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/education_page.dart';
@@ -12,9 +14,11 @@ import 'package:eco_hero_mobile/features/main/presentation/pages/maps_page.dart'
 import 'package:eco_hero_mobile/features/main/presentation/pages/notifications_page.dart';
 import 'package:eco_hero_mobile/features/quizzes/data/models/quiz_model.dart';
 import 'package:eco_hero_mobile/features/quizzes/presentation/pages/quiz_page.dart';
+import 'package:eco_hero_mobile/features/user/data/models/preferred_topic.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/presentation/pages/user_configuration_page.dart';
 import 'package:eco_hero_mobile/features/user/presentation/pages/user_page.dart';
+import 'package:eco_hero_mobile/features/user/presentation/pages/user_preferred_topics_page.dart';
 import 'package:eco_hero_mobile/features/virtual_garden/data/models/virtual_garden_model.dart';
 import 'package:eco_hero_mobile/features/virtual_garden/presentation/pages/virtual_garden_page.dart';
 import 'package:flutter/foundation.dart';
@@ -81,6 +85,15 @@ final router = GoRouter(
                 return UserConfigurationPage(user: state.extra as UserModel);
               },
             ),
+            GoRoute(
+              path: '/preferred_topics/page',
+              builder: (context, state) {
+                assert(state.extra != null &&
+                    state.extra is List<PreferredTopicModel>);
+                return UserPreferredTopicsPage(
+                    preferredTopics: state.extra as List<PreferredTopicModel>);
+              },
+            )
           ],
         ),
         // Notifications
@@ -89,6 +102,14 @@ final router = GoRouter(
           builder: (context, state) {
             assert(state.extra != null && state.extra is UserModel);
             return NotificationsPage(user: state.extra as UserModel);
+          },
+        ),
+        // Event
+        GoRoute(
+          path: 'event/page',
+          builder: (context, state) {
+            assert(state.extra != null && state.extra is EventModel);
+            return EventPage(event: state.extra as EventModel);
           },
         ),
         // Auth

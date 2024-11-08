@@ -31,7 +31,6 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
   late TextEditingController _bioController;
   late TextEditingController _locationController;
   late TextEditingController _titleController;
-  late List<String> _preferredTopics;
 
   @override
   void initState() {
@@ -42,7 +41,6 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
     _bioController = TextEditingController(text: widget.user.bio ?? '');
     _locationController =
         TextEditingController(text: widget.user.location ?? '');
-    _preferredTopics = widget.user.preferredTopics.toList();
     _titleController = TextEditingController(text: widget.user.title ?? '');
     super.initState();
   }
@@ -183,81 +181,27 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
                 ),
               ),
               SizedBox(height: 1.h),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 4.w),
-                  child: Text(
-                    'Preferowane tematy',
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 0.5.h),
               FutureBuilder(
                   future: get<PreferredTopicsRepositoryImpl>()
                       .fetchPreferredTopics(),
                   builder: (context, snapshot) {
                     if (snapshot.data == null) {
-                      return CircularProgressIndicator();
+                      return SecondaryButtonWidget(
+                        title: 'Preferowane tematy',
+                      );
                     }
 
                     return snapshot.data!.fold((topics) {
-                      return Wrap(
-                        spacing: 10.sp,
-                        runSpacing: 10.sp,
-                        alignment: WrapAlignment.spaceEvenly,
-                        children: [
-                          ...snapshot.data!.left.map(
-                            (topic) => GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  if (_preferredTopics
-                                      .any((string) => string == topic.name)) {
-                                    isDirty = true;
-                                    _preferredTopics.removeWhere(
-                                        (string) => string == topic.name);
-                                  } else {
-                                    isDirty = true;
-                                    _preferredTopics.add(topic.name);
-                                  }
-                                });
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: element,
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: _preferredTopics
-                                          .any((string) => string == topic.name)
-                                      ? Border.all(
-                                          color: accent,
-                                          strokeAlign:
-                                              BorderSide.strokeAlignOutside,
-                                        )
-                                      : null,
-                                ),
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 0.25.h,
-                                  horizontal: 1.5.w,
-                                ),
-                                child: Text(
-                                  topic.name,
-                                  style: TextStyle(
-                                    fontSize: 16.sp,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                      return SecondaryButtonWidget(
+                        title: 'Preferowane tematy',
+                        onTap: () {
+                          context.push('/user/page/preferred_topics/page',
+                              extra: topics);
+                        },
                       );
                     }, (exception) => Text(exception.toString()));
                   }),
-              SizedBox(height: 2.5.h),
+              SizedBox(height: 1.h),
               PrimaryButtonWidget(
                 onTap: () => AuthHandler.logout(context),
                 title: 'Wyloguj się',
@@ -353,27 +297,6 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
           } else {
             error('Błąd przy zmianie lokalizacji.');
           }
-        }
-
-        if (_preferredTopics != widget.user.preferredTopics) {
-          for (String topic in _preferredTopics) {
-            if (!widget.user.preferredTopics.any((string) => string == topic)) {
-              await get<UserRepositoryImpl>().addPreferredTopic(topic);
-            }
-          }
-
-          for (String topic in widget.user.preferredTopics) {
-            if (!_preferredTopics.any((string) => string == topic)) {
-              await get<UserRepositoryImpl>().removePreferredTopic(topic);
-            }
-          }
-
-          isDirty = false;
-          Future.delayed(Duration.zero, () {
-            if (context.mounted) {
-              context.replace('/user/page/configuration', extra: currentUser);
-            }
-          });
         }
       },
       label: Text(

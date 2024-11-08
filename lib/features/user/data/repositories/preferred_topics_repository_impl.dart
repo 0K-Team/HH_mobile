@@ -9,8 +9,8 @@ class PreferredTopicsRepositoryImpl extends PreferredTopicsRepository {
   PreferredTopicsRepositoryImpl(this._source);
 
   @override
-  Future<Either<List<PreferredTopic>, Exception>> fetchPreferredTopics() async {
-    List<PreferredTopic>? topics = await _source.fetchPreferredTopics();
+  Future<Either<List<PreferredTopicModel>, Exception>> fetchPreferredTopics() async {
+    List<PreferredTopicModel>? topics = await _source.fetchPreferredTopics();
     if (topics == null) {
       return Right(Exception('Error fetching preferred topics'));
     }

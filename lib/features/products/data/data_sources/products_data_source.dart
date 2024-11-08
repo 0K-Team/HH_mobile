@@ -8,7 +8,7 @@ class ProductsDataSource {
 
   Future<List<ProductModel>?> fetchProducts(int page) async {
     Response response = await _dio
-        .get('https://ecohero.q1000q.me/api/v1/products?page=$page&limit=100');
+        .get('https://ecohero.q1000q.me/api/v1/products?page=$page&limit=25');
     if (response.statusCode == 200) {
       List<dynamic> list = response.data['data'];
       return list.map((dynamic) => ProductModel.fromJson(dynamic)).toList();

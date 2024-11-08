@@ -23,7 +23,7 @@ class PrimaryButtonWidget extends StatelessWidget {
           color: accent,
           borderRadius: BorderRadius.circular(8),
         ),
-        width: 85.w,
+        width: 86.w,
         padding: EdgeInsets.symmetric(vertical: 1.25.h),
         child: Center(
           child: content ??
@@ -64,7 +64,7 @@ class SecondaryButtonWidget extends StatelessWidget {
           color: element,
           borderRadius: BorderRadius.circular(8),
         ),
-        width: 85.w,
+        width: 86.w,
         padding: EdgeInsets.symmetric(vertical: 1.25.h),
         child: Center(
           child: content ??
