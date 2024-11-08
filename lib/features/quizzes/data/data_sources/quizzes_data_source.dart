@@ -22,7 +22,6 @@ class QuizzesDataSource {
   Future<QuizModel?> fetchQuiz(QuizTopicModel topic) async {
     Response response = await _dio.get('https://ecohero.q1000q.me/api/v1/quizzes/${topic.id}');
     if (response.statusCode == 200) {
-      log('json: ${response.data}');
       return QuizModel.fromJson(response.data);
     }
 

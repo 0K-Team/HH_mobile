@@ -4,6 +4,9 @@ import 'package:eco_hero_mobile/features/blogs/data/data_sources/blog_data_sourc
 import 'package:eco_hero_mobile/features/blogs/data/repositories/blog_repository_impl.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/data/data_sources/user_daily_challenge_data_source.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/data/repositories/user_daily_challenge_repository_impl.dart';
+import 'package:eco_hero_mobile/features/discounts/data/data_sources/discounts_data_source.dart';
+import 'package:eco_hero_mobile/features/discounts/data/repositories/discounts_repository_impl.dart';
+import 'package:eco_hero_mobile/features/discounts/presentation/blocs/discounts_bloc.dart';
 import 'package:eco_hero_mobile/features/events/data/data_sources/events_data_source.dart';
 import 'package:eco_hero_mobile/features/events/data/repositories/events_repository_impl.dart';
 import 'package:eco_hero_mobile/features/events/presentation/blocs/events_bloc.dart';
@@ -12,6 +15,9 @@ import 'package:eco_hero_mobile/features/main/navigation_page_cubit.dart';
 import 'package:eco_hero_mobile/features/posts/data/data_sources/posts_data_source.dart';
 import 'package:eco_hero_mobile/features/posts/data/repositories/posts_repository_impl.dart';
 import 'package:eco_hero_mobile/features/posts/presentation/blocs/posts_bloc.dart';
+import 'package:eco_hero_mobile/features/products/data/data_sources/products_data_source.dart';
+import 'package:eco_hero_mobile/features/products/data/repositories/products_repository_impl.dart';
+import 'package:eco_hero_mobile/features/products/presentation/blocs/products_bloc.dart';
 import 'package:eco_hero_mobile/features/quizzes/data/data_sources/quizzes_data_source.dart';
 import 'package:eco_hero_mobile/features/quizzes/data/repositories/quizzes_repository_impl.dart';
 import 'package:eco_hero_mobile/features/quizzes/presentation/blocs/quizzes_bloc.dart';
@@ -91,4 +97,14 @@ void setupDependencyInjection() {
   get.registerLazySingleton(() => EventsDataSource(get()));
   get.registerLazySingleton(() => EventsRepositoryImpl(get()));
   get.registerLazySingleton(() => EventsBloc(get()));
+
+  // Products
+  get.registerLazySingleton(() => ProductsDataSource(get()));
+  get.registerLazySingleton(() => ProductsRepositoryImpl(get()));
+  get.registerLazySingleton(() => ProductsBloc(get()));
+
+  // Discounts
+  get.registerLazySingleton(() => DiscountsDataSource(get()));
+  get.registerLazySingleton(() => DiscountsRepositoryImpl(get()));
+  get.registerLazySingleton(() => DiscountsBloc(get()));
 }

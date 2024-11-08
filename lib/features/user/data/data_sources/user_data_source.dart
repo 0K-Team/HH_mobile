@@ -112,8 +112,7 @@ class UserDataSource {
       if (response.statusCode == 200) {
         return UserModel.fromJson(response.data);
       }
-    } catch (e) {
-      log(e.toString());
+    } catch (_) {
     }
 
     return null;

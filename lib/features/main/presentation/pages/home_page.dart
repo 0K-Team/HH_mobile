@@ -7,6 +7,7 @@ import 'package:eco_hero_mobile/features/main/presentation/widgets/button_widget
 import 'package:eco_hero_mobile/features/main/presentation/widgets/element_widget.dart';
 import 'package:eco_hero_mobile/features/main/presentation/widgets/app_bar_widget.dart';
 import 'package:eco_hero_mobile/features/main/presentation/widgets/navigation_bar_widget.dart';
+import 'package:eco_hero_mobile/features/products/presentation/widgets/product_list_widget.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user_bloc.dart';
 import 'package:eco_hero_mobile/features/virtual_garden/data/repositories/virtual_garden_repository_impl.dart';
@@ -43,7 +44,7 @@ class HomePage extends StatelessWidget {
                         if (snapshot.data == null) {
                           return CircularProgressIndicator();
                         }
-              
+
                         return snapshot.data!.fold(
                           (userDailyChallenge) => ElementWidget(
                             onTap: () => context.push('/daily_challenge/page',
@@ -202,7 +203,8 @@ class HomePage extends StatelessWidget {
                   SizedBox(height: 0.5.h),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 4.w),
-                    padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
                     decoration: BoxDecoration(
                       color: element,
                       borderRadius: BorderRadius.circular(8),
@@ -256,6 +258,21 @@ class HomePage extends StatelessWidget {
                   ),
                   SizedBox(height: 1.h),
                   EventsListWidget(),
+                  SizedBox(height: 2.5.h),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 4.w),
+                      child: Text(
+                        'EkoProdukty',
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                  ProductListWidget(),
                   SizedBox(height: 1.h),
                 ],
               ),

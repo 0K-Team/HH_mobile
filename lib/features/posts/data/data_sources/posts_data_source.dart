@@ -24,7 +24,6 @@ class PostsDataSource {
         return null;
       }
     } catch (e) {
-      log(e.toString());
       return null;
     }
   }
