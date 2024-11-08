@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 
 class UserDataSource {
-  // ignore: unused_field fixme
   final Dio _dio;
 
   UserDataSource(this._dio);

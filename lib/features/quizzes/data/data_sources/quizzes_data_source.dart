@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:eco_hero_mobile/features/quizzes/data/models/quiz_model.dart';
 import 'package:eco_hero_mobile/features/quizzes/data/models/quiz_topic_model.dart';

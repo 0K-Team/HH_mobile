@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:eco_hero_mobile/features/posts/data/models/post_model.dart';
 
