@@ -7,6 +7,8 @@ import 'package:eco_hero_mobile/features/daily_challenge/data/repositories/user_
 import 'package:eco_hero_mobile/features/discounts/data/data_sources/discounts_data_source.dart';
 import 'package:eco_hero_mobile/features/discounts/data/repositories/discounts_repository_impl.dart';
 import 'package:eco_hero_mobile/features/discounts/presentation/blocs/discounts_bloc.dart';
+import 'package:eco_hero_mobile/features/eco_calculator/data/data_sources/eco_calculator_data_source.dart';
+import 'package:eco_hero_mobile/features/eco_calculator/data/repositories/eco_calculator_repository_impl.dart';
 import 'package:eco_hero_mobile/features/events/data/data_sources/events_data_source.dart';
 import 'package:eco_hero_mobile/features/events/data/repositories/events_repository_impl.dart';
 import 'package:eco_hero_mobile/features/events/presentation/blocs/events_bloc.dart';
@@ -107,4 +109,8 @@ void setupDependencyInjection() {
   get.registerLazySingleton(() => DiscountsDataSource(get()));
   get.registerLazySingleton(() => DiscountsRepositoryImpl(get()));
   get.registerLazySingleton(() => DiscountsBloc(get()));
+
+  // Calculator
+  get.registerLazySingleton(() => EcoCalculatorDataSource(get()));
+  get.registerLazySingleton(() => EcoCalculatorRepositoryImpl(get()));
 }

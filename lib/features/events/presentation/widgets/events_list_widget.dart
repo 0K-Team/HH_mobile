@@ -20,6 +20,7 @@ class EventsListWidget extends StatelessWidget {
       return ListView.builder(
         shrinkWrap: true,
         itemCount: state.events.length,
+        physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return Align(
             alignment: Alignment.center,

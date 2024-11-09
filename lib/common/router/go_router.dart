@@ -4,6 +4,7 @@ import 'package:eco_hero_mobile/features/blogs/data/models/blog_model.dart';
 import 'package:eco_hero_mobile/features/blogs/presentation/pages/blog_page.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/data/models/user_daily_challenge_model.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/presentation/pages/daily_challenge_page.dart';
+import 'package:eco_hero_mobile/features/eco_calculator/presentation/pages/eco_calculator_page.dart';
 import 'package:eco_hero_mobile/features/events/data/models/event_model.dart';
 import 'package:eco_hero_mobile/features/events/presentation/pages/event_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/calculator_page.dart';
@@ -111,6 +112,11 @@ final router = GoRouter(
             assert(state.extra != null && state.extra is EventModel);
             return EventPage(event: state.extra as EventModel);
           },
+        ),
+        // EcoCalculator
+        GoRoute(
+          path: 'eco_calculator/page',
+          builder: (_, __) => EcoCalculatorPage(),
         ),
         // Auth
         GoRoute(

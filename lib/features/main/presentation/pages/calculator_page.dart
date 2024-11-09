@@ -1,3 +1,4 @@
+import 'package:eco_hero_mobile/common/app/init_page.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/features/main/presentation/widgets/app_bar_widget.dart';
 import 'package:eco_hero_mobile/features/main/presentation/widgets/navigation_bar_widget.dart';
@@ -6,6 +7,7 @@ import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user_bl
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CalculatorPage extends StatelessWidget {
@@ -28,47 +30,51 @@ class CalculatorPage extends StatelessWidget {
                   SizedBox(height: 0.5.h),
                   Divider(color: shadow),
                   SizedBox(height: 2.5.h),
-                  Container(
-                    width: 92.w,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: accent,
-                        width: 6.sp,
+                  GestureDetector(
+                    onTap: () => context.push('/eco_calculator/page'),
+                    behavior: HitTestBehavior.opaque,
+                    child: Container(
+                      width: 92.w,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: accent,
+                          width: 6.sp,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    padding:
-                        EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(
-                          width: 40.w,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'EkoKalkulator',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18.sp,
+                      padding:
+                          EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                            width: 40.w,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'EkoKalkulator',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18.sp,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                'Zobacz jak możesz ograniczyć swój ślad węglowy.',
-                                style: TextStyle(
-                                  height: 1.1,
-                                  fontSize: 15.5.sp,
+                                Text(
+                                  'Zobacz jak możesz ograniczyć swój ślad węglowy.',
+                                  style: TextStyle(
+                                    height: 1.1,
+                                    fontSize: 15.5.sp,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                        SvgPicture.asset(
-                          'assets/main-image.svg',
-                          height: 11.h,
-                        ),
-                      ],
+                          SvgPicture.asset(
+                            'assets/main-image.svg',
+                            height: 11.h,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(height: 2.5.h),
