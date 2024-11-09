@@ -9,10 +9,10 @@ part of 'eco_calculator_result_model.dart';
 _$EcoCalculatorResultModelImpl _$$EcoCalculatorResultModelImplFromJson(
         Map<String, dynamic> json) =>
     _$EcoCalculatorResultModelImpl(
-      totalEmissionWeek: (json['total_emission_week'] as num).toDouble(),
+      totalEmissionWeek: (json['total_emission_week'] as num?)?.toDouble() ?? 0,
       specificEmission: EcoCalculatorResultModelSpecificEmission.fromJson(
           json['specific_emission'] as Map<String, dynamic>),
-      AISuggestion: json['AI_suggestion'] as String,
+      aiSuggestion: json['AI_suggestion'] as String,
     );
 
 Map<String, dynamic> _$$EcoCalculatorResultModelImplToJson(
@@ -20,22 +20,22 @@ Map<String, dynamic> _$$EcoCalculatorResultModelImplToJson(
     <String, dynamic>{
       'total_emission_week': instance.totalEmissionWeek,
       'specific_emission': instance.specificEmission,
-      'AI_suggestion': instance.AISuggestion,
+      'AI_suggestion': instance.aiSuggestion,
     };
 
 _$EcoCalculatorResultModelSpecificEmissionImpl
     _$$EcoCalculatorResultModelSpecificEmissionImplFromJson(
             Map<String, dynamic> json) =>
         _$EcoCalculatorResultModelSpecificEmissionImpl(
-          car: (json['car'] as num).toDouble(),
-          plane: (json['plane'] as num).toInt(),
-          publicTransport: (json['public_transport'] as num).toInt(),
-          energy: (json['energy'] as num).toInt(),
-          water: (json['water'] as num).toDouble(),
-          garbage: (json['garbage'] as num).toDouble(),
-          food: (json['food'] as num).toDouble(),
-          watchTime: (json['watch_time'] as num).toDouble(),
-          shopping: (json['shopping'] as num).toDouble(),
+          car: (json['car'] as num?)?.toDouble() ?? 0,
+          plane: (json['plane'] as num?)?.toInt() ?? 0,
+          publicTransport: (json['public_transport'] as num?)?.toInt() ?? 0,
+          energy: (json['energy'] as num?)?.toInt() ?? 0,
+          water: (json['water'] as num?)?.toDouble() ?? 0,
+          garbage: (json['garbage'] as num?)?.toDouble() ?? 0,
+          food: (json['food'] as num?)?.toDouble() ?? 0,
+          watchTime: (json['watch_time'] as num?)?.toDouble() ?? 0,
+          shopping: (json['shopping'] as num?)?.toDouble() ?? 0,
         );
 
 Map<String, dynamic> _$$EcoCalculatorResultModelSpecificEmissionImplToJson(

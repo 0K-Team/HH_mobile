@@ -4,7 +4,9 @@ import 'package:eco_hero_mobile/features/blogs/data/models/blog_model.dart';
 import 'package:eco_hero_mobile/features/blogs/presentation/pages/blog_page.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/data/models/user_daily_challenge_model.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/presentation/pages/daily_challenge_page.dart';
+import 'package:eco_hero_mobile/features/eco_calculator/data/models/eco_calculator_result_model.dart';
 import 'package:eco_hero_mobile/features/eco_calculator/presentation/pages/eco_calculator_page.dart';
+import 'package:eco_hero_mobile/features/eco_calculator/presentation/pages/eco_calculator_result_page.dart';
 import 'package:eco_hero_mobile/features/events/data/models/event_model.dart';
 import 'package:eco_hero_mobile/features/events/presentation/pages/event_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/calculator_page.dart';
@@ -117,6 +119,15 @@ final router = GoRouter(
         GoRoute(
           path: 'eco_calculator/page',
           builder: (_, __) => EcoCalculatorPage(),
+        ),
+        GoRoute(
+          path: 'eco_calculator_result/page',
+          builder: (context, state) {
+            assert(
+                state.extra != null && state.extra is EcoCalculatorResultModel);
+            return EcoCalculatorResultPage(
+                result: state.extra as EcoCalculatorResultModel);
+          },
         ),
         // Auth
         GoRoute(

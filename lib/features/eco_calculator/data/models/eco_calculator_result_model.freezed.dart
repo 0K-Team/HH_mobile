@@ -32,9 +32,9 @@ mixin _$EcoCalculatorResultModel {
   set specificEmission(EcoCalculatorResultModelSpecificEmission value) =>
       throw _privateConstructorUsedError;
   @JsonKey(name: 'AI_suggestion')
-  String get AISuggestion => throw _privateConstructorUsedError;
+  String get aiSuggestion => throw _privateConstructorUsedError;
   @JsonKey(name: 'AI_suggestion')
-  set AISuggestion(String value) => throw _privateConstructorUsedError;
+  set aiSuggestion(String value) => throw _privateConstructorUsedError;
 
   /// Serializes this EcoCalculatorResultModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -56,7 +56,7 @@ abstract class $EcoCalculatorResultModelCopyWith<$Res> {
       {@JsonKey(name: 'total_emission_week') double totalEmissionWeek,
       @JsonKey(name: 'specific_emission')
       EcoCalculatorResultModelSpecificEmission specificEmission,
-      @JsonKey(name: 'AI_suggestion') String AISuggestion});
+      @JsonKey(name: 'AI_suggestion') String aiSuggestion});
 
   $EcoCalculatorResultModelSpecificEmissionCopyWith<$Res> get specificEmission;
 }
@@ -79,7 +79,7 @@ class _$EcoCalculatorResultModelCopyWithImpl<$Res,
   $Res call({
     Object? totalEmissionWeek = null,
     Object? specificEmission = null,
-    Object? AISuggestion = null,
+    Object? aiSuggestion = null,
   }) {
     return _then(_value.copyWith(
       totalEmissionWeek: null == totalEmissionWeek
@@ -90,9 +90,9 @@ class _$EcoCalculatorResultModelCopyWithImpl<$Res,
           ? _value.specificEmission
           : specificEmission // ignore: cast_nullable_to_non_nullable
               as EcoCalculatorResultModelSpecificEmission,
-      AISuggestion: null == AISuggestion
-          ? _value.AISuggestion
-          : AISuggestion // ignore: cast_nullable_to_non_nullable
+      aiSuggestion: null == aiSuggestion
+          ? _value.aiSuggestion
+          : aiSuggestion // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -122,7 +122,7 @@ abstract class _$$EcoCalculatorResultModelImplCopyWith<$Res>
       {@JsonKey(name: 'total_emission_week') double totalEmissionWeek,
       @JsonKey(name: 'specific_emission')
       EcoCalculatorResultModelSpecificEmission specificEmission,
-      @JsonKey(name: 'AI_suggestion') String AISuggestion});
+      @JsonKey(name: 'AI_suggestion') String aiSuggestion});
 
   @override
   $EcoCalculatorResultModelSpecificEmissionCopyWith<$Res> get specificEmission;
@@ -145,7 +145,7 @@ class __$$EcoCalculatorResultModelImplCopyWithImpl<$Res>
   $Res call({
     Object? totalEmissionWeek = null,
     Object? specificEmission = null,
-    Object? AISuggestion = null,
+    Object? aiSuggestion = null,
   }) {
     return _then(_$EcoCalculatorResultModelImpl(
       totalEmissionWeek: null == totalEmissionWeek
@@ -156,9 +156,9 @@ class __$$EcoCalculatorResultModelImplCopyWithImpl<$Res>
           ? _value.specificEmission
           : specificEmission // ignore: cast_nullable_to_non_nullable
               as EcoCalculatorResultModelSpecificEmission,
-      AISuggestion: null == AISuggestion
-          ? _value.AISuggestion
-          : AISuggestion // ignore: cast_nullable_to_non_nullable
+      aiSuggestion: null == aiSuggestion
+          ? _value.aiSuggestion
+          : aiSuggestion // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -168,9 +168,9 @@ class __$$EcoCalculatorResultModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$EcoCalculatorResultModelImpl implements _EcoCalculatorResultModel {
   _$EcoCalculatorResultModelImpl(
-      {@JsonKey(name: 'total_emission_week') required this.totalEmissionWeek,
+      {@JsonKey(name: 'total_emission_week') this.totalEmissionWeek = 0,
       @JsonKey(name: 'specific_emission') required this.specificEmission,
-      @JsonKey(name: 'AI_suggestion') required this.AISuggestion});
+      @JsonKey(name: 'AI_suggestion') required this.aiSuggestion});
 
   factory _$EcoCalculatorResultModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$EcoCalculatorResultModelImplFromJson(json);
@@ -183,11 +183,11 @@ class _$EcoCalculatorResultModelImpl implements _EcoCalculatorResultModel {
   EcoCalculatorResultModelSpecificEmission specificEmission;
   @override
   @JsonKey(name: 'AI_suggestion')
-  String AISuggestion;
+  String aiSuggestion;
 
   @override
   String toString() {
-    return 'EcoCalculatorResultModel(totalEmissionWeek: $totalEmissionWeek, specificEmission: $specificEmission, AISuggestion: $AISuggestion)';
+    return 'EcoCalculatorResultModel(totalEmissionWeek: $totalEmissionWeek, specificEmission: $specificEmission, aiSuggestion: $aiSuggestion)';
   }
 
   /// Create a copy of EcoCalculatorResultModel
@@ -209,11 +209,11 @@ class _$EcoCalculatorResultModelImpl implements _EcoCalculatorResultModel {
 
 abstract class _EcoCalculatorResultModel implements EcoCalculatorResultModel {
   factory _EcoCalculatorResultModel(
-      {@JsonKey(name: 'total_emission_week') required double totalEmissionWeek,
-      @JsonKey(name: 'specific_emission')
-      required EcoCalculatorResultModelSpecificEmission specificEmission,
-      @JsonKey(name: 'AI_suggestion')
-      required String AISuggestion}) = _$EcoCalculatorResultModelImpl;
+          {@JsonKey(name: 'total_emission_week') double totalEmissionWeek,
+          @JsonKey(name: 'specific_emission')
+          required EcoCalculatorResultModelSpecificEmission specificEmission,
+          @JsonKey(name: 'AI_suggestion') required String aiSuggestion}) =
+      _$EcoCalculatorResultModelImpl;
 
   factory _EcoCalculatorResultModel.fromJson(Map<String, dynamic> json) =
       _$EcoCalculatorResultModelImpl.fromJson;
@@ -230,9 +230,9 @@ abstract class _EcoCalculatorResultModel implements EcoCalculatorResultModel {
   set specificEmission(EcoCalculatorResultModelSpecificEmission value);
   @override
   @JsonKey(name: 'AI_suggestion')
-  String get AISuggestion;
+  String get aiSuggestion;
   @JsonKey(name: 'AI_suggestion')
-  set AISuggestion(String value);
+  set aiSuggestion(String value);
 
   /// Create a copy of EcoCalculatorResultModel
   /// with the given fields replaced by the non-null parameter values.
@@ -464,39 +464,46 @@ class __$$EcoCalculatorResultModelSpecificEmissionImplCopyWithImpl<$Res>
 class _$EcoCalculatorResultModelSpecificEmissionImpl
     implements _EcoCalculatorResultModelSpecificEmission {
   _$EcoCalculatorResultModelSpecificEmissionImpl(
-      {required this.car,
-      required this.plane,
-      @JsonKey(name: 'public_transport') required this.publicTransport,
-      required this.energy,
-      required this.water,
-      required this.garbage,
-      required this.food,
-      @JsonKey(name: 'watch_time') required this.watchTime,
-      required this.shopping});
+      {this.car = 0,
+      this.plane = 0,
+      @JsonKey(name: 'public_transport') this.publicTransport = 0,
+      this.energy = 0,
+      this.water = 0,
+      this.garbage = 0,
+      this.food = 0,
+      @JsonKey(name: 'watch_time') this.watchTime = 0,
+      this.shopping = 0});
 
   factory _$EcoCalculatorResultModelSpecificEmissionImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$EcoCalculatorResultModelSpecificEmissionImplFromJson(json);
 
   @override
+  @JsonKey()
   double car;
   @override
+  @JsonKey()
   int plane;
   @override
   @JsonKey(name: 'public_transport')
   int publicTransport;
   @override
+  @JsonKey()
   int energy;
   @override
+  @JsonKey()
   double water;
   @override
+  @JsonKey()
   double garbage;
   @override
+  @JsonKey()
   double food;
   @override
   @JsonKey(name: 'watch_time')
   double watchTime;
   @override
+  @JsonKey()
   double shopping;
 
   @override
@@ -526,16 +533,15 @@ class _$EcoCalculatorResultModelSpecificEmissionImpl
 abstract class _EcoCalculatorResultModelSpecificEmission
     implements EcoCalculatorResultModelSpecificEmission {
   factory _EcoCalculatorResultModelSpecificEmission(
-          {required double car,
-          required int plane,
-          @JsonKey(name: 'public_transport') required int publicTransport,
-          required int energy,
-          required double water,
-          required double garbage,
-          required double food,
-          @JsonKey(name: 'watch_time') required double watchTime,
-          required double shopping}) =
-      _$EcoCalculatorResultModelSpecificEmissionImpl;
+      {double car,
+      int plane,
+      @JsonKey(name: 'public_transport') int publicTransport,
+      int energy,
+      double water,
+      double garbage,
+      double food,
+      @JsonKey(name: 'watch_time') double watchTime,
+      double shopping}) = _$EcoCalculatorResultModelSpecificEmissionImpl;
 
   factory _EcoCalculatorResultModelSpecificEmission.fromJson(
           Map<String, dynamic> json) =
