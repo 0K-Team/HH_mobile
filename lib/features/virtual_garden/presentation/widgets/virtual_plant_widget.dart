@@ -1,4 +1,3 @@
-import 'package:eco_hero_mobile/common/app/init_page.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/features/virtual_garden/data/models/virtual_garden_model.dart';
 import 'package:flutter/material.dart';
