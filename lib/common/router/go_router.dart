@@ -15,6 +15,8 @@ import 'package:eco_hero_mobile/features/main/presentation/pages/education_page.
 import 'package:eco_hero_mobile/features/main/presentation/pages/home_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/maps_page.dart';
 import 'package:eco_hero_mobile/features/main/presentation/pages/notifications_page.dart';
+import 'package:eco_hero_mobile/features/products/data/models/product_model.dart';
+import 'package:eco_hero_mobile/features/products/presentation/pages/product_page.dart';
 import 'package:eco_hero_mobile/features/quizzes/data/models/quiz_model.dart';
 import 'package:eco_hero_mobile/features/quizzes/presentation/pages/quiz_page.dart';
 import 'package:eco_hero_mobile/features/user/data/models/preferred_topic.dart';
@@ -127,6 +129,14 @@ final router = GoRouter(
                 state.extra != null && state.extra is EcoCalculatorResultModel);
             return EcoCalculatorResultPage(
                 result: state.extra as EcoCalculatorResultModel);
+          },
+        ),
+        // Products
+        GoRoute(
+          path: 'product/page',
+          builder: (context, state) {
+            assert(state.extra != null && state.extra is ProductModel);
+            return ProductPage(product: state.extra as ProductModel);
           },
         ),
         // Auth

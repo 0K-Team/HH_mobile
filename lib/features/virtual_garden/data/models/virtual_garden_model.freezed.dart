@@ -275,7 +275,6 @@ mixin _$VirtualGardenModelPlant {
   int get fertilizerNeeded => throw _privateConstructorUsedError;
   int get weedsRemovedNeeded => throw _privateConstructorUsedError;
   DateTime get planted => throw _privateConstructorUsedError;
-  bool get harvestable => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_watered')
   DateTime? get lastWatered => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_fertilized')
@@ -306,7 +305,6 @@ abstract class $VirtualGardenModelPlantCopyWith<$Res> {
       int fertilizerNeeded,
       int weedsRemovedNeeded,
       DateTime planted,
-      bool harvestable,
       @JsonKey(name: 'last_watered') DateTime? lastWatered,
       @JsonKey(name: 'last_fertilized') DateTime? lastFertilized});
 }
@@ -335,7 +333,6 @@ class _$VirtualGardenModelPlantCopyWithImpl<$Res,
     Object? fertilizerNeeded = null,
     Object? weedsRemovedNeeded = null,
     Object? planted = null,
-    Object? harvestable = null,
     Object? lastWatered = freezed,
     Object? lastFertilized = freezed,
   }) {
@@ -372,10 +369,6 @@ class _$VirtualGardenModelPlantCopyWithImpl<$Res,
           ? _value.planted
           : planted // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      harvestable: null == harvestable
-          ? _value.harvestable
-          : harvestable // ignore: cast_nullable_to_non_nullable
-              as bool,
       lastWatered: freezed == lastWatered
           ? _value.lastWatered
           : lastWatered // ignore: cast_nullable_to_non_nullable
@@ -406,7 +399,6 @@ abstract class _$$VirtualGardenModelPlantImplCopyWith<$Res>
       int fertilizerNeeded,
       int weedsRemovedNeeded,
       DateTime planted,
-      bool harvestable,
       @JsonKey(name: 'last_watered') DateTime? lastWatered,
       @JsonKey(name: 'last_fertilized') DateTime? lastFertilized});
 }
@@ -434,7 +426,6 @@ class __$$VirtualGardenModelPlantImplCopyWithImpl<$Res>
     Object? fertilizerNeeded = null,
     Object? weedsRemovedNeeded = null,
     Object? planted = null,
-    Object? harvestable = null,
     Object? lastWatered = freezed,
     Object? lastFertilized = freezed,
   }) {
@@ -471,10 +462,6 @@ class __$$VirtualGardenModelPlantImplCopyWithImpl<$Res>
           ? _value.planted
           : planted // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      harvestable: null == harvestable
-          ? _value.harvestable
-          : harvestable // ignore: cast_nullable_to_non_nullable
-              as bool,
       lastWatered: freezed == lastWatered
           ? _value.lastWatered
           : lastWatered // ignore: cast_nullable_to_non_nullable
@@ -499,7 +486,6 @@ class _$VirtualGardenModelPlantImpl implements _VirtualGardenModelPlant {
       required this.fertilizerNeeded,
       required this.weedsRemovedNeeded,
       required this.planted,
-      required this.harvestable,
       @JsonKey(name: 'last_watered') this.lastWatered,
       @JsonKey(name: 'last_fertilized') this.lastFertilized});
 
@@ -524,8 +510,6 @@ class _$VirtualGardenModelPlantImpl implements _VirtualGardenModelPlant {
   @override
   final DateTime planted;
   @override
-  final bool harvestable;
-  @override
   @JsonKey(name: 'last_watered')
   final DateTime? lastWatered;
   @override
@@ -534,7 +518,7 @@ class _$VirtualGardenModelPlantImpl implements _VirtualGardenModelPlant {
 
   @override
   String toString() {
-    return 'VirtualGardenModelPlant(plantId: $plantId, name: $name, type: $type, growthStage: $growthStage, wateringNeeded: $wateringNeeded, fertilizerNeeded: $fertilizerNeeded, weedsRemovedNeeded: $weedsRemovedNeeded, planted: $planted, harvestable: $harvestable, lastWatered: $lastWatered, lastFertilized: $lastFertilized)';
+    return 'VirtualGardenModelPlant(plantId: $plantId, name: $name, type: $type, growthStage: $growthStage, wateringNeeded: $wateringNeeded, fertilizerNeeded: $fertilizerNeeded, weedsRemovedNeeded: $weedsRemovedNeeded, planted: $planted, lastWatered: $lastWatered, lastFertilized: $lastFertilized)';
   }
 
   @override
@@ -554,8 +538,6 @@ class _$VirtualGardenModelPlantImpl implements _VirtualGardenModelPlant {
             (identical(other.weedsRemovedNeeded, weedsRemovedNeeded) ||
                 other.weedsRemovedNeeded == weedsRemovedNeeded) &&
             (identical(other.planted, planted) || other.planted == planted) &&
-            (identical(other.harvestable, harvestable) ||
-                other.harvestable == harvestable) &&
             (identical(other.lastWatered, lastWatered) ||
                 other.lastWatered == lastWatered) &&
             (identical(other.lastFertilized, lastFertilized) ||
@@ -574,7 +556,6 @@ class _$VirtualGardenModelPlantImpl implements _VirtualGardenModelPlant {
       fertilizerNeeded,
       weedsRemovedNeeded,
       planted,
-      harvestable,
       lastWatered,
       lastFertilized);
 
@@ -605,7 +586,6 @@ abstract class _VirtualGardenModelPlant implements VirtualGardenModelPlant {
           required final int fertilizerNeeded,
           required final int weedsRemovedNeeded,
           required final DateTime planted,
-          required final bool harvestable,
           @JsonKey(name: 'last_watered') final DateTime? lastWatered,
           @JsonKey(name: 'last_fertilized') final DateTime? lastFertilized}) =
       _$VirtualGardenModelPlantImpl;
@@ -630,8 +610,6 @@ abstract class _VirtualGardenModelPlant implements VirtualGardenModelPlant {
   int get weedsRemovedNeeded;
   @override
   DateTime get planted;
-  @override
-  bool get harvestable;
   @override
   @JsonKey(name: 'last_watered')
   DateTime? get lastWatered;

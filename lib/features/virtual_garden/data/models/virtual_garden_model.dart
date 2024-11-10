@@ -29,7 +29,6 @@ class VirtualGardenModelPlant with _$VirtualGardenModelPlant {
     required int fertilizerNeeded,
     required int weedsRemovedNeeded,
     required DateTime planted,
-    required bool harvestable,
     @JsonKey(name: 'last_watered') DateTime? lastWatered,
     @JsonKey(name: 'last_fertilized') DateTime? lastFertilized,
   }) = _VirtualGardenModelPlant;

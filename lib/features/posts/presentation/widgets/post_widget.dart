@@ -156,7 +156,7 @@ class _PostWidgetState extends State<PostWidget> {
                   SvgPicture.asset(
                     'assets/heart.svg',
                     colorFilter: ColorFilter.mode(
-                      isLiked ? Colors.red : Colors.grey,
+                      isLiked ? accent : Colors.grey,
                       BlendMode.srcIn,
                     ),
                     height: 2.5.h,
@@ -169,7 +169,7 @@ class _PostWidgetState extends State<PostWidget> {
                       fontWeight: FontWeight.w800,
                       fontSize: 18.sp,
                       height: 1,
-                      color: isLiked ? Colors.red : Colors.grey,
+                      color: isLiked ? accent : Colors.grey,
                     ),
                   ),
                 ],

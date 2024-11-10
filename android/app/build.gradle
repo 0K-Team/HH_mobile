@@ -9,7 +9,6 @@ android {
     ndkVersion = "27.2.12479018"
     namespace = "me.opkarol.eco_hero_mobile"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

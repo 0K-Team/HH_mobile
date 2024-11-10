@@ -1,5 +1,6 @@
 import 'package:eco_hero_mobile/common/util/back_with_text.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
+import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user.dart';
 import 'package:eco_hero_mobile/features/virtual_garden/data/models/virtual_garden_model.dart';
 import 'package:eco_hero_mobile/features/virtual_garden/presentation/widgets/virtual_plant_widget.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,9 @@ class VirtualGardenPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   if (index < virtualGarden.plants.length) {
                     return VirtualPlantWidget(
-                        plant: virtualGarden.plants[index]);
+                      plant: virtualGarden.plants[index],
+                      isOwner: virtualGarden.user == currentUser?.id,
+                    );
                   } else {
                     return Container(
                       decoration: BoxDecoration(
@@ -117,103 +120,108 @@ class VirtualGardenPage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 2.5.h),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: EdgeInsets.only(left: 4.w),
-                child: Text(
-                  'Dostępne akcje',
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w700,
+            if (virtualGarden.user == currentUser?.id)
+              Column(
+                children: [
+                  SizedBox(height: 2.5.h),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 4.w),
+                      child: Text(
+                        'Dostępne akcje',
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        width: 33.w,
+                        child: Column(
+                          children: [
+                            SvgPicture.asset('assets/fertilizer.svg'),
+                            SizedBox(height: 0.25.h),
+                            Text(
+                              '${virtualGarden.userActions.fertilizingCount}/${virtualGarden.userActions.fertilizingMaxCount}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 17.sp,
+                                height: 1,
+                              ),
+                            ),
+                            Text(
+                              'Nawożenie',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.sp,
+                                height: 1,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 33.w,
+                        child: Column(
+                          children: [
+                            SvgPicture.asset('assets/grass.svg'),
+                            SizedBox(height: 0.25.h),
+                            Text(
+                              '${virtualGarden.userActions.weedsRemoved}/${virtualGarden.userActions.weedsMaxRemoved}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 17.sp,
+                                height: 1,
+                              ),
+                            ),
+                            Text(
+                              'Usuwanie chwastów',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.sp,
+                                height: 1,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 33.w,
+                        child: Column(
+                          children: [
+                            SvgPicture.asset('assets/watered.svg'),
+                            SizedBox(height: 0.25.h),
+                            Text(
+                              '${virtualGarden.userActions.wateringCount}/${virtualGarden.userActions.wateringMaxCount}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 17.sp,
+                                height: 1,
+                              ),
+                            ),
+                            Text(
+                              'Podlewanie',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.sp,
+                                height: 1,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                  width: 33.w,
-                  child: Column(
-                    children: [
-                      SvgPicture.asset('assets/fertilizer.svg'),
-                      SizedBox(height: 0.25.h),
-                      Text(
-                        '${virtualGarden.userActions.fertilizingCount}/${virtualGarden.userActions.fertilizingMaxCount}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 17.sp,
-                          height: 1,
-                        ),
-                      ),
-                      Text(
-                        'Nawożenie',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16.sp,
-                          height: 1,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: 33.w,
-                  child: Column(
-                    children: [
-                      SvgPicture.asset('assets/grass.svg'),
-                      SizedBox(height: 0.25.h),
-                      Text(
-                        '${virtualGarden.userActions.weedsRemoved}/${virtualGarden.userActions.weedsMaxRemoved}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 17.sp,
-                          height: 1,
-                        ),
-                      ),
-                      Text(
-                        'Usuwanie chwastów',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16.sp,
-                          height: 1,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: 33.w,
-                  child: Column(
-                    children: [
-                      SvgPicture.asset('assets/watered.svg'),
-                      SizedBox(height: 0.25.h),
-                      Text(
-                        '${virtualGarden.userActions.wateringCount}/${virtualGarden.userActions.wateringMaxCount}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 17.sp,
-                          height: 1,
-                        ),
-                      ),
-                      Text(
-                        'Podlewanie',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16.sp,
-                          height: 1,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            )
           ],
         ),
       ),

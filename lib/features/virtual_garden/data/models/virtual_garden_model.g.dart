@@ -39,7 +39,6 @@ _$VirtualGardenModelPlantImpl _$$VirtualGardenModelPlantImplFromJson(
       fertilizerNeeded: (json['fertilizerNeeded'] as num).toInt(),
       weedsRemovedNeeded: (json['weedsRemovedNeeded'] as num).toInt(),
       planted: DateTime.parse(json['planted'] as String),
-      harvestable: json['harvestable'] as bool,
       lastWatered: json['last_watered'] == null
           ? null
           : DateTime.parse(json['last_watered'] as String),
@@ -59,7 +58,6 @@ Map<String, dynamic> _$$VirtualGardenModelPlantImplToJson(
       'fertilizerNeeded': instance.fertilizerNeeded,
       'weedsRemovedNeeded': instance.weedsRemovedNeeded,
       'planted': instance.planted.toIso8601String(),
-      'harvestable': instance.harvestable,
       'last_watered': instance.lastWatered?.toIso8601String(),
       'last_fertilized': instance.lastFertilized?.toIso8601String(),
     };

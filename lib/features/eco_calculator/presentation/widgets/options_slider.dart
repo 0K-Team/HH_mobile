@@ -40,8 +40,9 @@ class _OptionsSliderState extends State<OptionsSlider> {
             child: SizedBox(
               width: 92.w,
               child: Slider(
+                activeColor: option == null ? element : accent,
                 inactiveColor: element,
-                value: option?.toDouble() ?? 0,
+                value: option == null ? 0.01 : option?.toDouble() ?? 0,
                 min: 0,
                 max: (widget.options.length - 1).toDouble(),
                 divisions: widget.options.length - 1,

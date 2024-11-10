@@ -1,16 +1,60 @@
+import 'package:eco_hero_mobile/common/app/init_page.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/features/virtual_garden/data/models/virtual_garden_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class VirtualPlantWidget extends StatelessWidget {
   final VirtualGardenModelPlant plant;
+  final bool isOwner;
 
   const VirtualPlantWidget({
     super.key,
     required this.plant,
+    required this.isOwner,
   });
+
+  void showPlantInfoDialog(
+      BuildContext context, VirtualGardenModelPlant plant) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(plant.name, style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 20.sp,
+          ),),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                'assets/${plant.type}.png',
+                fit: BoxFit.cover,
+                height: 25.w,
+                width: 25.w,
+              ),
+              SizedBox(height: 1.h),
+              Text(
+                'Opis tego kwiatka',
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => context.pop(),
+              child: Text('Zamknij'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,89 +77,100 @@ class VirtualPlantWidget extends StatelessWidget {
           ),
           color: element,
           items: [
-            if (needsRemovingWeeds)
-              PopupMenuItem(
-                child: Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/grass.svg',
-                      fit: BoxFit.cover,
-                      height: 5.5.w,
-                      width: 5.5.w,
-                    ),
-                    SizedBox(width: 1.w),
-                    Text(
-                      'Usuń chwasty',
-                      style: TextStyle(
-                        fontSize: 18.sp,
+            if (isOwner) ...[
+              if (needsRemovingWeeds)
+                PopupMenuItem(
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/grass.svg',
+                        fit: BoxFit.cover,
+                        height: 5.5.w,
+                        width: 5.5.w,
                       ),
-                    ),
-                  ],
-                ),
-                onTap: () {
-                  //todo impl
-                },
-              ),
-            if (needsFertilizing)
-              PopupMenuItem(
-                child: Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/fertilizer.svg',
-                      fit: BoxFit.cover,
-                      height: 5.5.w,
-                      width: 5.5.w,
-                    ),
-                    SizedBox(width: 1.w),
-                    Text(
-                      'Użyżnij',
-                      style: TextStyle(
-                        fontSize: 18.sp,
+                      SizedBox(width: 1.w),
+                      Text(
+                        'Usuń chwasty',
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                  onTap: () {
+                    //todo impl
+                  },
                 ),
-                onTap: () async {},
-              ),
-            if (needsWatering)
-              PopupMenuItem(
-                child: Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/watered.svg',
-                      fit: BoxFit.cover,
-                      height: 5.5.w,
-                      width: 5.5.w,
-                    ),
-                    SizedBox(width: 1.w),
-                    Text(
-                      'Nawodnij',
-                      style: TextStyle(
-                        fontSize: 18.sp,
+              if (needsFertilizing)
+                PopupMenuItem(
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/fertilizer.svg',
+                        fit: BoxFit.cover,
+                        height: 5.5.w,
+                        width: 5.5.w,
                       ),
-                    ),
-                  ],
+                      SizedBox(width: 1.w),
+                      Text(
+                        'Użyżnij',
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () async {},
                 ),
-                onTap: () async {},
-              ),
-            if (isGrown)
+              if (needsWatering)
+                PopupMenuItem(
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/watered.svg',
+                        fit: BoxFit.cover,
+                        height: 5.5.w,
+                        width: 5.5.w,
+                      ),
+                      SizedBox(width: 1.w),
+                      Text(
+                        'Nawodnij',
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () async {},
+                ),
+              if (isGrown)
+                PopupMenuItem(
+                  child: Text(
+                    'Zbierz',
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                    ),
+                  ),
+                  onTap: () async {},
+                ),
               PopupMenuItem(
                 child: Text(
-                  'Zbierz',
+                  'Sprzedaj',
                   style: TextStyle(
                     fontSize: 18.sp,
                   ),
                 ),
                 onTap: () async {},
               ),
+            ],
             PopupMenuItem(
               child: Text(
-                'Sprzedaj',
+                'Informacje',
                 style: TextStyle(
                   fontSize: 18.sp,
                 ),
               ),
-              onTap: () async {},
+              onTap: () => showPlantInfoDialog(context, plant),
             ),
           ],
         );
