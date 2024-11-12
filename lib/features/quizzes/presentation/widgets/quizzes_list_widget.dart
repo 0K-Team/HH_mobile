@@ -37,7 +37,7 @@ class QuizzesListWidget extends StatelessWidget {
                   SizedBox(height: 2.5.h),
                 ],
               );
-            }).toList(),
+            }),
           ],
         ),
       );
@@ -155,7 +155,7 @@ class QuizzesListWidget extends StatelessWidget {
       case 'ocean':
         return Image.asset('assets/ocean.png');
       default:
-        return Image.asset('');
+        return Image.asset('assets/ocean.png');
     }
   }
 
