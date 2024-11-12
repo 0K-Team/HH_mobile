@@ -3,6 +3,7 @@ import 'package:eco_hero_mobile/common/router/go_router.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/features/discounts/presentation/blocs/discounts_bloc.dart';
 import 'package:eco_hero_mobile/features/events/presentation/blocs/events_bloc.dart';
+import 'package:eco_hero_mobile/features/maps/presentation/blocs/locations_bloc.dart';
 import 'package:eco_hero_mobile/features/posts/presentation/blocs/posts_bloc.dart';
 import 'package:eco_hero_mobile/features/products/presentation/blocs/products_bloc.dart';
 import 'package:eco_hero_mobile/features/quizzes/presentation/blocs/quizzes_bloc.dart';
@@ -34,6 +35,7 @@ class EcoHero extends StatelessWidget {
             BlocProvider<EventsBloc>(create: (_) => get()),
             BlocProvider<DiscountsBloc>(create: (_) => get()),
             BlocProvider<ProductsBloc>(create: (_) => get()),
+            BlocProvider<LocationsBloc>(create: (_) => get())
           ],
           child: MaterialApp.router(
             routerConfig: router,

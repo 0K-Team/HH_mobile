@@ -29,15 +29,15 @@ class NavigationBarWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               createNavigationElement(
-                  context, 'Home', 'assets/home.svg', 1, '/'),
-              createNavigationElement(context, 'Socials',
+                  context, 'Dom', 'assets/home.svg', 1, '/'),
+              createNavigationElement(context, 'Ludzie',
                   'assets/socials.svg', 5, '/socials/page'),
-              createNavigationElement(context, 'Calculator',
+              createNavigationElement(context, 'Kalkulator',
                   'assets/calculator.svg', 3, '/calculator/page'),
               createNavigationElement(
-                  context, 'Education', 'assets/play.svg', 2, '/education/page'),
+                  context, 'Edukacja', 'assets/play.svg', 2, '/education/page'),
               createNavigationElement(
-                  context, 'Maps', 'assets/maps.svg', 4, '/maps/page'),
+                  context, 'Mapy', 'assets/maps.svg', 4, '/maps/page'),
             ],
           ),
           // trick to make the spaces at the top and bottom of navigation bar the same height

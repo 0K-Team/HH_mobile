@@ -14,6 +14,9 @@ import 'package:eco_hero_mobile/features/events/data/repositories/events_reposit
 import 'package:eco_hero_mobile/features/events/presentation/blocs/events_bloc.dart';
 import 'package:eco_hero_mobile/features/friends/data/data_sources/friends_data_source.dart';
 import 'package:eco_hero_mobile/features/main/navigation_page_cubit.dart';
+import 'package:eco_hero_mobile/features/maps/data/data_sources/location_data_source.dart';
+import 'package:eco_hero_mobile/features/maps/data/repositories/location_repository_impl.dart';
+import 'package:eco_hero_mobile/features/maps/presentation/blocs/locations_bloc.dart';
 import 'package:eco_hero_mobile/features/posts/data/data_sources/posts_data_source.dart';
 import 'package:eco_hero_mobile/features/posts/data/repositories/posts_repository_impl.dart';
 import 'package:eco_hero_mobile/features/posts/presentation/blocs/posts_bloc.dart';
@@ -113,4 +116,9 @@ void setupDependencyInjection() {
   // Calculator
   get.registerLazySingleton(() => EcoCalculatorDataSource(get()));
   get.registerLazySingleton(() => EcoCalculatorRepositoryImpl(get()));
+
+  // Maps
+  get.registerLazySingleton(() => LocationDataSource(get()));
+  get.registerLazySingleton(() => LocationRepositoryImpl(get()));
+  get.registerLazySingleton(() => LocationsBloc(get()));
 }
