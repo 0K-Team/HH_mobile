@@ -28,20 +28,6 @@ class EducationPage extends StatelessWidget {
                       SizedBox(height: 0.5.h),
                       Divider(color: shadow),
                       SizedBox(height: 2.5.h),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 4.w),
-                          child: Text(
-                            'Topics',
-                            style: TextStyle(
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 0.5.h),
                       QuizzesListWidget(),
                     ],
                   ),
