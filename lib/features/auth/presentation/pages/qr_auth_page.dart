@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:eco_hero_mobile/common/app/init_page.dart';
 import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/util/back_with_text.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +28,6 @@ class _QrAuthPageState extends State<QrAuthPage> {
                 widthPreview: 94.w,
                 resolutionPreset: QRCodeDartScanResolutionPreset.high,
                 onCapture: (result) async {
-                  print('Result: ${result.text}');
                   try {
                     Response response = await get<Dio>().post(
                         'https://ecohero.q1000q.me/api/v1/auth/qr',
