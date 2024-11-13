@@ -205,6 +205,11 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
               PrimaryButtonWidget(
                 onTap: () => AuthHandler.logout(context),
                 title: 'Wyloguj się',
+              ),
+              SizedBox(height: 1.h),
+              SecondaryButtonWidget(
+                title: 'Zaloguj się kodem QR',
+                onTap: () => context.push('/auth/qr/page'),
               )
             ],
           ),

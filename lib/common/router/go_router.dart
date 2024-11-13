@@ -1,5 +1,6 @@
 import 'package:eco_hero_mobile/common/app/init_page.dart';
 import 'package:eco_hero_mobile/features/auth/presentation/pages/auth_page.dart';
+import 'package:eco_hero_mobile/features/auth/presentation/pages/qr_auth_page.dart';
 import 'package:eco_hero_mobile/features/blogs/data/models/blog_model.dart';
 import 'package:eco_hero_mobile/features/blogs/presentation/pages/blog_page.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/data/models/user_daily_challenge_model.dart';
@@ -144,6 +145,11 @@ final router = GoRouter(
           path: 'auth/page',
           builder: (context, state) => AuthPage(),
         ),
+
+        GoRoute(
+          path: 'auth/qr/page',
+          builder: (context, state) => QrAuthPage(),
+        ),
         // Virtual garden
         GoRoute(
           path: 'virtual_garden/page',
@@ -178,7 +184,7 @@ final router = GoRouter(
             assert(state.extra != null && state.extra is QuizModel);
             return QuizPage(quiz: state.extra as QuizModel);
           },
-        )
+        ),
       ],
     ),
   ],
