@@ -26,34 +26,34 @@ class QuizzesListWidget extends StatelessWidget {
 
       return BlocBuilder<CurrentQuizBloc, CurrentQuizState>(
           builder: (context, state) {
-        if (state is! CurrentQuizLoadSuccess) {
-          return CircularProgressIndicator();
-        }
+            if (state is! CurrentQuizLoadSuccess) {
+              return CircularProgressIndicator();
+            }
 
-        int currentQuestion = state.currentQuestion;
-        return SizedBox(
-          width: 94.w,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ...map.entries.map((entry) {
-                int index = map.keys.toList().indexOf(entry.key) + 1;
+            int currentQuestion = state.currentQuestion;
+            return SizedBox(
+              width: 94.w,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ...map.entries.map((entry) {
+                    int index = map.keys.toList().indexOf(entry.key) + 1;
 
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 0.5.h),
-                    _buildCategoryHeader(entry.key, index),
-                    _buildQuizRow(
-                        context, entry, index, currentQuestion, quizzes),
-                    SizedBox(height: 1.5.h),
-                  ],
-                );
-              }),
-            ],
-          ),
-        );
-      });
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 0.5.h),
+                        _buildCategoryHeader(entry.key, index),
+                        _buildQuizRow(context, entry, index, currentQuestion,
+                            quizzes, entry.key),
+                        SizedBox(height: 1.5.h),
+                      ],
+                    );
+                  }),
+                ],
+              ),
+            );
+          });
     });
   }
 
@@ -101,43 +101,48 @@ class QuizzesListWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildQuizRow(
-      BuildContext context,
+  Widget _buildQuizRow(BuildContext context,
       MapEntry<String, List<QuizModel>> entry,
       int index,
       int currentQuestion,
-      List<QuizModel> quizzes) {
+      List<QuizModel> quizzes,
+      String category) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: index % 2 == 0
           ? [
-              _buildQuizIcons(context, entry, currentQuestion, quizzes),
-              buildAssetImage(),
-            ]
+        _buildQuizIcons(context, entry, currentQuestion, quizzes),
+        buildAssetImage(category),
+      ]
           : [
-              buildAssetImage(),
-              _buildQuizIcons(context, entry, currentQuestion, quizzes),
-            ],
+        buildAssetImage(category),
+        _buildQuizIcons(context, entry, currentQuestion, quizzes),
+      ],
     );
   }
 
-  Image buildAssetImage() {
+  Image buildAssetImage(String category) {
     return Image.asset(
-      'assets/blue-male-standing.png',
-      height: 18.h,
-      width: 20.w,
+      switch (category.toLowerCase()) {
+        'rainforest' => 'assets/shiba.png',
+        String() => 'assets/blue-male-standing.png',
+      },
+      height: 16.h,
+      width: 16.h,
       fit: BoxFit.cover,
     );
   }
 
-  Widget _buildQuizIcons(
-      BuildContext context,
+  Widget _buildQuizIcons(BuildContext context,
       MapEntry<String, List<QuizModel>> entry,
       int currentQuestion,
       List<QuizModel> quizzes) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: entry.value.asMap().entries.map((entry) {
+      children: entry.value
+          .asMap()
+          .entries
+          .map((entry) {
         int smallIndex = entry.key;
         int bigIndex = quizzes.indexOf(entry.value);
         return GestureDetector(
@@ -146,12 +151,14 @@ class QuizzesListWidget extends StatelessWidget {
             margin: smallIndex % 2 == 0
                 ? EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w)
                 : EdgeInsets.only(
-                    left: 18.w, right: 2.w, top: 1.h, bottom: 1.h),
+                left: 18.w, right: 2.w, top: 1.h, bottom: 1.h),
             width: 6.h,
             height: 6.h,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: currentQuestion < bigIndex ? element : getColor(entry.value.category),
+              color: currentQuestion < bigIndex
+                  ? element
+                  : getColor(entry.value.category),
             ),
             child: Icon(
               Icons.star,
