@@ -38,4 +38,10 @@ class QuizzesRepositoryImpl extends QuizzesRepository {
 
     return Left(currentQuiz);
   }
+
+  @override
+  Future<bool> setCurrentQuiz(int currentQuiz) async {
+    bool success = await _source.setCurrentQuiz(currentQuiz);
+    return success;
+  }
 }

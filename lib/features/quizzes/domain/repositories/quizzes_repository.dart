@@ -9,4 +9,6 @@ abstract class QuizzesRepository {
   Future<Either<QuizModel, Exception>> fetchQuiz(QuizTopicModel topic);
 
   Future<Either<int, Exception>> fetchCurrentQuiz();
+
+  Future<bool> setCurrentQuiz(int currentQuiz);
 }

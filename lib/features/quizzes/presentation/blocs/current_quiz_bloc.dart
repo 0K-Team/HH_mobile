@@ -12,6 +12,7 @@ class CurrentQuizBloc extends Bloc<CurrentQuizEvent, CurrentQuizState> {
 
   CurrentQuizBloc(this._repository) : super(CurrentQuizInitial()) {
     on<CurrentQuizFetched>(_onCurrentQuizFetched);
+    on<CurrentQuizSet>(_onCurrentQuizSet);
   }
 
   Future<void> _onCurrentQuizFetched(
@@ -21,5 +22,12 @@ class CurrentQuizBloc extends Bloc<CurrentQuizEvent, CurrentQuizState> {
     }, (exception) {
       emit(CurrentQuizLoadError(exception));
     });
+  }
+
+  Future<void> _onCurrentQuizSet(CurrentQuizSet event, Emitter<CurrentQuizState> emit) async {
+    bool success = await _repository.setCurrentQuiz(event.currentQuiz);
+    if (success) {
+      emit(CurrentQuizLoadSuccess(event.currentQuiz));
+    }
   }
 }

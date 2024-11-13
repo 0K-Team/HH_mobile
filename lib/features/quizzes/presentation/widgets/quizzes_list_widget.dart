@@ -42,10 +42,11 @@ class QuizzesListWidget extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(height: 0.5.h),
                     _buildCategoryHeader(entry.key, index),
                     _buildQuizRow(
                         context, entry, index, currentQuestion, quizzes),
-                    SizedBox(height: 2.5.h),
+                    SizedBox(height: 1.5.h),
                   ],
                 );
               }),
@@ -139,7 +140,6 @@ class QuizzesListWidget extends StatelessWidget {
       children: entry.value.asMap().entries.map((entry) {
         int smallIndex = entry.key;
         int bigIndex = quizzes.indexOf(entry.value);
-        print('Current: $bigIndex -- $currentQuestion');
         return GestureDetector(
           onTap: () => context.push('/quiz/page', extra: entry.value),
           child: Container(

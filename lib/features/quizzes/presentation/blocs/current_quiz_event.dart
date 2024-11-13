@@ -8,3 +8,12 @@ sealed class CurrentQuizEvent extends Equatable {
 }
 
 final class CurrentQuizFetched extends CurrentQuizEvent {}
+
+final class CurrentQuizSet extends CurrentQuizEvent {
+  final int currentQuiz;
+
+  const CurrentQuizSet(this.currentQuiz);
+
+  @override
+  List<Object?> get props => [currentQuiz];
+}
