@@ -8,7 +8,6 @@ part of 'location_model.dart';
 
 _$LocationModelImpl _$$LocationModelImplFromJson(Map<String, dynamic> json) =>
     _$LocationModelImpl(
-      id: (json['_id'] as num).toInt(),
       name: json['name'] as String,
       coordinates: LocationModelCoordinates.fromJson(
           json['coordinates'] as Map<String, dynamic>),
@@ -22,7 +21,6 @@ _$LocationModelImpl _$$LocationModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$LocationModelImplToJson(_$LocationModelImpl instance) =>
     <String, dynamic>{
-      '_id': instance.id,
       'name': instance.name,
       'coordinates': instance.coordinates,
       'address': instance.address,

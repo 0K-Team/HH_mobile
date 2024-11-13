@@ -20,10 +20,6 @@ LocationModel _$LocationModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LocationModel {
-  @JsonKey(name: '_id')
-  int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: '_id')
-  set id(int value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   set name(String value) => throw _privateConstructorUsedError;
   LocationModelCoordinates get coordinates =>
@@ -62,8 +58,7 @@ abstract class $LocationModelCopyWith<$Res> {
       _$LocationModelCopyWithImpl<$Res, LocationModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: '_id') int id,
-      String name,
+      {String name,
       LocationModelCoordinates coordinates,
       String address,
       String type,
@@ -90,7 +85,6 @@ class _$LocationModelCopyWithImpl<$Res, $Val extends LocationModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? name = null,
     Object? coordinates = null,
     Object? address = null,
@@ -100,10 +94,6 @@ class _$LocationModelCopyWithImpl<$Res, $Val extends LocationModel>
     Object? openingHours = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -166,8 +156,7 @@ abstract class _$$LocationModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: '_id') int id,
-      String name,
+      {String name,
       LocationModelCoordinates coordinates,
       String address,
       String type,
@@ -194,7 +183,6 @@ class __$$LocationModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? name = null,
     Object? coordinates = null,
     Object? address = null,
@@ -204,10 +192,6 @@ class __$$LocationModelImplCopyWithImpl<$Res>
     Object? openingHours = null,
   }) {
     return _then(_$LocationModelImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -244,8 +228,7 @@ class __$$LocationModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LocationModelImpl extends _LocationModel {
   _$LocationModelImpl(
-      {@JsonKey(name: '_id') required this.id,
-      required this.name,
+      {required this.name,
       required this.coordinates,
       required this.address,
       required this.type,
@@ -257,9 +240,6 @@ class _$LocationModelImpl extends _LocationModel {
   factory _$LocationModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LocationModelImplFromJson(json);
 
-  @override
-  @JsonKey(name: '_id')
-  int id;
   @override
   String name;
   @override
@@ -278,7 +258,7 @@ class _$LocationModelImpl extends _LocationModel {
 
   @override
   String toString() {
-    return 'LocationModel(id: $id, name: $name, coordinates: $coordinates, address: $address, type: $type, description: $description, image: $image, openingHours: $openingHours)';
+    return 'LocationModel(name: $name, coordinates: $coordinates, address: $address, type: $type, description: $description, image: $image, openingHours: $openingHours)';
   }
 
   /// Create a copy of LocationModel
@@ -299,8 +279,7 @@ class _$LocationModelImpl extends _LocationModel {
 
 abstract class _LocationModel extends LocationModel {
   factory _LocationModel(
-      {@JsonKey(name: '_id') required int id,
-      required String name,
+      {required String name,
       required LocationModelCoordinates coordinates,
       required String address,
       required String type,
@@ -313,11 +292,6 @@ abstract class _LocationModel extends LocationModel {
   factory _LocationModel.fromJson(Map<String, dynamic> json) =
       _$LocationModelImpl.fromJson;
 
-  @override
-  @JsonKey(name: '_id')
-  int get id;
-  @JsonKey(name: '_id')
-  set id(int value);
   @override
   String get name;
   set name(String value);

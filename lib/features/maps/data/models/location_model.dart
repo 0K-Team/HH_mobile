@@ -10,7 +10,6 @@ class LocationModel with _$LocationModel {
   LocationModel._();
 
   factory LocationModel({
-    @JsonKey(name: '_id') required int id,
     required String name,
     required LocationModelCoordinates coordinates,
     required String address,
