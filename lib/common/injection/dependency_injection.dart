@@ -25,6 +25,7 @@ import 'package:eco_hero_mobile/features/products/data/repositories/products_rep
 import 'package:eco_hero_mobile/features/products/presentation/blocs/products_bloc.dart';
 import 'package:eco_hero_mobile/features/quizzes/data/data_sources/quizzes_data_source.dart';
 import 'package:eco_hero_mobile/features/quizzes/data/repositories/quizzes_repository_impl.dart';
+import 'package:eco_hero_mobile/features/quizzes/presentation/blocs/current_quiz_bloc.dart';
 import 'package:eco_hero_mobile/features/quizzes/presentation/blocs/quizzes_bloc.dart';
 import 'package:eco_hero_mobile/features/user/data/data_sources/preferred_topics_data_source.dart';
 import 'package:eco_hero_mobile/features/user/data/data_sources/user_data_source.dart';
@@ -94,6 +95,7 @@ void setupDependencyInjection() {
   get.registerLazySingleton(() => QuizzesDataSource(get()));
   get.registerLazySingleton(() => QuizzesRepositoryImpl(get()));
   get.registerLazySingleton(() => QuizzesBloc(get()));
+  get.registerLazySingleton(() => CurrentQuizBloc(get()));
 
   // Friends
   get.registerLazySingleton(() => FriendsDataSource(get()));

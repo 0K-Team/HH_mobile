@@ -19,10 +19,13 @@ class QuizPage extends StatelessWidget {
           child: Column(
             children: [
               BackWithText(title: 'Podgląd quizu'),
-              Text(quiz.type.localized, style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w500,
-              ),),
+              Text(
+                quiz.type.localized,
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
               Text(quiz.topic),
               ...quiz.questions.map(
                 (question) => Container(

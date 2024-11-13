@@ -25,4 +25,13 @@ class QuizzesDataSource {
 
     return null;
   }
+
+  Future<int?> fetchCurrentQuiz() async {
+    Response response = await _dio.get('https://ecohero.q1000q.me/api/v1/currentQuiz');
+    if (response.statusCode == 200) {
+      return response.data['currentQuestionId'];
+    }
+
+    return null;
+  }
 }

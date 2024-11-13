@@ -1,8 +1,10 @@
 import 'package:eco_hero_mobile/common/util/color_util.dart';
 import 'package:eco_hero_mobile/features/quizzes/data/models/quiz_model.dart';
+import 'package:eco_hero_mobile/features/quizzes/presentation/blocs/current_quiz_bloc.dart';
 import 'package:eco_hero_mobile/features/quizzes/presentation/blocs/quizzes_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class QuizzesListWidget extends StatelessWidget {
@@ -19,28 +21,38 @@ class QuizzesListWidget extends StatelessWidget {
         return CircularProgressIndicator();
       }
 
-      Map<String, List<QuizModel>> map = _groupQuizzesByCategory(state.quizzes);
+      List<QuizModel> quizzes = state.quizzes;
+      Map<String, List<QuizModel>> map = _groupQuizzesByCategory(quizzes);
 
-      return SizedBox(
-        width: 94.w,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ...map.entries.map((entry) {
-              int index = map.keys.toList().indexOf(entry.key) + 1;
+      return BlocBuilder<CurrentQuizBloc, CurrentQuizState>(
+          builder: (context, state) {
+        if (state is! CurrentQuizLoadSuccess) {
+          return CircularProgressIndicator();
+        }
 
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildCategoryHeader(entry.key, index),
-                  _buildQuizRow(entry, index),
-                  SizedBox(height: 2.5.h),
-                ],
-              );
-            }),
-          ],
-        ),
-      );
+        int currentQuestion = state.currentQuestion;
+        return SizedBox(
+          width: 94.w,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ...map.entries.map((entry) {
+                int index = map.keys.toList().indexOf(entry.key) + 1;
+
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildCategoryHeader(entry.key, index),
+                    _buildQuizRow(
+                        context, entry, index, currentQuestion, quizzes),
+                    SizedBox(height: 2.5.h),
+                  ],
+                );
+              }),
+            ],
+          ),
+        );
+      });
     });
   }
 
@@ -88,17 +100,22 @@ class QuizzesListWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildQuizRow(MapEntry<String, List<QuizModel>> entry, int index) {
+  Widget _buildQuizRow(
+      BuildContext context,
+      MapEntry<String, List<QuizModel>> entry,
+      int index,
+      int currentQuestion,
+      List<QuizModel> quizzes) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: index % 2 == 0
           ? [
-              _buildQuizIcons(entry),
+              _buildQuizIcons(context, entry, currentQuestion, quizzes),
               buildAssetImage(),
             ]
           : [
               buildAssetImage(),
-              _buildQuizIcons(entry),
+              _buildQuizIcons(context, entry, currentQuestion, quizzes),
             ],
     );
   }
@@ -112,25 +129,35 @@ class QuizzesListWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildQuizIcons(MapEntry<String, List<QuizModel>> entry) {
+  Widget _buildQuizIcons(
+      BuildContext context,
+      MapEntry<String, List<QuizModel>> entry,
+      int currentQuestion,
+      List<QuizModel> quizzes) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: entry.value.asMap().entries.map((entry) {
         int smallIndex = entry.key;
-        return Container(
-          margin: smallIndex % 2 == 0
-              ? EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w)
-              : EdgeInsets.only(left: 18.w, right: 2.w, top: 1.h, bottom: 1.h),
-          width: 6.h,
-          height: 6.h,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: element,
-          ),
-          child: Icon(
-            Icons.star,
-            size: 20.sp,
-            color: Colors.white,
+        int bigIndex = quizzes.indexOf(entry.value);
+        print('Current: $bigIndex -- $currentQuestion');
+        return GestureDetector(
+          onTap: () => context.push('/quiz/page', extra: entry.value),
+          child: Container(
+            margin: smallIndex % 2 == 0
+                ? EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w)
+                : EdgeInsets.only(
+                    left: 18.w, right: 2.w, top: 1.h, bottom: 1.h),
+            width: 6.h,
+            height: 6.h,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: currentQuestion < bigIndex ? element : getColor(entry.value.category),
+            ),
+            child: Icon(
+              Icons.star,
+              size: 20.sp,
+              color: Colors.white,
+            ),
           ),
         );
       }).toList(),

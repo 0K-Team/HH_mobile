@@ -29,4 +29,13 @@ class QuizzesRepositoryImpl extends QuizzesRepository {
     return Left(topics);
   }
 
+  @override
+  Future<Either<int, Exception>> fetchCurrentQuiz() async {
+    int? currentQuiz = await _source.fetchCurrentQuiz();
+    if (currentQuiz == null) {
+      return Right(Exception('Error fetching current quiz'));
+    }
+
+    return Left(currentQuiz);
+  }
 }

@@ -10,6 +10,7 @@ import 'package:eco_hero_mobile/features/main/navigation_page_cubit.dart';
 import 'package:eco_hero_mobile/features/maps/presentation/blocs/locations_bloc.dart';
 import 'package:eco_hero_mobile/features/posts/presentation/blocs/posts_bloc.dart';
 import 'package:eco_hero_mobile/features/products/presentation/blocs/products_bloc.dart';
+import 'package:eco_hero_mobile/features/quizzes/presentation/blocs/current_quiz_bloc.dart';
 import 'package:eco_hero_mobile/features/quizzes/presentation/blocs/quizzes_bloc.dart';
 import 'package:eco_hero_mobile/features/user/data/models/user_model.dart';
 import 'package:eco_hero_mobile/features/user/presentation/blocs/current_user_bloc.dart';
@@ -51,6 +52,7 @@ class AuthHandler {
       await get<ProductsBloc>().addAndWait(ProductsFetched());
       await get<DiscountsBloc>().addAndWait(DiscountsFetched());
       await get<LocationsBloc>().addAndWait(LocationsFetched());
+      await get<CurrentQuizBloc>().addAndWait(CurrentQuizFetched());
       await get<AuthSecureStorage>().saveToken(jwt);
       get<NavigationPageCubit>().changePage(1);
       if (navigatorKey.currentState != null &&
@@ -107,6 +109,7 @@ class AuthHandler {
     get<DiscountsBloc>().reset(DiscountsInitial());
     get<ProductsBloc>().reset(ProductsInitial());
     get<LocationsBloc>().reset(LocationsInitial());
+    get<CurrentQuizBloc>().reset(CurrentQuizInitial());
     get<AuthSecureStorage>().deleteToken();
     get.reset();
   }
