@@ -3,6 +3,10 @@ import 'package:eco_hero_mobile/features/auth/presentation/pages/auth_page.dart'
 import 'package:eco_hero_mobile/features/auth/presentation/pages/qr_auth_page.dart';
 import 'package:eco_hero_mobile/features/blogs/data/models/blog_model.dart';
 import 'package:eco_hero_mobile/features/blogs/presentation/pages/blog_page.dart';
+import 'package:eco_hero_mobile/features/calculators/presentation/pages/electric_car_calculator_page.dart';
+import 'package:eco_hero_mobile/features/calculators/presentation/pages/energy_calculator_page.dart';
+import 'package:eco_hero_mobile/features/calculators/presentation/pages/photovoltaics_calculator_page.dart';
+import 'package:eco_hero_mobile/features/calculators/presentation/pages/water_usage_calculator_page.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/data/models/user_daily_challenge_model.dart';
 import 'package:eco_hero_mobile/features/daily_challenge/presentation/pages/daily_challenge_page.dart';
 import 'package:eco_hero_mobile/features/eco_calculator/data/models/eco_calculator_result_model.dart';
@@ -117,6 +121,23 @@ final router = GoRouter(
             assert(state.extra != null && state.extra is EventModel);
             return EventPage(event: state.extra as EventModel);
           },
+        ),
+        // Calculators
+        GoRoute(
+          path: 'calculators/electric_car/page',
+          builder: (_, __) => ElectricCarCalculatorPage(),
+        ),
+        GoRoute(
+          path: 'calculators/energy/page',
+          builder: (_, __) => EnergyCalculatorPage(),
+        ),
+        GoRoute(
+          path: 'calculators/photovoltaics/page',
+          builder: (_, __) => PhotovoltaicsCalculatorPage(),
+        ),
+        GoRoute(
+          path: 'calculators/water_usage/page',
+          builder: (_, __) => WaterUsageCalculatorPage(),
         ),
         // EcoCalculator
         GoRoute(

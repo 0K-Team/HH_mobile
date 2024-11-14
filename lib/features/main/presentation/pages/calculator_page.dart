@@ -91,17 +91,33 @@ class CalculatorPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 1.h),
-                  buildCalculator('assets/lightbulb.png',
-                      'Kalkulator zużycia prądu w Twoim gospodarstwie'),
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () => context.push('/calculators/energy/page'),
+                    child: buildCalculator(
+                        'assets/lightbulb.png', 'Kalkulator zużycia energii'),
+                  ),
                   SizedBox(height: 1.h),
-                  buildCalculator('assets/solarenergy.png',
-                      'Kalkulator predyspozycji do fotowoltaiki'),
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () => context.push('/calculators/photovoltaics/page'),
+                    child: buildCalculator('assets/solarenergy.png',
+                        'Kalkulator oszczędności energii z fotowoltaiki'),
+                  ),
                   SizedBox(height: 1.h),
-                  buildCalculator('assets/car.png',
-                      'Kalkulator predyspozycji do auta elektrycznego'),
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () => context.push('/calculators/electric_car/page'),
+                    child: buildCalculator('assets/car.png',
+                        'Kalkulator wpływu ładowania auta elektrycznego'),
+                  ),
                   SizedBox(height: 1.h),
-                  buildCalculator('assets/flower.png',
-                      'Kalkulator predyspozycji do kwiateczków'),
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () => context.push('/calculators/water_usage/page'),
+                    child: buildCalculator(
+                        'assets/flower.png', 'Kalkulator zużycia wody'),
+                  ),
                 ],
               ),
             );
@@ -113,7 +129,7 @@ class CalculatorPage extends StatelessWidget {
     );
   }
 
-  Container buildCalculator(String asset, String title) {
+  buildCalculator(String asset, String title) {
     return Container(
       width: 92.w,
       decoration: BoxDecoration(
