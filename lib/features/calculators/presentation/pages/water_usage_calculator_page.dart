@@ -7,11 +7,11 @@ class WaterUsageCalculatorPage extends StatefulWidget {
   const WaterUsageCalculatorPage({super.key});
 
   @override
-  _WaterUsageCalculatorPageState createState() =>
-      _WaterUsageCalculatorPageState();
+  WaterUsageCalculatorPageState createState() =>
+      WaterUsageCalculatorPageState();
 }
 
-class _WaterUsageCalculatorPageState extends State<WaterUsageCalculatorPage> {
+class WaterUsageCalculatorPageState extends State<WaterUsageCalculatorPage> {
   final TextEditingController _peopleController = TextEditingController();
   final TextEditingController _usagePerPersonController =
       TextEditingController();

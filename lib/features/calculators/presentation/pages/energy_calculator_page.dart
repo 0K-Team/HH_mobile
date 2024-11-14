@@ -7,10 +7,10 @@ class EnergyCalculatorPage extends StatefulWidget {
   const EnergyCalculatorPage({super.key});
 
   @override
-  _EnergyCalculatorPageState createState() => _EnergyCalculatorPageState();
+  EnergyCalculatorPageState createState() => EnergyCalculatorPageState();
 }
 
-class _EnergyCalculatorPageState extends State<EnergyCalculatorPage> {
+class EnergyCalculatorPageState extends State<EnergyCalculatorPage> {
   final TextEditingController _powerController = TextEditingController();
   final TextEditingController _timeController = TextEditingController();
   double _energyConsumption = 0.0;
