@@ -154,7 +154,7 @@ class UserPage extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: 4.w),
                   child: Text(
-                    'Ostatnie blogi',
+                    'Ostatnie posty',
                     style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.w700,

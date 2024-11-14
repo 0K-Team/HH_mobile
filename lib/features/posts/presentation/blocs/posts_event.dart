@@ -17,5 +17,10 @@ final class PostsLoaded extends PostsEvent {
 }
 
 final class PostsFetched extends PostsEvent {
+  final int page;
 
+  const PostsFetched({this.page = 1});
+
+  @override
+  List<Object?> get props => [page];
 }

@@ -57,22 +57,22 @@ class AppBarWidget extends StatelessWidget {
             child: Stack(
               children: [
                 SvgPicture.asset('assets/notification.svg'),
-                if (user.notifications.isNotEmpty)
-                  Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.red,
-                    ),
-                    padding: EdgeInsets.all(8.sp),
-                    child: Text(
-                      user.notifications.length.toString(),
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w700,
-                        height: 0.7,
-                      ),
-                    ),
-                  ),
+                // if (user.notifications.isNotEmpty)
+                //   Container(
+                //     decoration: BoxDecoration(
+                //       shape: BoxShape.circle,
+                //       color: Colors.red,
+                //     ),
+                //     padding: EdgeInsets.all(8.sp),
+                //     child: Text(
+                //       user.notifications.length.toString(),
+                //       style: TextStyle(
+                //         fontSize: 16.sp,
+                //         fontWeight: FontWeight.w700,
+                //         height: 0.7,
+                //       ),
+                //     ),
+                //   ),
               ],
             ),
           ),

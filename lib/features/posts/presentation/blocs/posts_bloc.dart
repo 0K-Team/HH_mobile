@@ -29,14 +29,21 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
           return map;
         })
         .values
-        .toList();
+        .toList()
+      ..sort((a, b) {
+        if (a.createdAt != null && b.createdAt != null) {
+          return b.createdAt!.compareTo(a.createdAt!);
+        }
+
+        return 0;
+      });
     emit(PostsLoadSuccess(uniquePosts));
   }
 
   Future<void> _onPostsFetched(
       PostsFetched event, Emitter<PostsState> emit) async {
-    await _repository.fetchPosts(1).fold(
-        (posts) => emit(PostsLoadSuccess(posts)),
+    await _repository.fetchPosts(event.page).fold(
+        (posts) => add(PostsLoaded(posts)),
         (exception) => emit(PostsLoadError(exception)));
   }
 }

@@ -1,5 +1,6 @@
 import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
+import 'package:eco_hero_mobile/common/util/extensions/bloc_extension.dart';
 import 'package:eco_hero_mobile/common/util/snackbar.dart';
 import 'package:eco_hero_mobile/features/main/presentation/widgets/app_bar_widget.dart';
 import 'package:eco_hero_mobile/features/main/presentation/widgets/navigation_bar_widget.dart';
@@ -23,7 +24,9 @@ class CommunityPage extends StatefulWidget {
 }
 
 class _CommunityPageState extends State<CommunityPage> {
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController _textController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+  bool _loading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +41,7 @@ class _CommunityPageState extends State<CommunityPage> {
               onRefresh: () async => get<PostsBloc>().add(PostsFetched()),
               child: Center(
                 child: ListView(
+                  controller: _scrollController,
                   children: [
                     SizedBox(height: 1.h),
                     AppBarWidget(user: user),
@@ -64,7 +68,7 @@ class _CommunityPageState extends State<CommunityPage> {
                                 SizedBox(
                                   width: 80.w,
                                   child: TextField(
-                                    controller: _controller,
+                                    controller: _textController,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText:
@@ -111,19 +115,7 @@ class _CommunityPageState extends State<CommunityPage> {
                             if (state is PostsLoadSuccess) {
                               return SizedBox(
                                 width: 92.w,
-                                child: ListView.builder(
-                                  controller: ScrollController(),
-                                  itemBuilder: (context, index) {
-                                    PostModel post = state.posts[index];
-                                    return Container(
-                                      key: UniqueKey(),
-                                      child: PostWidget(post: post),
-                                    );
-                                  },
-                                  itemCount: state.posts.length,
-                                  shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
-                                ),
+                                child: CommunityPostsWidget(posts: state.posts),
                               );
                             }
 
@@ -146,13 +138,13 @@ class _CommunityPageState extends State<CommunityPage> {
 
   sendMessage() {
     if (currentUser != null) {
-      String text = _controller.text.trim();
+      String text = _textController.text.trim();
       if (text.isEmpty) {
         error('Tekst postu nie może być pusty!');
         return;
       }
 
-      _controller.clear();
+      _textController.clear();
       PostsBloc bloc = get();
       get<PostsRepositoryImpl>()
           .createPost(
@@ -172,5 +164,70 @@ class _CommunityPageState extends State<CommunityPage> {
         ]));
       }, (_) {});
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    bool isBottom = _scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent;
+    if (isBottom) {
+      PostsBloc bloc = get();
+      _loading = true;
+      if (bloc.state is PostsLoadSuccess) {
+        PostsLoadSuccess state = bloc.state as PostsLoadSuccess;
+        int left = state.posts.length % 25;
+        if (left != 0) {
+          _loading = false;
+          return;
+        }
+
+        int page = state.posts.length ~/ 25 + 1;
+        bloc.addAndWait(PostsFetched(page: page)).then((_) {
+          _loading = false;
+        });
+      }
+    }
+  }
+}
+
+class CommunityPostsWidget extends StatefulWidget {
+  final List<PostModel> posts;
+
+  const CommunityPostsWidget({
+    super.key,
+    required this.posts,
+  });
+
+  @override
+  State<CommunityPostsWidget> createState() => _CommunityPostsWidgetState();
+}
+
+class _CommunityPostsWidgetState extends State<CommunityPostsWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        PostModel post = widget.posts[index];
+        return Container(
+          key: UniqueKey(),
+          child: PostWidget(post: post),
+        );
+      },
+      itemCount: widget.posts.length,
+      physics: NeverScrollableScrollPhysics(),
+    );
   }
 }

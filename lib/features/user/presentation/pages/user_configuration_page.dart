@@ -202,15 +202,20 @@ class _UserConfigurationPageState extends State<UserConfigurationPage> {
                     }, (exception) => Text(exception.toString()));
                   }),
               SizedBox(height: 1.h),
+              SecondaryButtonWidget(
+                title: 'Zaloguj się kodem QR',
+                onTap: () => context.push('/auth/qr/page'),
+              ),
+              SizedBox(height: 1.h),
+              SecondaryButtonWidget(
+                title: 'Zobacz swój profil',
+                onTap: () => context.push('/user/page', extra: currentUser!),
+              ),
+              SizedBox(height: 1.h),
               PrimaryButtonWidget(
                 onTap: () => AuthHandler.logout(context),
                 title: 'Wyloguj się',
               ),
-              SizedBox(height: 1.h),
-              SecondaryButtonWidget(
-                title: 'Zaloguj się kodem QR',
-                onTap: () => context.push('/auth/qr/page'),
-              )
             ],
           ),
         ),

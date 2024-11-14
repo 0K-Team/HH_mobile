@@ -111,6 +111,5 @@ class AuthHandler {
     get<LocationsBloc>().reset(LocationsInitial());
     get<CurrentQuizBloc>().reset(CurrentQuizInitial());
     get<AuthSecureStorage>().deleteToken();
-    get.reset();
   }
 }

@@ -21,9 +21,6 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       fullName:
           UserModelFullName.fromJson(json['fullName'] as Map<String, dynamic>),
       avatarHash: json['avatarHash'] as String,
-      notifications: (json['notifications'] as List<dynamic>)
-          .map((e) => UserModelNotification.fromJson(e as Map<String, dynamic>))
-          .toList(),
       friends:
           (json['friends'] as List<dynamic>).map((e) => e as String).toList(),
       achievements: (json['achievements'] as List<dynamic>)
@@ -31,8 +28,6 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
           .toList(),
       skills:
           (json['skills'] as List<dynamic>).map((e) => e as String).toList(),
-      badges:
-          (json['badges'] as List<dynamic>).map((e) => e as String).toList(),
       preferredTopics: (json['preferredTopics'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
@@ -56,11 +51,9 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'points': instance.points,
       'fullName': instance.fullName,
       'avatarHash': instance.avatarHash,
-      'notifications': instance.notifications,
       'friends': instance.friends,
       'achievements': instance.achievements,
       'skills': instance.skills,
-      'badges': instance.badges,
       'preferredTopics': instance.preferredTopics,
       'admin': instance.admin,
       'createdAt': instance.createdAt?.toIso8601String(),

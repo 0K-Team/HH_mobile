@@ -39,50 +39,50 @@ class _UserPreferredTopicsPageState extends State<UserPreferredTopicsPage> {
               BackWithText(title: 'Konfiguracja preferowanych tematów'),
               SizedBox(height: 2.5.h),
               Wrap(
-                spacing: 10.sp,
+                spacing: 0.sp,
                 runSpacing: 10.sp,
                 alignment: WrapAlignment.spaceEvenly,
                 children: [
                   ...widget.preferredTopics.map(
-                    (topic) => GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          if (_preferredTopics
-                              .any((string) => string == topic.name)) {
+                    (topic) {
+                      bool isSelected = _preferredTopics.contains(topic.name);
+
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
                             isDirty = true;
-                            _preferredTopics
-                                .removeWhere((string) => string == topic.name);
-                          } else {
-                            isDirty = true;
-                            _preferredTopics.add(topic.name);
-                          }
-                        });
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: element,
-                          borderRadius: BorderRadius.circular(8),
-                          border: _preferredTopics
-                                  .any((string) => string == topic.name)
-                              ? Border.all(
-                                  color: accent,
-                                  strokeAlign: BorderSide.strokeAlignOutside,
-                                )
-                              : null,
-                        ),
-                        padding: EdgeInsets.symmetric(
-                          vertical: 0.25.h,
-                          horizontal: 1.5.w,
-                        ),
-                        child: Text(
-                          topic.name,
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
+                            if (isSelected) {
+                              _preferredTopics.remove(topic.name);
+                            } else {
+                              _preferredTopics.add(topic.name);
+                            }
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: element,
+                            borderRadius: BorderRadius.circular(8),
+                            border: isSelected
+                                ? Border.all(
+                                    color: accent,
+                                    strokeAlign: BorderSide.strokeAlignOutside,
+                                  )
+                                : null,
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            vertical: 0.25.h,
+                            horizontal: 1.5.w,
+                          ),
+                          child: Text(
+                            topic.name,
+                            style: TextStyle(
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   ),
                 ],
               ),

@@ -177,6 +177,8 @@ class QuizzesListWidget extends StatelessWidget {
         return Color(0xFF39BC44);
       case 'ocean':
         return Color(0xFF4A9DFD);
+      case 'climate':
+        return Color(0xFFEF7A3B);
       default:
         return Colors.black;
     }
@@ -189,16 +191,16 @@ class QuizzesListWidget extends StatelessWidget {
       case 'ocean':
         return Image.asset('assets/ocean.png');
       default:
-        return Image.asset('assets/ocean.png');
+        return Image.asset('assets/shiba.png');
     }
   }
 
   String getDescription(String category) {
     switch (category.toLowerCase()) {
       case 'rainforest':
-        return 'Deszcze płaczące';
+        return 'Las deszczowy';
       case 'ocean':
-        return 'Oceany i takie tam';
+        return 'Oceany';
       default:
         return '';
     }

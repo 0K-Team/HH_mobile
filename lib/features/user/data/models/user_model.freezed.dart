@@ -32,13 +32,10 @@ mixin _$UserModel {
   int? get points => throw _privateConstructorUsedError;
   UserModelFullName get fullName => throw _privateConstructorUsedError;
   String get avatarHash => throw _privateConstructorUsedError;
-  List<UserModelNotification> get notifications =>
-      throw _privateConstructorUsedError;
   List<String> get friends => throw _privateConstructorUsedError;
   List<UserModelAchievement> get achievements =>
       throw _privateConstructorUsedError;
   List<String> get skills => throw _privateConstructorUsedError;
-  List<String> get badges => throw _privateConstructorUsedError;
   List<String> get preferredTopics => throw _privateConstructorUsedError;
   bool get admin => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
@@ -71,11 +68,9 @@ abstract class $UserModelCopyWith<$Res> {
       int? points,
       UserModelFullName fullName,
       String avatarHash,
-      List<UserModelNotification> notifications,
       List<String> friends,
       List<UserModelAchievement> achievements,
       List<String> skills,
-      List<String> badges,
       List<String> preferredTopics,
       bool admin,
       DateTime? createdAt});
@@ -110,11 +105,9 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? points = freezed,
     Object? fullName = null,
     Object? avatarHash = null,
-    Object? notifications = null,
     Object? friends = null,
     Object? achievements = null,
     Object? skills = null,
-    Object? badges = null,
     Object? preferredTopics = null,
     Object? admin = null,
     Object? createdAt = freezed,
@@ -168,10 +161,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.avatarHash
           : avatarHash // ignore: cast_nullable_to_non_nullable
               as String,
-      notifications: null == notifications
-          ? _value.notifications
-          : notifications // ignore: cast_nullable_to_non_nullable
-              as List<UserModelNotification>,
       friends: null == friends
           ? _value.friends
           : friends // ignore: cast_nullable_to_non_nullable
@@ -183,10 +172,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
       skills: null == skills
           ? _value.skills
           : skills // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      badges: null == badges
-          ? _value.badges
-          : badges // ignore: cast_nullable_to_non_nullable
               as List<String>,
       preferredTopics: null == preferredTopics
           ? _value.preferredTopics
@@ -235,11 +220,9 @@ abstract class _$$UserModelImplCopyWith<$Res>
       int? points,
       UserModelFullName fullName,
       String avatarHash,
-      List<UserModelNotification> notifications,
       List<String> friends,
       List<UserModelAchievement> achievements,
       List<String> skills,
-      List<String> badges,
       List<String> preferredTopics,
       bool admin,
       DateTime? createdAt});
@@ -273,11 +256,9 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? points = freezed,
     Object? fullName = null,
     Object? avatarHash = null,
-    Object? notifications = null,
     Object? friends = null,
     Object? achievements = null,
     Object? skills = null,
-    Object? badges = null,
     Object? preferredTopics = null,
     Object? admin = null,
     Object? createdAt = freezed,
@@ -331,10 +312,6 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.avatarHash
           : avatarHash // ignore: cast_nullable_to_non_nullable
               as String,
-      notifications: null == notifications
-          ? _value._notifications
-          : notifications // ignore: cast_nullable_to_non_nullable
-              as List<UserModelNotification>,
       friends: null == friends
           ? _value._friends
           : friends // ignore: cast_nullable_to_non_nullable
@@ -346,10 +323,6 @@ class __$$UserModelImplCopyWithImpl<$Res>
       skills: null == skills
           ? _value._skills
           : skills // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      badges: null == badges
-          ? _value._badges
-          : badges // ignore: cast_nullable_to_non_nullable
               as List<String>,
       preferredTopics: null == preferredTopics
           ? _value._preferredTopics
@@ -383,19 +356,15 @@ class _$UserModelImpl extends _UserModel {
       this.points,
       required this.fullName,
       required this.avatarHash,
-      required final List<UserModelNotification> notifications,
       required final List<String> friends,
       required final List<UserModelAchievement> achievements,
       required final List<String> skills,
-      required final List<String> badges,
       required final List<String> preferredTopics,
       this.admin = false,
       this.createdAt})
-      : _notifications = notifications,
-        _friends = friends,
+      : _friends = friends,
         _achievements = achievements,
         _skills = skills,
-        _badges = badges,
         _preferredTopics = preferredTopics,
         super._();
 
@@ -426,14 +395,6 @@ class _$UserModelImpl extends _UserModel {
   final UserModelFullName fullName;
   @override
   final String avatarHash;
-  final List<UserModelNotification> _notifications;
-  @override
-  List<UserModelNotification> get notifications {
-    if (_notifications is EqualUnmodifiableListView) return _notifications;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_notifications);
-  }
-
   final List<String> _friends;
   @override
   List<String> get friends {
@@ -458,14 +419,6 @@ class _$UserModelImpl extends _UserModel {
     return EqualUnmodifiableListView(_skills);
   }
 
-  final List<String> _badges;
-  @override
-  List<String> get badges {
-    if (_badges is EqualUnmodifiableListView) return _badges;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_badges);
-  }
-
   final List<String> _preferredTopics;
   @override
   List<String> get preferredTopics {
@@ -482,7 +435,7 @@ class _$UserModelImpl extends _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, email: $email, provider: $provider, googleID: $googleID, facebookID: $facebookID, title: $title, location: $location, bio: $bio, username: $username, points: $points, fullName: $fullName, avatarHash: $avatarHash, notifications: $notifications, friends: $friends, achievements: $achievements, skills: $skills, badges: $badges, preferredTopics: $preferredTopics, admin: $admin, createdAt: $createdAt)';
+    return 'UserModel(id: $id, email: $email, provider: $provider, googleID: $googleID, facebookID: $facebookID, title: $title, location: $location, bio: $bio, username: $username, points: $points, fullName: $fullName, avatarHash: $avatarHash, friends: $friends, achievements: $achievements, skills: $skills, preferredTopics: $preferredTopics, admin: $admin, createdAt: $createdAt)';
   }
 
   @override
@@ -509,13 +462,10 @@ class _$UserModelImpl extends _UserModel {
                 other.fullName == fullName) &&
             (identical(other.avatarHash, avatarHash) ||
                 other.avatarHash == avatarHash) &&
-            const DeepCollectionEquality()
-                .equals(other._notifications, _notifications) &&
             const DeepCollectionEquality().equals(other._friends, _friends) &&
             const DeepCollectionEquality()
                 .equals(other._achievements, _achievements) &&
             const DeepCollectionEquality().equals(other._skills, _skills) &&
-            const DeepCollectionEquality().equals(other._badges, _badges) &&
             const DeepCollectionEquality()
                 .equals(other._preferredTopics, _preferredTopics) &&
             (identical(other.admin, admin) || other.admin == admin) &&
@@ -525,29 +475,26 @@ class _$UserModelImpl extends _UserModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        id,
-        email,
-        provider,
-        googleID,
-        facebookID,
-        title,
-        location,
-        bio,
-        username,
-        points,
-        fullName,
-        avatarHash,
-        const DeepCollectionEquality().hash(_notifications),
-        const DeepCollectionEquality().hash(_friends),
-        const DeepCollectionEquality().hash(_achievements),
-        const DeepCollectionEquality().hash(_skills),
-        const DeepCollectionEquality().hash(_badges),
-        const DeepCollectionEquality().hash(_preferredTopics),
-        admin,
-        createdAt
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      email,
+      provider,
+      googleID,
+      facebookID,
+      title,
+      location,
+      bio,
+      username,
+      points,
+      fullName,
+      avatarHash,
+      const DeepCollectionEquality().hash(_friends),
+      const DeepCollectionEquality().hash(_achievements),
+      const DeepCollectionEquality().hash(_skills),
+      const DeepCollectionEquality().hash(_preferredTopics),
+      admin,
+      createdAt);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -579,11 +526,9 @@ abstract class _UserModel extends UserModel {
       final int? points,
       required final UserModelFullName fullName,
       required final String avatarHash,
-      required final List<UserModelNotification> notifications,
       required final List<String> friends,
       required final List<UserModelAchievement> achievements,
       required final List<String> skills,
-      required final List<String> badges,
       required final List<String> preferredTopics,
       final bool admin,
       final DateTime? createdAt}) = _$UserModelImpl;
@@ -617,15 +562,11 @@ abstract class _UserModel extends UserModel {
   @override
   String get avatarHash;
   @override
-  List<UserModelNotification> get notifications;
-  @override
   List<String> get friends;
   @override
   List<UserModelAchievement> get achievements;
   @override
   List<String> get skills;
-  @override
-  List<String> get badges;
   @override
   List<String> get preferredTopics;
   @override

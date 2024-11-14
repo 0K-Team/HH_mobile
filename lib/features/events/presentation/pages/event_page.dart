@@ -32,11 +32,14 @@ class EventPage extends StatelessWidget {
             children: [
               BackWithText(title: event.title),
               SizedBox(height: 2.5.h),
-              CachedNetworkImage(
-                imageUrl: event.image,
-                fit: BoxFit.cover,
-                height: 20.h,
-                width: 92.w,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: CachedNetworkImage(
+                  imageUrl: event.image,
+                  fit: BoxFit.cover,
+                  height: 20.h,
+                  width: 92.w,
+                ),
               ),
               SizedBox(height: 1.h),
               SizedBox(

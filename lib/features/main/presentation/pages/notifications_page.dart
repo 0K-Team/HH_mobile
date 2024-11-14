@@ -17,20 +17,20 @@ class NotificationsPage extends StatelessWidget {
         child: Column(
           children: [
             BackWithText(title: 'Powiadomienia'),
-            ListView.builder(
-              itemBuilder: (context, index) {
-                UserModelNotification notification = user.notifications[index];
-                return Text(
-                  '${notification.title} ${notification.date}',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                );
-              },
-              itemCount: user.notifications.length,
-              shrinkWrap: true,
-            ),
+            // ListView.builder(
+            //   itemBuilder: (context, index) {
+            //     UserModelNotification notification = user.notifications[index];
+            //     return Text(
+            //       '${notification.title} ${notification.date}',
+            //       style: TextStyle(
+            //         fontWeight: FontWeight.w600,
+            //         color: Colors.white,
+            //       ),
+            //     );
+            //   },
+            //   itemCount: user.notifications.length,
+            //   shrinkWrap: true,
+            // ),
           ],
         ),
       ),
