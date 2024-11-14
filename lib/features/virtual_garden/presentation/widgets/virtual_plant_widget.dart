@@ -1,5 +1,9 @@
+import 'package:eco_hero_mobile/common/injection/dependency_injection.dart';
 import 'package:eco_hero_mobile/common/util/color_util.dart';
+import 'package:eco_hero_mobile/features/virtual_garden/data/models/plant_model.dart';
 import 'package:eco_hero_mobile/features/virtual_garden/data/models/virtual_garden_model.dart';
+import 'package:eco_hero_mobile/features/virtual_garden/data/repositories/virtual_garden_repository_impl.dart';
+import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -15,16 +19,19 @@ class VirtualPlantWidget extends StatelessWidget {
     required this.isOwner,
   });
 
-  void showPlantInfoDialog(
-      BuildContext context, VirtualGardenModelPlant plant) {
+  void showPlantInfoDialog(BuildContext context, VirtualGardenModelPlant plant,
+      PlantModel plantModel) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(plant.name, style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 20.sp,
-          ),),
+          title: Text(
+            plant.name,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 20.sp,
+            ),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -36,7 +43,7 @@ class VirtualPlantWidget extends StatelessWidget {
               ),
               SizedBox(height: 1.h),
               Text(
-                'Opis tego kwiatka',
+                plantModel.description,
                 style: TextStyle(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w500,
@@ -96,8 +103,14 @@ class VirtualPlantWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  onTap: () {
-                    //todo impl
+                  onTap: () async {
+                    (await get<VirtualGardenRepositoryImpl>()
+                            .removedWeedsInPlant(plant.plantId))
+                        .fold((garden) {
+                      if (context.mounted) {
+                        context.replace('/virtual_garden/page', extra: garden);
+                      }
+                    }, (exception) {});
                   },
                 ),
               if (needsFertilizing)
@@ -119,7 +132,15 @@ class VirtualPlantWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  onTap: () async {},
+                  onTap: () async {
+                    (await get<VirtualGardenRepositoryImpl>()
+                            .fertilizePlant(plant.plantId))
+                        .fold((garden) {
+                      if (context.mounted) {
+                        context.replace('/virtual_garden/page', extra: garden);
+                      }
+                    }, (exception) {});
+                  },
                 ),
               if (needsWatering)
                 PopupMenuItem(
@@ -140,7 +161,15 @@ class VirtualPlantWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  onTap: () async {},
+                  onTap: () async {
+                    (await get<VirtualGardenRepositoryImpl>()
+                            .waterPlant(plant.plantId))
+                        .fold((garden) {
+                      if (context.mounted) {
+                        context.replace('/virtual_garden/page', extra: garden);
+                      }
+                    }, (exception) {});
+                  },
                 ),
               if (isGrown)
                 PopupMenuItem(
@@ -150,7 +179,15 @@ class VirtualPlantWidget extends StatelessWidget {
                       fontSize: 18.sp,
                     ),
                   ),
-                  onTap: () async {},
+                  onTap: () async {
+                    (await get<VirtualGardenRepositoryImpl>()
+                            .collectPlant(plant.plantId))
+                        .fold((garden) {
+                      if (context.mounted) {
+                        context.replace('/virtual_garden/page', extra: garden);
+                      }
+                    }, (exception) {});
+                  },
                 ),
               PopupMenuItem(
                 child: Text(
@@ -159,7 +196,15 @@ class VirtualPlantWidget extends StatelessWidget {
                     fontSize: 18.sp,
                   ),
                 ),
-                onTap: () async {},
+                onTap: () async {
+                  (await get<VirtualGardenRepositoryImpl>()
+                          .sellPlant(plant.plantId))
+                      .fold((garden) {
+                    if (context.mounted) {
+                      context.replace('/virtual_garden/page', extra: garden);
+                    }
+                  }, (exception) {});
+                },
               ),
             ],
             PopupMenuItem(
@@ -169,7 +214,15 @@ class VirtualPlantWidget extends StatelessWidget {
                   fontSize: 18.sp,
                 ),
               ),
-              onTap: () => showPlantInfoDialog(context, plant),
+              onTap: () async {
+                await get<VirtualGardenRepositoryImpl>()
+                    .fetchPlant(plant.type)
+                    .fold((plant) {
+                  if (context.mounted) {
+                    showPlantInfoDialog(context, this.plant, plant);
+                  }
+                }, (_) {});
+              },
             ),
           ],
         );
