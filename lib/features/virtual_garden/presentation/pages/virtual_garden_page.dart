@@ -147,7 +147,7 @@ class VirtualGardenPage extends StatelessWidget {
                             SvgPicture.asset('assets/fertilizer.svg'),
                             SizedBox(height: 0.25.h),
                             Text(
-                              '${virtualGarden.userActions.fertilizingCount}/${virtualGarden.userActions.fertilizingMaxCount}',
+                              '${(virtualGarden.userActions.fertilizingMaxCount ?? 10) - virtualGarden.userActions.fertilizingCount}/${virtualGarden.userActions.fertilizingMaxCount}',
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 17.sp,
@@ -173,7 +173,7 @@ class VirtualGardenPage extends StatelessWidget {
                             SvgPicture.asset('assets/grass.svg'),
                             SizedBox(height: 0.25.h),
                             Text(
-                              '${virtualGarden.userActions.weedsRemoved}/${virtualGarden.userActions.weedsMaxRemoved}',
+                              '${(virtualGarden.userActions.weedsMaxRemoved ?? 10) - virtualGarden.userActions.weedsRemoved}/${virtualGarden.userActions.weedsMaxRemoved}',
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 17.sp,
@@ -199,7 +199,7 @@ class VirtualGardenPage extends StatelessWidget {
                             SvgPicture.asset('assets/watered.svg'),
                             SizedBox(height: 0.25.h),
                             Text(
-                              '${virtualGarden.userActions.wateringCount}/${virtualGarden.userActions.wateringMaxCount}',
+                              '${(virtualGarden.userActions.wateringMaxCount ?? 10) - virtualGarden.userActions.wateringCount}/${virtualGarden.userActions.wateringMaxCount}',
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 17.sp,

@@ -16,6 +16,6 @@ abstract class VirtualGardenRepository {
 
   Future<Either<VirtualGardenModel, Exception>> fertilizePlant(String id);
 
-  Future<Either<VirtualGardenModel, Exception>> removedWeedsInPlant(String id);
+  Future<Either<VirtualGardenModel, Exception>> removeWeedsInPlant(String id);
 
 }

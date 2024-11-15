@@ -105,7 +105,7 @@ class VirtualPlantWidget extends StatelessWidget {
                   ),
                   onTap: () async {
                     (await get<VirtualGardenRepositoryImpl>()
-                            .removedWeedsInPlant(plant.plantId))
+                            .removeWeedsInPlant(plant.plantId))
                         .fold((garden) {
                       if (context.mounted) {
                         context.replace('/virtual_garden/page', extra: garden);

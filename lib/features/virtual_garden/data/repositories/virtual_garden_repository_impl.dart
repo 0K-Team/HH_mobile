@@ -36,32 +36,52 @@ class VirtualGardenRepositoryImpl extends VirtualGardenRepository {
   }
 
   @override
-  Future<Either<VirtualGardenModel, Exception>> fertilizePlant(String id) {
-    // TODO: implement fertilizePlant
-    throw UnimplementedError();
+  Future<Either<VirtualGardenModel, Exception>> fertilizePlant(String id) async {
+    VirtualGardenModel? garden = await _source.fertilizePlant(id);
+    if (garden == null) {
+      return Right(Exception('Error fertilizing plant'));
+    }
+
+    return Left(garden);
   }
 
   @override
-  Future<Either<VirtualGardenModel, Exception>> removedWeedsInPlant(String id) {
-    // TODO: implement removedWeedsInPlant
-    throw UnimplementedError();
+  Future<Either<VirtualGardenModel, Exception>> removeWeedsInPlant(String id) async {
+    VirtualGardenModel? garden = await _source.removedWeedsInPlant(id);
+    if (garden == null) {
+      return Right(Exception('Error removing weeds in plant'));
+    }
+
+    return Left(garden);
   }
 
   @override
-  Future<Either<VirtualGardenModel, Exception>> sellPlant(String id) {
-    // TODO: implement sellPlant
-    throw UnimplementedError();
+  Future<Either<VirtualGardenModel, Exception>> sellPlant(String id) async {
+    VirtualGardenModel? garden = await _source.sellPlant(id);
+    if (garden == null) {
+      return Right(Exception('Error selling plant'));
+    }
+
+    return Left(garden);
   }
 
   @override
-  Future<Either<VirtualGardenModel, Exception>> waterPlant(String id) {
-    // TODO: implement waterPlant
-    throw UnimplementedError();
+  Future<Either<VirtualGardenModel, Exception>> waterPlant(String id) async {
+    VirtualGardenModel? garden = await _source.waterPlant(id);
+    if (garden == null) {
+      return Right(Exception('Error watering plant'));
+    }
+
+    return Left(garden);
   }
 
   @override
-  Future<Either<VirtualGardenModel, Exception>> collectPlant(String id) {
-    // TODO: implement collectPlant
-    throw UnimplementedError();
+  Future<Either<VirtualGardenModel, Exception>> collectPlant(String id) async {
+    VirtualGardenModel? garden = await _source.collectPlant(id);
+    if (garden == null) {
+      return Right(Exception('Error watering plant'));
+    }
+
+    return Left(garden);
   }
 }

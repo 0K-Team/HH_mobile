@@ -40,4 +40,58 @@ class VirtualGardenDataSource {
 
     return null;
   }
+
+  Future<VirtualGardenModel?> sellPlant(String id) async {
+    Response response =
+        await _dio.post('https://ecohero.q1000q.me/api/v1/garden/me/sell/$id');
+    if (response.statusCode == 200) {
+      return VirtualGardenModel.fromJson(response.data);
+    }
+
+    return null;
+  }
+
+  Future<VirtualGardenModel?> waterPlant(String id) async {
+    Response response = await _dio.post(
+        'https://ecohero.q1000q.me/api/v1/garden/me/action/$id',
+        data: {"action": "water"});
+    if (response.statusCode == 200) {
+      return VirtualGardenModel.fromJson(response.data);
+    }
+
+    return null;
+  }
+
+  Future<VirtualGardenModel?> collectPlant(String id) async {
+    Response response = await _dio.post(
+        'https://ecohero.q1000q.me/api/v1/garden/me/action/$id',
+        data: {"action": "collect"});
+    if (response.statusCode == 200) {
+      return VirtualGardenModel.fromJson(response.data);
+    }
+
+    return null;
+  }
+
+  Future<VirtualGardenModel?> fertilizePlant(String id) async {
+    Response response = await _dio.post(
+        'https://ecohero.q1000q.me/api/v1/garden/me/action/$id',
+        data: {"action": "fertilizer"});
+    if (response.statusCode == 200) {
+      return VirtualGardenModel.fromJson(response.data);
+    }
+
+    return null;
+  }
+
+  Future<VirtualGardenModel?> removedWeedsInPlant(String id) async {
+    Response response = await _dio.post(
+        'https://ecohero.q1000q.me/api/v1/garden/me/action/$id',
+        data: {"action": "weeds"});
+    if (response.statusCode == 200) {
+      return VirtualGardenModel.fromJson(response.data);
+    }
+
+    return null;
+  }
 }
